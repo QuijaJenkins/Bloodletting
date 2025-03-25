@@ -42,3 +42,33 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ground
+    uniqueID: 2971280185
+    locked: 0
+  - name: P1
+    uniqueID: 838748901
+    locked: 0
+  - name: B1
+    uniqueID: 3651564179
+    locked: 0
+  - name: P2
+    uniqueID: 250191677
+    locked: 0
+  - name: B2
+    uniqueID: 3998692701
+    locked: 0
+  - name: P3
+    uniqueID: 1206869719
+    locked: 0
+  - name: B3
+    uniqueID: 2970147469
+    locked: 0
+  - name: P4
+    uniqueID: 29495829
+    locked: 0
+  - name: B4
+    uniqueID: 2178506623
+    locked: 0
+  - name: player
+    uniqueID: 198629391
+    locked: 0
