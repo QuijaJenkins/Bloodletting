@@ -28,10 +28,14 @@ public class PlayerAttackMelee : MonoBehaviour{
       }
 
       void Attack(){
-            Debug.Log("We hit attack now\n");
+            Debug.Log("We hit spacebar to attack");
             //animator.SetTrigger ("Melee");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPt.position, attackRange, enemyLayers);
            
+            if (hitEnemies.Length == 0){
+                  Debug.Log("No enemies hit.");
+            }
+
             foreach(Collider2D enemy in hitEnemies){
                   Debug.Log("We hit " + enemy.name);
                   // enemy.GetComponent<EnemyMeleeDamage>().TakeDamage(attackDamage);
