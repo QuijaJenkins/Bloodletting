@@ -36167,12 +36167,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPt: {fileID: 1764435851}
-  attackRange: 110.7
+  attackRange: 0.9
   attackRate: 2
   attackDamage: 40
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &663163952
 Rigidbody2D:
   serializedVersion: 4
