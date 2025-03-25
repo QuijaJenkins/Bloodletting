@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c9391e4d7a368de468abe620f0ec6a33
+guid: cb491cb13f9260b45a25ce85f61d616a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,11 +123,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: prisonTorch_0
+      name: prisonWallPink_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 32
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -137,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7859c21cbe2996a4fabe19aa7d48d74c
-      internalID: 1850590852
+      spriteID: f28aa7bfbf9574a49bafd97c543f7224
+      internalID: 664165192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prisonTorch_1
+      name: prisonWallPink_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
+        x: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -158,71 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bed17df74ba91d94d87a475ef4603072
-      internalID: -1378513243
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prisonTorch_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb5cde1d0c57b87438301fdcd115bb31
-      internalID: -1532617619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prisonTorch_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f49718f12cf6a846bb452bede62834f
-      internalID: 699039720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prisonTorch_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12d1fc8a697de9c49a410fdd07b4bd1b
-      internalID: 95101486
+      spriteID: e51a0fd7cb818c84196d3674ce050f5c
+      internalID: 2119206187
       vertices: []
       indices: 
       edges: []
@@ -238,11 +175,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      prisonTorch_0: 1850590852
-      prisonTorch_1: -1378513243
-      prisonTorch_2: -1532617619
-      prisonTorch_3: 699039720
-      prisonTorch_4: 95101486
+      prisonWallPink_0: 664165192
+      prisonWallPink_1: 2119206187
+      prisonWallPink_2: -1609480895
+      prisonWallPink_3: 850633680
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
