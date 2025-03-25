@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PauseMenuSlider
   - GameHandler
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -72,4 +73,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 198629391
+    locked: 0
+  - name: enemies
+    uniqueID: 771370647
     locked: 0
