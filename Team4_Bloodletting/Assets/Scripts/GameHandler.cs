@@ -18,9 +18,9 @@ public class GameHandler : MonoBehaviour
     void Start(){
         player = GameObject.FindWithTag("Player");
         sceneName = SceneManager.GetActiveScene().name;
-        //if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
+        if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
             playerHealth = StartPlayerHealth;
-        //}
+        }
         updateStatsDisplay();
     }
 
@@ -36,4 +36,22 @@ public class GameHandler : MonoBehaviour
         // healthTextTemp.text = "HEALTH: " + playerHealth;
 
     }
+
+    public void RestartGame() {
+        Time.timeScale = 1f;
+        GameHandler_PauseMenu.GameisPaused = false;
+        SceneManager.LoadScene("MainMenu");
+            // Please also reset all static variables here, for new games!
+        playerHealth = StartPlayerHealth;
+    }
+
+    public void QuitGame() {
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #else
+                Application.Quit();
+                #endif
+    }
+
+
 }
