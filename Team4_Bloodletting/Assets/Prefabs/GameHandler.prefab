@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4879151377135777201}
   m_Layer: 0
   m_Name: GameHandler
-  m_TagString: Untagged
+  m_TagString: GameHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d74795824e3407da16c2d1d03c2f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 100
   StartPlayerHealth: 100
+  healthBar: {fileID: 0}

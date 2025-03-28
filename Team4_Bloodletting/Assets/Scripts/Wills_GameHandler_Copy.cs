@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameHandler : MonoBehaviour
+public class Wills_GameHandler_Copy : MonoBehaviour
 {
     private GameObject player;
     public int playerHealth = 100;
     public int StartPlayerHealth = 100;
     public Image healthBar;
+    
     // public GameObject healthText;
 
     private string sceneName;
 
-    
     // Start is called before the first frame update
     void Start(){
         player = GameObject.FindWithTag("Player");
         sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
+        //if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
             playerHealth = StartPlayerHealth;
-        }
+        //}
         updateStatsDisplay();
     }
 
@@ -38,6 +38,8 @@ public class GameHandler : MonoBehaviour
 
     }
 
+    //Change player health by given integer. Positive heals, negative means damage
+    //
     public void changeHealth(int healthChange, bool playerAttack) {
 
         //health can't go over 100
@@ -54,23 +56,4 @@ public class GameHandler : MonoBehaviour
             }
         }
     }
-
-
-    public void RestartGame() {
-        Time.timeScale = 1f;
-        GameHandler_PauseMenu.GameisPaused = false;
-        SceneManager.LoadScene("MainMenu");
-            // Please also reset all static variables here, for new games!
-        playerHealth = StartPlayerHealth;
-    }
-
-    public void QuitGame() {
-                #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-                #else
-                Application.Quit();
-                #endif
-    }
-
-
 }

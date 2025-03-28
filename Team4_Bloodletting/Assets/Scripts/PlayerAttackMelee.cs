@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttackMelee : MonoBehaviour{
 
       //public Animator animator;
+      private GameHandler gameHandler;
       public Transform attackPt;
       public float attackRange = 0.5f;
       public float attackRate = 2f;
@@ -14,6 +15,8 @@ public class PlayerAttackMelee : MonoBehaviour{
 
       void Start(){
            //animator = gameObject.GetComponentInChildren<Animator>();
+            gameHandler = GameObject.FindObjectOfType<GameHandler>();
+
       }
 
       void Update(){
@@ -29,6 +32,9 @@ public class PlayerAttackMelee : MonoBehaviour{
 
       void Attack(){
             Debug.Log("We hit spacebar to attack");
+            if (gameHandler != null) {
+                  gameHandler.changeHealth(-10, true);
+            }
             //animator.SetTrigger ("Melee");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPt.position, attackRange, enemyLayers);
            
@@ -39,6 +45,7 @@ public class PlayerAttackMelee : MonoBehaviour{
             foreach(Collider2D enemy in hitEnemies){
                   Debug.Log("We hit " + enemy.name);
                   Destroy(enemy.gameObject);
+                  gameHandler.changeHealth(20, false);
                   // enemy.GetComponent<EnemyMeleeDamage>().TakeDamage(attackDamage);
             }
       }
