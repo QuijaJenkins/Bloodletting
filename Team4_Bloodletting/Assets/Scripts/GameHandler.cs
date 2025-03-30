@@ -65,11 +65,24 @@ public class GameHandler : MonoBehaviour
     }
 
     public void QuitGame() {
-                #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-                #else
-                Application.Quit();
-                #endif
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
+    public void StartGame() {
+            SceneManager.LoadScene("Level1");
+    }
+
+    public void LoadMainMenu() {
+            SceneManager.LoadScene("MainMenu");
+    }
+
+    
+    public void Credits() {
+        SceneManager.LoadScene("CreditScene");
     }
 
 
