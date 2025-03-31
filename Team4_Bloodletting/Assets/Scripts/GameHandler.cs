@@ -12,9 +12,10 @@ public class GameHandler : MonoBehaviour
     private GameObject player;
     public int playerHealth = 100;
     public int StartPlayerHealth = 100;
-    public Image healthBar;
+    public UnityEngine.UI.Image healthBar;
     //state variables
     public string state;
+    public int stanceNumber;
     public bool moving;
     public bool stateLocked = false;
     // public GameObject healthText;
@@ -24,6 +25,9 @@ public class GameHandler : MonoBehaviour
     
     // Start is called before the first frame update
     void Start(){
+        //start in first stance
+        stanceNumber = 1;
+
         player = GameObject.FindWithTag("Player");
         sceneName = SceneManager.GetActiveScene().name;
         if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
@@ -37,6 +41,15 @@ public class GameHandler : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = playerHealth / 100f;
+
+        if (Input.GetKeyDown(KeyCode.E) && stanceNumber == 1) { 
+            Debug.Log("Entering stance 3");
+            stanceNumber = 3;
+        } else if (Input.GetKeyDown(KeyCode.E) && stanceNumber == 3) {
+            Debug.Log("Entering stance 1");
+            stanceNumber = 1;
+        }
+
 
     }
 
