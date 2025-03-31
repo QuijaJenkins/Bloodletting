@@ -7,10 +7,13 @@ public class PlayerAttackMelee : MonoBehaviour{
       //public Animator animator;
       private GameHandler gameHandler;
       public Transform attackPt;
-      public Transform attackPtW;
-      public Transform attackPtD;
-      public Transform attackPtA;
-      public Transform attackPtS;
+
+      //for changing hitpoint location based on which direction you're walking from
+      // public Transform attackPtW;
+      // public Transform attackPtD;
+      // public Transform attackPtA;
+      // public Transform attackPtS;
+
       public float attackRange = 0.5f;
       public float attackRate = 2f;
       private float nextAttackTime = 0f;
@@ -23,22 +26,30 @@ public class PlayerAttackMelee : MonoBehaviour{
 
       void Start(){
             damageTakenFromAttack = 10;
-            attackPt = attackPtA;
+           
+            //set attack point to the right by default
+            // attackPt = attackPtA;
+           
+           
            //animator = gameObject.GetComponentInChildren<Animator>();
             gameHandler = GameObject.FindObjectOfType<GameHandler>();
 
       }
 
       void Update(){
-            if (Input.GetKeyDown(KeyCode.W)) { 
-                  attackPt = attackPtW;
-            } else if (Input.GetKeyDown(KeyCode.D)) { 
-                  attackPt = attackPtD;
-            } else if (Input.GetKeyDown(KeyCode.A)) { 
-                  attackPt = attackPtA;
-            } else if (Input.GetKeyDown(KeyCode.S)) { 
-                  attackPt = attackPtS;
-            }
+            
+            
+            //change attack point based on which direction you're walking 
+
+            // if (Input.GetKeyDown(KeyCode.W)) { 
+            //       attackPt = attackPtW;
+            // } else if (Input.GetKeyDown(KeyCode.D)) { 
+            //       attackPt = attackPtD;
+            // } else if (Input.GetKeyDown(KeyCode.A)) { 
+            //       attackPt = attackPtA;
+            // } else if (Input.GetKeyDown(KeyCode.S)) { 
+            //       attackPt = attackPtS;
+            // }
 
             if (gameHandler.stanceNumber == 1) {
                   attackRange = 0.3f;
