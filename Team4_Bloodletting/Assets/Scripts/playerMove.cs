@@ -8,6 +8,14 @@ public class playerMove : MonoBehaviour {
       public float moveSpeed = 5f;
       public Vector2 movement;
 
+      // Dash vars
+      public float dashSpeed = 20f;
+      public float dashDuration = 0.2f;
+      public float dashCooldown = 1f;
+      private bool isDashing = false;
+      private float dashTimeLeft;
+      private float lastDashTime;
+
       // Auto-load the RigidBody component into the variable:
       void Start(){
             rb = GetComponent<Rigidbody2D> ();
@@ -15,11 +23,41 @@ public class playerMove : MonoBehaviour {
 
       // Listen for player input to move the object:
       void FixedUpdate(){
-            movement.x = Input.GetAxisRaw ("Horizontal");
+
+            if (!isDashing){
+                  movement.x = Input.GetAxisRaw ("Horizontal");
+                  //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+                  movement.y = Input.GetAxisRaw ("Vertical");
+                  //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            }
+
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-            movement.y = Input.GetAxisRaw ("Vertical");
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            
+            HandleDash();
       }
       
+      void Update(){
+            if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= lastDashTime + dashCooldown){
+                  StartDash();
+            }
+      }
+
+    void StartDash(){
+            isDashing = true;
+            dashTimeLeft = dashDuration;
+            lastDashTime = Time.time;
+            moveSpeed = dashSpeed;
+      }
+
+    void HandleDash()
+    {
+        if (isDashing){
+            dashTimeLeft -= Time.fixedDeltaTime;
+            if (dashTimeLeft <= 0){
+                  isDashing = false;
+                  moveSpeed = 5f; // Reset to normal speed
+            }
+      }
+    }
 
 }
