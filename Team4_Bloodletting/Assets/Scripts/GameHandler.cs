@@ -10,14 +10,17 @@ using UnityEngine.UIElements;
 public class GameHandler : MonoBehaviour
 {
     private GameObject player;
+    private Animator mAnimator;
     public int playerHealth = 100;
     public int StartPlayerHealth = 100;
     public UnityEngine.UI.Image healthBar;
     //state variables
+    public string spr_dir;
     public string state;
     public int stanceNumber;
     public bool moving;
     public bool stateLocked = false;
+     
     // public GameObject healthText;
 
     private string sceneName;
@@ -29,6 +32,7 @@ public class GameHandler : MonoBehaviour
         stanceNumber = 1;
 
         player = GameObject.FindWithTag("Player");
+        mAnimator = GetComponent<Animator>();
         sceneName = SceneManager.GetActiveScene().name;
         if (sceneName=="MainMenu"){ //uncomment these two lines when the MainMenu exists
             playerHealth = StartPlayerHealth;
@@ -55,6 +59,7 @@ public class GameHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
+        mAnimator.SetTrigger(state);
         //Determines your animation based on your current state
         if (!stateLocked)
         {
@@ -62,18 +67,22 @@ public class GameHandler : MonoBehaviour
             if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
             {
                 state = "bWalk";
+                spr_dir = "back";
             }
             if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
             {
                 state = "fWalk";
+                spr_dir = "forward";
             }
             if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
             {
                 state = "dWalk";
+                spr_dir = "down";
             }
             if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
             {
                 state = "uWalk";
+                spr_dir = "up";
             }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -83,6 +92,71 @@ public class GameHandler : MonoBehaviour
             if (!Input.anyKey)
             {
                 state = "idle";
+            }
+            //sets attack state based on current stance and direction
+            //I haven't implemented combo attacks yet
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                switch (stanceNumber)
+                {
+                    case 1:
+                        StateLock(20);
+                        switch (spr_dir)
+                        {
+                            case ("forward"):
+                                StateLock(20);
+                                state = "fAttack1";
+                                break;
+                            case ("back"):
+                                StateLock(20);
+                                state = "fAttack1";
+                                break;
+                            case ("up"):
+                                state = "uAttack1";
+                                break;
+                            case ("down"):
+                                state = "dAttack1";
+                                break;
+                        }
+                        break;
+                    case 2:
+                        //change StateLock() based on time held if we're doing Hades style
+                        switch (spr_dir)
+                        {
+                            case ("forward"):
+                                state = "fAttack2";
+                                break;
+                            case ("back"):
+                                state = "fAttack2";
+                                break;
+                            case ("up"):
+                                state = "uAttack2";
+                                break;
+                            case ("down"):
+                                state = "dAttack2";
+                                break;
+                        }
+                        break;
+                    case 3:
+                        StateLock(60);
+                        switch (spr_dir)
+                        {
+                            case ("forward"):
+                                state = "fAttack3";
+                                break;
+                            case ("back"):
+                                state = "fAttack3";
+                                break;
+                            case ("up"):
+                                state = "uAttack3";
+                                break;
+                            case ("down"):
+                                state = "dAttack3";
+                                break;
+                        }
+                        break;
+                }
+                
             }
         }
     }
