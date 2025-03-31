@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 1153106153}
     - target: {fileID: 3125037761234456000, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMainMenu
+      value: RestartGame
       objectReference: {fileID: 0}
     - target: {fileID: 3125037761234456000, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -258,6 +258,10 @@ PrefabInstance:
     - target: {fileID: 5964944835531086064, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6318609557068504074, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

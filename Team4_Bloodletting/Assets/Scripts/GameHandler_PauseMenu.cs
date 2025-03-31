@@ -32,7 +32,7 @@ public class GameHandler_PauseMenu : MonoBehaviour {
                         if (GameisPaused){
                                 Resume();
                         }
-                        else{
+                        else {
                                 Pause();
                         }
                 }
