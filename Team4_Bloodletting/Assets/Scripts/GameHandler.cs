@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting.ReorderableList;
+using System.Threading;
+using UnityEngine.UIElements;
 
 public class GameHandler : MonoBehaviour
 {
@@ -10,6 +13,10 @@ public class GameHandler : MonoBehaviour
     public int playerHealth = 100;
     public int StartPlayerHealth = 100;
     public Image healthBar;
+    //state variables
+    public string state;
+    public bool moving;
+    public bool stateLocked = false;
     // public GameObject healthText;
 
     private string sceneName;
@@ -23,11 +30,48 @@ public class GameHandler : MonoBehaviour
             playerHealth = StartPlayerHealth;
         }
         updateStatsDisplay();
+
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         healthBar.fillAmount = playerHealth / 100f;
+
+    }
+
+    private void FixedUpdate()
+    {
+        //Determines your animation based on your current state
+        if (!stateLocked)
+        {
+            //gets movement direction and prioritizes the first key pressed
+            if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
+            {
+                state = "bWalk";
+            }
+            if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
+            {
+                state = "fWalk";
+            }
+            if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
+            {
+                state = "dWalk";
+            }
+            if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
+            {
+                state = "uWalk";
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                StateLock(10);
+                state = "dashing";
+            }
+            if (!Input.anyKey)
+            {
+                state = "idle";
+            }
+        }
     }
 
     public void updateStatsDisplay(){
@@ -39,7 +83,7 @@ public class GameHandler : MonoBehaviour
     }
 
     public void changeHealth(int healthChange, bool playerAttack) {
-
+      
         //health can't go over 100
         if (playerHealth + healthChange >= 100) {
             playerHealth = 100;
@@ -85,5 +129,16 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene("CreditScene");
     }
 
-
+    public void StateLock(double waitTime)
+    {
+        double wait = 0;
+        stateLocked = true;
+        if (wait > waitTime)
+        {
+            stateLocked = false;
+            wait = 0;
+        }else{
+            wait++;
+        }
+    }
 }
