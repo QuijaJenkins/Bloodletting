@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7139567730731025768}
   - component: {fileID: 4488966111783586305}
   - component: {fileID: -6322836576988054023}
+  - component: {fileID: -5214594156270971856}
+  - component: {fileID: 560079837307281436}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -167,7 +169,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4adcc9215a2724624b8fae8660a56a26, type: 3}
   m_Name: 
@@ -185,3 +187,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f914717a415a54a51804e6b4f7c94855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5214594156270971856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268578490426690952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83327fb47f01d45c0a722145902cc62e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceHeight: 0.2
+  bounceSpeed: 2
+--- !u!114 &560079837307281436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268578490426690952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505a43d059136436fad29d315c5b3f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minChaseSpeed: 1
+  maxChaseSpeed: 3
+  chaseProbability: 0.4
