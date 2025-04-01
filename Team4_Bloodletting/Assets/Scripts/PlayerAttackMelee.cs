@@ -41,12 +41,16 @@ public class PlayerAttackMelee : MonoBehaviour{
             
             //change attack point based on which direction you're walking 
             if (Input.GetKeyDown(KeyCode.W)) { 
+                  Debug.Log("W attack pt");
                   attackPt = attackPtW;
             } else if (Input.GetKeyDown(KeyCode.D)) { 
+                  Debug.Log("D attack pt");
                   attackPt = attackPtD;
             } else if (Input.GetKeyDown(KeyCode.A)) { 
+                  Debug.Log("A attack pt");
                   attackPt = attackPtA;
             } else if (Input.GetKeyDown(KeyCode.S)) { 
+                  Debug.Log("S attack pt");
                   attackPt = attackPtS;
             }
 
