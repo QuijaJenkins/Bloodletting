@@ -208,9 +208,9 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene("CreditScene");
     }
 
-    // public void LoadSettings() {
-    //     SceneManager.LoadScene("SettingsScreen");
-    // }
+    public void LoadSettings() {
+        SceneManager.LoadScene("SettingsScreen");
+    }
 
 
 
