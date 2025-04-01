@@ -1,119 +1,67 @@
 
-// using UnityEngine;
 
-// public class EnemySpawner : MonoBehaviour
-// {
-//     public GameObject enemyPrefab;
-//     public float spawnRate = 2f;
-
-//     private float timer;
-
-//     void Update()u
-//     {
-//         timer += Time.deltaTime;
-//         if (timer >= spawnRate)
-//         {
-//             SpawnEnemy();
-//             timer = 0f;
-//         }
-//     }
-
-//     void SpawnEnemy()
-//     {
-//         Vector2 spawnPos = GetRightEdgeSpawnPosition();
-//         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-//     }
-
-//     Vector2 GetRightEdgeSpawnPosition()
-//     {
-//         Camera cam = Camera.main;
-//         float camHeight = 2f * cam.orthographicSize;
-//         float camWidth = camHeight * cam.aspect;
-//         Vector2 camCenter = cam.transform.position;
-
-//         float x = camCenter.x + camWidth / 2f + 1f; // slightly offscreen to the right
-//         float y = Random.Range(camCenter.y - camHeight / 2f + 1f, camCenter.y + camHeight / 2f - 1f); // anywhere vertically in view
-
-//         return new Vector2(x, y);
-//     }
-// }
 
 // using UnityEngine;
 
 // public class EnemySpawner : MonoBehaviour
 // {
 //     public GameObject enemyPrefab;
-
-//     public float baseSpawnRate = 2f;      // Starting rate
-//     public float minSpawnRate = 0.3f;     // Hard cap (optional)
-//     public float difficultyRampTime = 60f; // Time (seconds) until max difficulty
-
-//     private float spawnTimer;
-//     private float gameTimer;
-
-//     void Update()
-//     {
-//         spawnTimer += Time.deltaTime;
-//         gameTimer += Time.deltaTime;
-
-//         float currentSpawnRate = Mathf.Lerp(baseSpawnRate, minSpawnRate, gameTimer / difficultyRampTime);
-
-//         if (spawnTimer >= currentSpawnRate)
-//         {
-//             SpawnEnemy();
-//             spawnTimer = 0f;
-//         }
-//     }
-
-//     void SpawnEnemy()
-//     {
-//         Vector2 spawnPos = GetRightEdgeSpawnPosition();
-//         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-//     }
-
-//     Vector2 GetRightEdgeSpawnPosition()
-//     {
-//         Camera cam = Camera.main;
-//         float camHeight = 2f * cam.orthographicSize;
-//         float camWidth = camHeight * cam.aspect;
-//         Vector2 camCenter = cam.transform.position;
-
-//         float x = camCenter.x + camWidth / 2f + 1f;
-//         float y = Random.Range(camCenter.y - camHeight / 2f + 1f, camCenter.y + camHeight / 2f - 1f);
-
-//         return new Vector2(x, y);
-//     }
-// }
-
-// using UnityEngine;
-
-// public class EnemySpawner : MonoBehaviour
-// {
-//     public GameObject enemyPrefab;
-//     public Transform[] spawnPoints; // Drag all 7 spawn points here in Inspector
+//     public Transform[] spawnPoints;
 //     public float spawnInterval = 1.5f;
+//     public float chaseStartDelay = 15f; // Delay before chasing can begin
 
 //     private float timer = 0f;
+//     private float gameTime = 0f;
+//     private int orderedIndex = 0;
+//     private bool initialWaveDone = false;
+
+//     public static bool chasingAllowed = false; // Global flag
 
 //     void Update()
 //     {
 //         timer += Time.deltaTime;
+//         gameTime += Time.deltaTime;
+
+//         // Activate global chase mode after the delay
+//         if (!chasingAllowed && gameTime >= chaseStartDelay)
+//         {
+//             chasingAllowed = true;
+//             Debug.Log("Chasing is now allowed!");
+//         }
 
 //         if (timer >= spawnInterval)
 //         {
 //             timer = 0f;
-//             SpawnEnemyAtRandomPoint();
+
+//             if (!initialWaveDone)
+//             {
+//                 SpawnEnemyInOrder();
+//             }
+//             else
+//             {
+//                 SpawnEnemyRandom();
+//             }
 //         }
 //     }
 
-//     void SpawnEnemyAtRandomPoint()
+//     void SpawnEnemyInOrder()
 //     {
-//         if (spawnPoints.Length == 0) return;
+//         if (orderedIndex < spawnPoints.Length)
+//         {
+//             Instantiate(enemyPrefab, spawnPoints[orderedIndex].position, Quaternion.identity);
+//             orderedIndex++;
+//         }
 
+//         if (orderedIndex >= spawnPoints.Length)
+//         {
+//             initialWaveDone = true;
+//         }
+//     }
+
+//     void SpawnEnemyRandom()
+//     {
 //         int randomIndex = Random.Range(0, spawnPoints.Length);
-//         Transform spawnPoint = spawnPoints[randomIndex];
-
-//         Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+//         Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
 //     }
 // }
 
@@ -124,47 +72,65 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
     public float spawnInterval = 1.5f;
+    public float chaseStartDelay = 15f;
 
     private float timer = 0f;
-    private int orderedIndex = 0;
-    private bool initialWaveDone = false;
+    private float gameTime = 0f;
+    private int guardIndex = 0;
+    private bool initialGuardsSpawned = false;
+
+    public static bool chasingAllowed = false;
 
     void Update()
     {
         timer += Time.deltaTime;
+        gameTime += Time.deltaTime;
+
+        if (!chasingAllowed && gameTime >= chaseStartDelay)
+        {
+            chasingAllowed = true;
+            Debug.Log("Chasing is now allowed!");
+        }
 
         if (timer >= spawnInterval)
         {
             timer = 0f;
 
-            if (!initialWaveDone)
+            if (!initialGuardsSpawned)
             {
-                SpawnEnemyInOrder();
+                SpawnInitialGuard();
             }
             else
             {
-                SpawnEnemyRandom();
+                SpawnRandomEnemy();
             }
         }
     }
 
-    void SpawnEnemyInOrder()
+    void SpawnInitialGuard()
     {
-        if (orderedIndex < spawnPoints.Length)
+        if (guardIndex < spawnPoints.Length)
         {
-            Instantiate(enemyPrefab, spawnPoints[orderedIndex].position, Quaternion.identity);
-            orderedIndex++;
+            GameObject enemy = Instantiate(enemyPrefab, spawnPoints[guardIndex].position, Quaternion.identity);
+            EnemyChasePlayer behavior = enemy.GetComponent<EnemyChasePlayer>();
+            if (behavior != null)
+            {
+                behavior.SetAsGuard();
+            }
+
+            guardIndex++;
         }
 
-        if (orderedIndex >= spawnPoints.Length)
+        if (guardIndex >= spawnPoints.Length)
         {
-            initialWaveDone = true;
+            initialGuardsSpawned = true;
         }
     }
 
-    void SpawnEnemyRandom()
+    void SpawnRandomEnemy()
     {
         int randomIndex = Random.Range(0, spawnPoints.Length);
-        Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
+        // Remaining behavior (chase or idle) is handled in the enemy script
     }
 }

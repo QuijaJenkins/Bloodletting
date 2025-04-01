@@ -54,7 +54,7 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //healthBar.fillAmount = playerHealth / 100f;
+        // healthBar.fillAmount = playerHealth / 100f;
 
         if (Input.GetKeyDown(KeyCode.E) && stanceNumber == 1) { 
             Debug.Log("Entering stance 3");
