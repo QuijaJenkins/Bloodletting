@@ -199,6 +199,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: stanceSwap2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713255878267768430, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: sfx_mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 86e2e06a329844607be0da003968c637, type: 2}
+    - target: {fileID: 6713255878267768430, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: music_mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: fc2de79664bcf4de8a033ec7e63a34ff, type: 2}
+    - target: {fileID: 6713255878267768430, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 8424576416291929277, guid: c26859800fc1d4908bd06eb4bfac1145, type: 3}
     - target: {fileID: 6792484445503324996, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
       propertyPath: m_Name
       value: GameHandler

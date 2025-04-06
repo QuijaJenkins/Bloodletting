@@ -8,17 +8,28 @@ public class GameHandler_PauseMenu : MonoBehaviour {
 
         public static bool GameisPaused = false;
         public GameObject pauseMenuUI;
-        public AudioMixer mixer;
-        public static float volumeLevel = 1.0f;
-        private Slider sliderVolumeCtrl;
+        public AudioMixer music_mixer;
+        public AudioMixer sfx_mixer;
+        public static float musicVolumeLevel = 1.0f;
+        public static float sfxVolumeLevel = 1.0f;
+        private Slider music_sliderVolumeCtrl;
+        private Slider sfx_sliderVolumeCtrl;
 
         void Awake(){
                 pauseMenuUI.SetActive(true); // so slider can be set
-                SetLevel (volumeLevel);
+                MusicSetLevel (musicVolumeLevel);
+                SFXSetLevel (sfxVolumeLevel);
                 GameObject sliderTemp = GameObject.FindWithTag("PauseMenuSlider");
                 if (sliderTemp != null){
-                        sliderVolumeCtrl = sliderTemp.GetComponent<Slider>();
-                        sliderVolumeCtrl.value = volumeLevel;
+                        music_sliderVolumeCtrl = sliderTemp.GetComponent<Slider>();
+                        music_sliderVolumeCtrl.value = musicVolumeLevel;
+                }
+
+                // sfx
+                GameObject sliderTemp1 = GameObject.FindWithTag("PauseMenuSlider_sfx");
+                if (sliderTemp1 != null){
+                        sfx_sliderVolumeCtrl = sliderTemp1.GetComponent<Slider>();
+                        sfx_sliderVolumeCtrl.value = sfxVolumeLevel;
                 }
         }
 
@@ -53,8 +64,13 @@ public class GameHandler_PauseMenu : MonoBehaviour {
                 GameisPaused = false;
         }
 
-        public void SetLevel(float sliderValue){
-                mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * 20);
-                volumeLevel = sliderValue;
+        public void MusicSetLevel(float sliderValue){
+                music_mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * 20);
+                musicVolumeLevel = sliderValue;
+        }
+
+        public void SFXSetLevel(float sliderValue){
+                sfx_mixer.SetFloat("SFXVolume", Mathf.Log10 (sliderValue) * 20);
+                sfxVolumeLevel = sliderValue;
         }
 }

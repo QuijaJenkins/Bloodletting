@@ -16,6 +16,8 @@ public class playerMove : MonoBehaviour {
       private float dashTimeLeft;
       private float lastDashTime;
 
+      public AudioSource dash_sfx;
+
       // Auto-load the RigidBody component into the variable:
       void Start(){
             rb = GetComponent<Rigidbody2D> ();
@@ -38,6 +40,7 @@ public class playerMove : MonoBehaviour {
       
       void Update(){
             if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= lastDashTime + dashCooldown){
+                  dash_sfx.Play();
                   StartDash();
             }
       }

@@ -8,6 +8,7 @@ TagManager:
   - GameHandler
   - Enemy
   - PlayerAnim
+  - PauseMenuSlider_sfx
   layers:
   - Default
   - TransparentFX
