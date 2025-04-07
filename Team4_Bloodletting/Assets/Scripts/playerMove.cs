@@ -16,6 +16,7 @@ public class playerMove : MonoBehaviour {
       private float dashTimeLeft;
       private float lastDashTime;
 
+      // audio vars
       public AudioSource dash_sfx;
 
       // Auto-load the RigidBody component into the variable:

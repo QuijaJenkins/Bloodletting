@@ -48,6 +48,22 @@ MonoBehaviour:
   playerHealth: 100
   StartPlayerHealth: 100
   healthBar: {fileID: 0}
+  playerAnim: {fileID: 0}
+  spr_dir: forward
+  stanceNumber: 0
+  moving: 0
+  stateLocked: 0
+  idle: 1
+  fWalk: 0
+  dWalk: 0
+  uWalk: 0
+  dashing: 0
+  uAttack: 0
+  fAttack: 0
+  dAttack: 0
+  stanceSwap1: 0
+  stanceSwap2: 0
+  stanceSwap3: 0
 --- !u!114 &6713255878267768430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,4 +77,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 7698725823904916149, guid: d92a0ecc25d3148b4b019cbea06a3203, type: 3}
-  mixer: {fileID: 24100000, guid: fc2de79664bcf4de8a033ec7e63a34ff, type: 2}
+  music_mixer: {fileID: 24100000, guid: fc2de79664bcf4de8a033ec7e63a34ff, type: 2}
+  sfx_mixer: {fileID: 24100000, guid: 86e2e06a329844607be0da003968c637, type: 2}
