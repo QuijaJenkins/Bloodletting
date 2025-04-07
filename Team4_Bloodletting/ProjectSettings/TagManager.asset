@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - PlayerAnim
   - PauseMenuSlider_sfx
+  - AudioManager
   layers:
   - Default
   - TransparentFX
