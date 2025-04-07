@@ -14,22 +14,31 @@ public class GameHandler : MonoBehaviour
     public int StartPlayerHealth = 100;
     public UnityEngine.UI.Image healthBar;
     //state variables
+    public Vector2 movement;
     public Animator playerAnim;
-    public string spr_dir = "forward";
+    public int spr_dir = 2;
     public int stanceNumber;
     public bool moving;
-    public bool stateLocked = false;
-    public bool idle = true;
-    public bool fWalk = false;
-    public bool dWalk = false;
-    public bool uWalk = false;
-    public bool dashing = false;
-    public bool uAttack = false;
-    public bool fAttack = false;
-    public bool dAttack = false;
-    public bool stanceSwap1 = false;
-    public bool stanceSwap2 = false;
-    public bool stanceSwap3 = false;
+    public int input = 0;
+    public int currentInput = 0;
+    public bool inputActive = true;
+    public double wait = 0;
+    public double lockTimer = 0;
+    private bool testTrigger;
+
+    /*DON'T DELETE; reference for all the animation states
+    public int idle = 0;
+    public int uWalk = 1;
+    public int fWalk = 2;
+    public int dWalk = 3;
+    public int bWalk = 4;
+    public int dashing = 8;
+    public int uAttack = 9;
+    public int fAttack = 10;
+    public int dAttack = 11;
+    public int stanceSwap1 = 12; //just one swap needed?
+    public int stanceSwap2 = 13;
+    public int stanceSwap3 = 14;*/
 
     // public GameObject healthText;
 
@@ -48,7 +57,7 @@ public class GameHandler : MonoBehaviour
         }
         playerAnim = player.GetComponentInChildren<Animator>();
         updateStatsDisplay();
-
+        spr_dir = 2;
     }
 
     // Update is called once per frame
@@ -64,94 +73,184 @@ public class GameHandler : MonoBehaviour
             stanceNumber = 1;
         }
 
+        movement = player.GetComponent<playerMove>().movement;
 
-    }
 
-    private void FixedUpdate()
-    {
-        //Determines your animation based on your current state
-        playerAnim.SetBool("idle", idle);
-        playerAnim.SetBool("fWalk", fWalk);
-        playerAnim.SetBool("dWalk", dWalk);
-        playerAnim.SetBool("uWalk", uWalk);
-        playerAnim.SetBool("dashing", dashing);
-        playerAnim.SetInteger("stance", stanceNumber);
-        playerAnim.SetBool("fAttack", fAttack);
-        playerAnim.SetBool("dAttack", dAttack);
-        playerAnim.SetBool("uAttack", uAttack);
- 
-        if (!stateLocked)
+        //unlocks lock after set time
+        if (!inputActive)
+        {  
+            lockTimer += Time.deltaTime;
+            if (lockTimer > wait)
+            {
+                inputActive = true;
+                lockTimer -= wait;
+            }
+        }
+            //Debug.Log(spr_dir);
+        //current state code
+        if (inputActive)
         {
-            //gets movement direction and prioritizes the first key pressed
-            if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
-            {
-                fWalk = true;
-                spr_dir = "forward";
-            } else { 
-                fWalk = false; 
-            }
-            if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
-            {
-                dWalk = true;
-                spr_dir = "down";
-            }else{
-                dWalk = false;
-            }
-            if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
-            {
-                uWalk = true;
-                spr_dir = "up";
-            }else{
-                uWalk = false;
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                StateLock(10);
-                dashing = true;
-            }else{
-                dashing = false;
-            }
+            //gets movement direction via movement vector
             if (!Input.anyKey)
             {
-                idle = true;
-            }else{
-                idle = false;
+                if (input != 0)
+                {
+                    Trigger();
+                }
+                input = 0;
+                playerAnim.SetInteger("input", input);
             }
+
+            if (movement.y > Mathf.Abs(movement.x))
+            {
+                if (input != 1)
+                {
+                    Trigger();
+                }
+                input = 1;
+                playerAnim.SetInteger("input", input);
+                spr_dir = 1;
+                playerAnim.SetInteger("spr_dir", spr_dir);
+            }
+
+            if (movement.x > Mathf.Abs(movement.y))
+            {
+                if (input != 2)
+                {
+                    Trigger();
+                }
+                input = 2;
+                playerAnim.SetInteger("input", input);
+                spr_dir = 2;
+                playerAnim.SetInteger("spr_dir", spr_dir);
+            }
+
+            if (movement.y < -Mathf.Abs(movement.x))
+            {
+                if (input != 3)
+                {
+                    Trigger();
+                }
+                input = 3;
+                playerAnim.SetInteger("input", input);
+                spr_dir = 3;
+                playerAnim.SetInteger("spr_dir", spr_dir);
+            }
+
+            if (movement.x < -Mathf.Abs(movement.y))
+            {
+                //flip around
+                if (input != 4)
+                {
+                    Trigger();
+                }
+                input = 4;
+                playerAnim.SetInteger("input", input);
+                spr_dir = 4;
+                playerAnim.SetInteger("spr_dir", spr_dir);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                if (input != 0)
+                {
+                    Trigger();
+                }
+                input = 5;
+                playerAnim.SetInteger("input", input);
+                InputLock(10);
+                //dashing = true;
+            }
+
             //sets attack state based on current stance and direction
             //I haven't implemented combo attacks yet
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                switch (stanceNumber)
+                Debug.Log("ok");
+                //this needs to be removed and added with attack window
+                if (spr_dir == 2)
                 {
-                    case 1:
-                        StateLock(20);
-                        break;
-                    case 2:
-                        //StateLock(20);
-                        break;
-                    case 3:
-                        StateLock(60);
-                        break;
+                    Debug.Log("better");
+                    if (stanceNumber == 1)
+                    {
+                        Debug.Log("gold");
+                        if (input != 6)
+                        {
+                            Trigger();
+                        }
+                        input = 6;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }       
+                     //if (stanceNumber == 2) { }
+
+                     if (stanceNumber == 3)
+                     {
+                        InputLock(4);
+                     }          
+                 }
+                if (spr_dir == 4) {
+                    if (stanceNumber == 1)
+                    {
+                        if (input != 6)
+                        {
+                            Trigger();
+                        }
+                        input = 6;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
+                    //if (stanceNumber == 2){}
+
+                    if (stanceNumber == 3)
+                    {
+                        InputLock(4);
+                    }
                 }
-                switch (spr_dir)
-                {
-                    case ("forward"):
-                        fAttack = true;
-                        break;
-                    case ("up"):
-                        uAttack = true;
-                        break;
-                    case ("down"):
-                        dAttack = true;
-                        break;
+                if(spr_dir == 1) {
+                        if (stanceNumber == 1)
+                        {
+                            Debug.Log("hmm");
+                            if (input != 6)
+                            {
+                                Trigger();
+                            }
+                            input = 6;
+                            playerAnim.SetInteger("input", input);
+                            InputLock(0.25);
+                        }
+                        /*if (stanceNumber == 2)
+                        {
+                        }*/
+
+                        if (stanceNumber == 3)
+                        {
+                            InputLock(4);
+                        }
+                    }
+                if (spr_dir == 3)
+                    {
+                        if (stanceNumber == 1)
+                        {
+                            if (input != 6)
+                            {
+                                Trigger();
+                            }
+                            input = 6;
+                            playerAnim.SetInteger("input", input);
+                            InputLock(0.25);
+                        }
+                        //if (stanceNumber == 2) {}
+
+                        if (stanceNumber == 3)
+                        {
+                            InputLock(4);
+                        }
                 }
-            }else{
-                fAttack = false;
-                uAttack = false;
-                dAttack = false;
             }
         }
     }
+
 
     public void updateStatsDisplay(){
        
@@ -214,16 +313,16 @@ public class GameHandler : MonoBehaviour
 
 
 
-    public void StateLock(double waitTime)
+    //used by attacks to freeze all inputs but attacks if this is useful
+    public void InputLock(double waitTime)
+    { 
+        inputActive = false;
+        wait = waitTime;
+    }
+
+    public void Trigger()
     {
-        double wait = 0;
-        stateLocked = true;
-        if (wait > waitTime)
-        {
-            stateLocked = false;
-            wait = 0;
-        }else{
-            wait++;
-        }
+        playerAnim.ResetTrigger("trigger");
+        playerAnim.SetTrigger("trigger");
     }
 }

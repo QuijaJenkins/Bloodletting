@@ -10,6 +10,7 @@ TagManager:
   - PlayerAnim
   - PauseMenuSlider_sfx
   - AudioManager
+  - PlayerArt
   layers:
   - Default
   - TransparentFX
