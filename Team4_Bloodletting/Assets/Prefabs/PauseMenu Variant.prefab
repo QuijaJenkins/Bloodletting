@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: m_Colors.m_SelectedColor.r
       value: 0.20784315
       objectReference: {fileID: 0}
+    - target: {fileID: 3694194259513182926, guid: d92a0ecc25d3148b4b019cbea06a3203, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 4638841579221797055, guid: d92a0ecc25d3148b4b019cbea06a3203, type: 3}
       propertyPath: m_LocalPosition.y
       value: -8
