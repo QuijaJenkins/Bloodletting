@@ -26,6 +26,10 @@ public class GameHandler : MonoBehaviour
     public double lockTimer = 0;
     private bool testTrigger;
 
+    //Variables for switching attack scripts based on stance
+    public PlayerAttackMelee meleeScript;
+    public PlayerMoveAimShoot projectileScript;
+
     /*DON'T DELETE; reference for all the animation states
     public int idle = 0;
     public int uWalk = 1;
@@ -49,6 +53,8 @@ public class GameHandler : MonoBehaviour
     void Start(){
         //start in first stance
         stanceNumber = 1;
+        updateAttackScriptByStance();
+
 
         player = GameObject.FindWithTag("Player");
         sceneName = SceneManager.GetActiveScene().name;
@@ -65,12 +71,19 @@ public class GameHandler : MonoBehaviour
     {
         healthBar.fillAmount = playerHealth / 100f;
 
-        if (Input.GetKeyDown(KeyCode.E) && stanceNumber == 1) { 
-            Debug.Log("Entering stance 3");
-            stanceNumber = 3;
-        } else if (Input.GetKeyDown(KeyCode.E) && stanceNumber == 3) {
+        //code for stance switching. Click 1 2 or 3 for respective stance
+        if (Input.GetKeyDown(KeyCode.Alpha1) && stanceNumber != 1) { 
             Debug.Log("Entering stance 1");
             stanceNumber = 1;
+            updateAttackScriptByStance();
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && stanceNumber != 2) {
+            Debug.Log("Entering stance 2");
+            stanceNumber = 2;
+            updateAttackScriptByStance();
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && stanceNumber != 3) {
+            Debug.Log("Entering stance 3");
+            stanceNumber = 3;
+            updateAttackScriptByStance();
         }
 
         movement = player.GetComponent<playerMove>().movement;
@@ -325,4 +338,16 @@ public class GameHandler : MonoBehaviour
         playerAnim.ResetTrigger("trigger");
         playerAnim.SetTrigger("trigger");
     }
+
+    void updateAttackScriptByStance() {
+        if (stanceNumber == 1 || stanceNumber == 3) {
+            meleeScript.enabled = true;
+            projectileScript.enabled = false;
+        } else if (stanceNumber == 2) {
+            meleeScript.enabled = false;
+            projectileScript.enabled = true;
+        }
+    }
+
 }
+

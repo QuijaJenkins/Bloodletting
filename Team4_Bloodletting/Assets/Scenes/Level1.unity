@@ -27476,6 +27476,7 @@ GameObject:
   - component: {fileID: 663163951}
   - component: {fileID: 663163953}
   - component: {fileID: 663163954}
+  - component: {fileID: 663163955}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -27502,6 +27503,7 @@ Transform:
   - {fileID: 1644131755}
   - {fileID: 1068253286}
   - {fileID: 790200913}
+  - {fileID: 914284986}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27620,6 +27622,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &663163955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663163949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4307aae8137ed4f14a917976c8de091e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  cam: {fileID: 0}
+  movement: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0}
+  fireBase: {fileID: 914284986}
+  firePoint: {fileID: 1982014245}
+  projectilePrefab: {fileID: 5494351428001175963, guid: acb4c2bf86d784b9485fc2cd5b15c1eb, type: 3}
+  projectileSpeed: 10
+  attackRate: 2
 --- !u!1001 &685195191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31323,6 +31346,38 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 999681759}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &914284985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 914284986}
+  m_Layer: 0
+  m_Name: FireBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &914284986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914284985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.29, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1982014245}
+  m_Father: {fileID: 663163950}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &973007858
@@ -43026,6 +43081,14 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1793704123}
+    - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: meleeScript
+      value: 
+      objectReference: {fileID: 663163951}
+    - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: projectileScript
+      value: 
+      objectReference: {fileID: 663163955}
     - target: {fileID: 6713255878267768430, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
       propertyPath: sfx_mixer
       value: 
@@ -70970,6 +71033,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1982014244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1982014245}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1982014245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982014244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.77, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 914284986}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2021268082
 GameObject:
   m_ObjectHideFlags: 0
