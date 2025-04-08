@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -3534755377247643249}
   - component: {fileID: -3722654821315789555}
   - component: {fileID: -1499117352562475215}
+  - component: {fileID: 381850437200700061}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -266,8 +267,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6091317fdf704f8592a43463e1c8a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bouncingEnemyPrefab: {fileID: 7268578490426690952}
-  doorSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!114 &381850437200700061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268578490426690952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a03480ac0f254d7da26ea86358c718c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 7

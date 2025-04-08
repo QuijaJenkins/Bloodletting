@@ -54661,7 +54661,7 @@ GameObject:
   - component: {fileID: 1185298315}
   m_Layer: 0
   m_Name: MCIdle
-  m_TagString: PlayerArt
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
