@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting.ReorderableList;
+//using Unity.VisualScripting.ReorderableList;
 using System.Threading;
 using UnityEngine.UIElements;
 
@@ -101,6 +101,14 @@ public class GameHandler : MonoBehaviour
         }
             //Debug.Log(spr_dir);
         //current state code
+        if (spr_dir == 4)
+        {
+            player.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            player.GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
         if (inputActive)
         {
             //gets movement direction via movement vector
@@ -179,14 +187,11 @@ public class GameHandler : MonoBehaviour
             //I haven't implemented combo attacks yet
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("ok");
                 //this needs to be removed and added with attack window
                 if (spr_dir == 2)
                 {
-                    Debug.Log("better");
                     if (stanceNumber == 1)
                     {
-                        Debug.Log("gold");
                         if (input != 6)
                         {
                             Trigger();
@@ -220,45 +225,44 @@ public class GameHandler : MonoBehaviour
                         InputLock(4);
                     }
                 }
-                if(spr_dir == 1) {
-                        if (stanceNumber == 1)
-                        {
-                            Debug.Log("hmm");
-                            if (input != 6)
-                            {
-                                Trigger();
-                            }
-                            input = 6;
-                            playerAnim.SetInteger("input", input);
-                            InputLock(0.25);
-                        }
-                        /*if (stanceNumber == 2)
-                        {
-                        }*/
-
-                        if (stanceNumber == 3)
-                        {
-                            InputLock(4);
-                        }
-                    }
-                if (spr_dir == 3)
+                if(spr_dir == 1) 
+                {
+                    if (stanceNumber == 1)
                     {
-                        if (stanceNumber == 1)
+                        Debug.Log("hmm");
+                        if (input != 6)
                         {
-                            if (input != 6)
-                            {
-                                Trigger();
-                            }
-                            input = 6;
-                            playerAnim.SetInteger("input", input);
-                            InputLock(0.25);
+                            Trigger();
                         }
-                        //if (stanceNumber == 2) {}
-
-                        if (stanceNumber == 3)
+                        input = 6;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
+                    /*if (stanceNumber == 2)
+                    {
+                    }*/
+                    if (stanceNumber == 3)
+                    {
+                        InputLock(4);
+                    }
+                }
+                if (spr_dir == 3)
+                {
+                    if (stanceNumber == 1)
+                    {
+                        if (input != 6)
                         {
-                            InputLock(4);
+                            Trigger();
                         }
+                        input = 6;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
+                //if (stanceNumber == 2) {}
+                if (stanceNumber == 3)
+                    {
+                       InputLock(4);
+                    }
                 }
             }
         }
