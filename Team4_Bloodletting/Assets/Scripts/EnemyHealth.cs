@@ -357,11 +357,11 @@ public class EnemyHealth : MonoBehaviour
 
         if (health == 1)
         {
-            KnockbackFromPlayer(); // ✅ First hit: fly back
+            KnockbackFromPlayer(); // First hit: fly back
         }
         else if (health <= 0)
         {
-            Die(); // ✅ Second hit: destroy
+            Die(); // Second hit: destroy
         }
     }
 
@@ -374,7 +374,7 @@ public class EnemyHealth : MonoBehaviour
 
         Vector2 dir = (transform.position - player.position).normalized;
         rb.velocity = Vector2.zero;
-        rb.AddForce(dir * 300f, ForceMode2D.Impulse); // 💥 Fly back on first hit
+        rb.AddForce(dir * 300f, ForceMode2D.Impulse); // first hit
     }
 
     void Die()

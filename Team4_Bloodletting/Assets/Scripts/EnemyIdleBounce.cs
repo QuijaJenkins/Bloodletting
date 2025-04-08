@@ -18,3 +18,25 @@ public class EnemyIdleBounce : MonoBehaviour
         transform.position = new Vector3(startPos.x, startPos.y + yOffset, startPos.z);
     }
 }
+
+// using UnityEngine;
+
+// public class EnemyIdleBounce : MonoBehaviour
+// {
+//     public float bounceHeight = 0.2f;
+//     public float bounceSpeed = 2f;
+
+//     private Vector3 startPos;
+
+//     void Start()
+//     {
+//         startPos = transform.position + new Vector3(0, Random.Range(-0.1f, 0.1f), 0);
+//     }
+
+//     void Update()
+//     {
+//         float yOffset = Mathf.Sin((Time.time + transform.position.x) * bounceSpeed) * bounceHeight;
+//         transform.position = new Vector3(startPos.x, startPos.y + yOffset, startPos.z);
+//     }
+// }
+
