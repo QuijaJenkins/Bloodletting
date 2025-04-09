@@ -183,6 +183,14 @@ public class EnemyChasePlayer : MonoBehaviour
 
         Vector2 direction = (player.position - transform.position).normalized;
         transform.Translate(direction * speed * Time.deltaTime);
+        
+        if (direction.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        } else if (direction.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }
 
