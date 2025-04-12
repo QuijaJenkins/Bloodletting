@@ -87,8 +87,9 @@ public class GameHandler : MonoBehaviour
         }
 
         movement = player.GetComponent<playerMove>().movement;
-
-
+        
+        //stance
+        playerAnim.SetInteger("stance", stanceNumber);
         //unlocks lock after set time
         if (!inputActive)
         {  
@@ -99,7 +100,7 @@ public class GameHandler : MonoBehaviour
                 lockTimer -= wait;
             }
         }
-            //Debug.Log(spr_dir);
+
         //current state code
         if (spr_dir == 4)
         {
@@ -122,7 +123,7 @@ public class GameHandler : MonoBehaviour
                 playerAnim.SetInteger("input", input);
             }
 
-            if (movement.y > Mathf.Abs(movement.x))
+            if (movement.y > Mathf.Abs(movement.x) || (Mathf.Abs(movement.x) == Mathf.Abs(movement.y) && movement.y > 0))
             {
                 if (input != 1)
                 {
@@ -146,7 +147,7 @@ public class GameHandler : MonoBehaviour
                 playerAnim.SetInteger("spr_dir", spr_dir);
             }
 
-            if (movement.y < -Mathf.Abs(movement.x))
+            if (movement.y < -Mathf.Abs(movement.x) || (Mathf.Abs(movement.x) == Mathf.Abs(movement.y) && movement.y < 0))
             {
                 if (input != 3)
                 {
@@ -180,7 +181,6 @@ public class GameHandler : MonoBehaviour
                 input = 5;
                 playerAnim.SetInteger("input", input);
                 InputLock(10);
-                //dashing = true;
             }
 
             //sets attack state based on current stance and direction
@@ -200,7 +200,16 @@ public class GameHandler : MonoBehaviour
                         playerAnim.SetInteger("input", input);
                         InputLock(0.25);
                     }       
-                     //if (stanceNumber == 2) { }
+                     if (stanceNumber == 2) 
+                    {
+                        if (input != 7)
+                        {
+                            Trigger();
+                        }
+                        input = 7;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
 
                      if (stanceNumber == 3)
                      {
@@ -218,7 +227,16 @@ public class GameHandler : MonoBehaviour
                         playerAnim.SetInteger("input", input);
                         InputLock(0.25);
                     }
-                    //if (stanceNumber == 2){}
+                    if (stanceNumber == 2)
+                    {
+                        if (input != 7)
+                        {
+                            Trigger();
+                        }
+                        input = 7;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
 
                     if (stanceNumber == 3)
                     {
@@ -229,7 +247,6 @@ public class GameHandler : MonoBehaviour
                 {
                     if (stanceNumber == 1)
                     {
-                        Debug.Log("hmm");
                         if (input != 6)
                         {
                             Trigger();
@@ -238,9 +255,16 @@ public class GameHandler : MonoBehaviour
                         playerAnim.SetInteger("input", input);
                         InputLock(0.25);
                     }
-                    /*if (stanceNumber == 2)
+                    if (stanceNumber == 2)
                     {
-                    }*/
+                        if (input != 7)
+                        {
+                            Trigger();
+                        }
+                        input = 7;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
                     if (stanceNumber == 3)
                     {
                         InputLock(4);
@@ -258,8 +282,17 @@ public class GameHandler : MonoBehaviour
                         playerAnim.SetInteger("input", input);
                         InputLock(0.25);
                     }
-                //if (stanceNumber == 2) {}
-                if (stanceNumber == 3)
+                    if (stanceNumber == 2)
+                    {
+                        if (input != 7)
+                        {
+                            Trigger();
+                        }
+                        input = 7;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(0.25);
+                    }
+                    if (stanceNumber == 3)
                     {
                        InputLock(4);
                     }
