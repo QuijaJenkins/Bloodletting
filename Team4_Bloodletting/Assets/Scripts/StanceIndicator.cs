@@ -24,7 +24,10 @@ public class StanceIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // fetch stanceNumber from the GameHandler
         stanceNumber = gamescript.stanceNumber;
+
+        // update stance
         if (stanceNumber == 1) {
             Stance1.SetActive(true);
             Stance2.SetActive(false);

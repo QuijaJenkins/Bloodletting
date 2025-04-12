@@ -13,6 +13,7 @@ public class GameHandler : MonoBehaviour
     public int playerHealth = 100;
     public int StartPlayerHealth = 100;
     public UnityEngine.UI.Image healthBar;
+    
     //state variables
     public Vector2 movement;
     public Animator playerAnim;
