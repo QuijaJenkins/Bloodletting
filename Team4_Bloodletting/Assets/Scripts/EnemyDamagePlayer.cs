@@ -14,10 +14,9 @@ public class EnemyDamagePlayer : MonoBehaviour
             {
                 handler.changeHealth(-damageAmount, false);
                 hasDamagedPlayer = true;
-                Destroy(gameObject); // Optional: remove enemy
+
+                Destroy(gameObject); // optional, you can remove this if you want enemies to stay
             }
         }
     }
 }
-
-
