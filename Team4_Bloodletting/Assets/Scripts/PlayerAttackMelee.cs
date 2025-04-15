@@ -24,7 +24,7 @@ public class PlayerAttackMelee : MonoBehaviour{
 
 
       void Start(){
-            damageTakenFromAttack = 10;
+            damageTakenFromAttack = 5;
            
             //set attack point to the right by default
             attackPt = attackPtA;
@@ -55,12 +55,12 @@ public class PlayerAttackMelee : MonoBehaviour{
 
             if (gameHandler.stanceNumber == 1) {
                   attackRange = 0.3f;
-                  damageTakenFromAttack = 10;
-                  attackDamage = 25;
+                  damageTakenFromAttack = 5;
+                  attackDamage = 50;
             } else if (gameHandler.stanceNumber == 3) {
                   attackRange = 1f;
-                  damageTakenFromAttack = 20;
-                  attackDamage = 50;
+                  damageTakenFromAttack = 10;
+                  attackDamage = 100;
             }
             
             if (Time.time >= nextAttackTime){
@@ -104,7 +104,7 @@ public class PlayerAttackMelee : MonoBehaviour{
                   if (enemyScript != null)
                   {
                         enemyScript.takeDamage(attackDamage);
-                        gameHandler.changeHealth(20, false);
+                        // gameHandler.changeHealth(20, false);
                   }
 
                   // Destroy(enemy.gameObject);
