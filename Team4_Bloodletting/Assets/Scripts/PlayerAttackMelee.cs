@@ -23,7 +23,6 @@ public class PlayerAttackMelee : MonoBehaviour{
       public int damageTakenFromAttack;
 
 
-
       void Start(){
             damageTakenFromAttack = 10;
            
@@ -57,9 +56,11 @@ public class PlayerAttackMelee : MonoBehaviour{
             if (gameHandler.stanceNumber == 1) {
                   attackRange = 0.3f;
                   damageTakenFromAttack = 10;
+                  attackDamage = 25;
             } else if (gameHandler.stanceNumber == 3) {
                   attackRange = 1f;
                   damageTakenFromAttack = 20;
+                  attackDamage = 50;
             }
             
             if (Time.time >= nextAttackTime){
@@ -86,8 +87,27 @@ public class PlayerAttackMelee : MonoBehaviour{
 
             foreach(Collider2D enemy in hitEnemies){
                   Debug.Log("We hit " + enemy.name);
-                  Destroy(enemy.gameObject);
-                  gameHandler.changeHealth(20, false);
+
+                  // enemy.takeDamage(attackDamage);
+                  // EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
+                  // if (enemy != null)
+                  // {
+                  //       enemy.Enemy_health_will.takeDamage(attackDamage);
+                  //       // enemyHealth.takeDamage(attackDamage); // ✅ uses your public attackDamage
+                  //       gameHandler.changeHealth(20, false);
+                  // }
+
+
+                  Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
+
+                  // ✅ If the enemy has that script, deal damage
+                  if (enemyScript != null)
+                  {
+                        enemyScript.takeDamage(attackDamage);
+                        gameHandler.changeHealth(20, false);
+                  }
+
+                  // Destroy(enemy.gameObject);
                   // enemy.GetComponent<EnemyMeleeDamage>().TakeDamage(attackDamage);
             }
       }

@@ -7,7 +7,7 @@ public class PlayerProjectile : MonoBehaviour{
       private GameHandler gameHandler;
 
 
-      public int damage = 1;
+      public int attackDamage = 20;
       public GameObject hitEffectAnim;
       public float SelfDestructTime = 4.0f;
       public float SelfDestructVFX = 0.5f;
@@ -27,10 +27,21 @@ public class PlayerProjectile : MonoBehaviour{
                   //gameHandlerObj.playerGetHit(damage);
 
                   Debug.Log("We hit an enemy with the arrow");
-                  Destroy(other.gameObject);
 
-                  gameHandler.changeHealth(20, false);
 
+
+                  // Destroy(other.gameObject);
+
+                  // gameHandler.changeHealth(20, false);
+
+                  Enemy_health_will enemyScript = other.GetComponent<Enemy_health_will>();
+
+                  // ✅ If the enemy has that script, deal damage
+                  if (enemyScript != null)
+                  {
+                        enemyScript.takeDamage(attackDamage);
+                        // gameHandler.changeHealth(20, false);
+                  }
                   
                   //We do not have enemyMeleeDamage so i am commenting it out
                 //   other.gameObject.GetComponent<EnemyMeleeDamage>().TakeDamage(damage);
