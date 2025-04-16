@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19c521a99fc8b9d439adcbf8946c3ef1
+guid: f489f0fecbc1d924989e711c9a77ccbe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,169 +123,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MCIdle_0
+      name: BL Swamp Ref_0
       rect:
         serializedVersion: 2
-        x: 50
-        y: 0
-        width: 78
-        height: 128
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50b5f030cbc4eb64c83ee455d105378b
-      internalID: 1827148748
+      spriteID: bc7e16f7248804b48bab746b2a16b92a
+      internalID: -1358041345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_1
+      name: BL Swamp Ref_1
       rect:
         serializedVersion: 2
-        x: 178
-        y: 0
-        width: 78
-        height: 128
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19cb507d06ea39247a180f93b0ab6a31
-      internalID: 1673868973
+      spriteID: 5c7770d458699c340a96fda1ff592f0c
+      internalID: -1917573253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_2
+      name: BL Swamp Ref_2
       rect:
         serializedVersion: 2
-        x: 306
-        y: 0
-        width: 78
-        height: 128
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6223a75a1aecc494aaa9865e9be04eb4
-      internalID: -2022677716
+      spriteID: 24a2fec85c5de234dad7768898af4d5f
+      internalID: 1282896047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_3
+      name: BL Swamp Ref_3
       rect:
         serializedVersion: 2
-        x: 434
-        y: 0
-        width: 78
-        height: 128
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dea68dee78c496347ac3afc2aba24b1e
-      internalID: -269938969
+      spriteID: 04ab1e9f0d9c2194485f73a7cbcbcd90
+      internalID: 2085835384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_4
+      name: BL Swamp Ref_4
       rect:
         serializedVersion: 2
-        x: 562
-        y: 0
-        width: 78
-        height: 128
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8abbe004b54a24b47b8f404d2dbd0aef
-      internalID: 947708754
+      spriteID: 7d89d15207a1a7949947c807696a3db5
+      internalID: 1662235160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_5
+      name: BL Swamp Ref_5
       rect:
         serializedVersion: 2
-        x: 690
-        y: 0
-        width: 78
-        height: 128
+        x: 65
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d0a832d6858a8a46a51dccd94ee38bc
-      internalID: 965298825
+      spriteID: d58e8716a12664b42bc7cf5da30ad442
+      internalID: 759832523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_6
+      name: BL Swamp Ref_6
       rect:
         serializedVersion: 2
-        x: 816
-        y: 0
-        width: 78
-        height: 128
+        x: 98
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21f43538e5890594a9adf8d1b5cc5728
-      internalID: 95720957
+      spriteID: 14d0024860fdd9d4589dfd18b23ea92e
+      internalID: -1912772375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MCIdle_7
+      name: BL Swamp Ref_7
       rect:
         serializedVersion: 2
-        x: 944
-        y: 0
-        width: 78
-        height: 128
+        x: 65
+        y: 127
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f22cf3b2885491548ae11cad7cee4538
-      internalID: -240960804
+      spriteID: 703a640b83e1cbf45954fb0c7dbbaa1c
+      internalID: 1522822077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BL Swamp Ref_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afbc88f96388bae45822aa393a1709d6
+      internalID: 153773662
       vertices: []
       indices: 
       edges: []
@@ -301,14 +322,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MCIdle_0: 1827148748
-      MCIdle_1: 1673868973
-      MCIdle_2: -2022677716
-      MCIdle_3: -269938969
-      MCIdle_4: 947708754
-      MCIdle_5: 965298825
-      MCIdle_6: 95720957
-      MCIdle_7: -240960804
+      BL Swamp Ref_0: -1358041345
+      BL Swamp Ref_1: -1917573253
+      BL Swamp Ref_2: 1282896047
+      BL Swamp Ref_3: 2085835384
+      BL Swamp Ref_4: 1662235160
+      BL Swamp Ref_5: 759832523
+      BL Swamp Ref_6: -1912772375
+      BL Swamp Ref_7: 1522822077
+      BL Swamp Ref_8: 153773662
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
