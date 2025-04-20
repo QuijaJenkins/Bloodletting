@@ -47,7 +47,8 @@ public class GameHandler : MonoBehaviour
 
     // public GameObject healthText;
 
-    private string sceneName;
+    // maybe should be private?? but i'm chainging to public for Stance Indicator
+    public string sceneName;
 
     
     // Start is called before the first frame update
