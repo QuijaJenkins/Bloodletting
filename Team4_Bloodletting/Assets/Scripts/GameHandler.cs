@@ -72,6 +72,10 @@ public class GameHandler : MonoBehaviour
     {
         healthBar.fillAmount = playerHealth / 100f;
 
+        if (playerHealth <= 0) {
+            DeathScreen();
+        }
+
         //code for stance switching. Click 1 2 or 3 for respective stance
         if (Input.GetKeyDown(KeyCode.Alpha1) && stanceNumber != 1) { 
             Debug.Log("Entering stance 1");
@@ -329,6 +333,7 @@ public class GameHandler : MonoBehaviour
     }
 
 
+    // RESETS ALL STATIC VARIABLES FOR NEW GAMES
     public void RestartGame() {
         Time.timeScale = 1f;
         GameHandler_PauseMenu.GameisPaused = false;
@@ -349,6 +354,8 @@ public class GameHandler : MonoBehaviour
             SceneManager.LoadScene("Level1");
     }
 
+    // Doesn't reset variables for new game, should not be used after a run
+    // only use between menus
     public void LoadMainMenu() {
             SceneManager.LoadScene("MainMenu");
     }
@@ -362,7 +369,9 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene("SettingsScreen");
     }
 
-
+    public void DeathScreen() {
+        SceneManager.LoadScene("DeathScreen");
+    }
 
     //used by attacks to freeze all inputs but attacks if this is useful
     public void InputLock(double waitTime)

@@ -43082,6 +43082,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 663163951}
     - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: playerHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
       propertyPath: stanceNumber
       value: 0
       objectReference: {fileID: 0}
