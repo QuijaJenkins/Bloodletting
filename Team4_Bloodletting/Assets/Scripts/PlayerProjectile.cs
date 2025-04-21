@@ -12,14 +12,18 @@ public class PlayerProjectile : MonoBehaviour{
       public float SelfDestructTime = 4.0f;
       public float SelfDestructVFX = 0.5f;
       public GameObject projectileArt;
-      //public GameObject splatterPrefab;
+      private GameObject bloodVFX;
+      public GameObject bloodVFX1;
+      public GameObject bloodVFX2;
+    //public GameObject splatterPrefab;
 
-      void Start(){
+    void Start(){
            //projectileArt = GetComponentInChildren<SpriteRenderer>();
             StartCoroutine(selfDestruct());
             gameHandler = GameObject.FindObjectOfType<GameHandler>();
 
-      }
+            BloodRoll();
+    }
 
       //if the bullet hits a collider, play the explosion animation, then destroy the effect and the bullet
       void OnTriggerEnter2D(Collider2D other){
@@ -41,7 +45,10 @@ public class PlayerProjectile : MonoBehaviour{
                   {
                         enemyScript.takeDamage(attackDamage);
                         // gameHandler.changeHealth(20, false);
-                  }
+                        GameObject bloodFX = Instantiate(bloodVFX, other.transform.position, Quaternion.identity);
+                        StartCoroutine(DestroyVFX(bloodFX));
+                        BloodRoll();
+            }
                   
                   //We do not have enemyMeleeDamage so i am commenting it out
                 //   other.gameObject.GetComponent<EnemyMeleeDamage>().TakeDamage(damage);
@@ -73,14 +80,31 @@ public class PlayerProjectile : MonoBehaviour{
             Destroy (gameObject);
       }
 
-      /*
-      //Make a mark on the ground where the projectile hit
-      void MakeSplat(){
-            GameObject splat = Instantiate (splatterPrefab, transform.position, Quaternion.identity);
-            float zRotation = Random.Range(0f,179f);
-            splat.transform.eulerAngles = new Vector3(0, 0, zRotation);
-            float size = Random.Range(0.5f,0.9f);
-            splat.transform.localScale = new Vector3(splat.transform.localScale.x * size, splat.transform.localScale.y * size, 1);
-      }
-      */
+    IEnumerator DestroyVFX(GameObject theEffect)
+    {
+        yield return new WaitForSeconds(0.2f);
+        Destroy(theEffect);
+    }
+
+    void BloodRoll()
+    {
+        if (Random.Range(0, 2) == 0)
+        {
+            bloodVFX = bloodVFX1;
+        }
+        else
+        {
+            bloodVFX = bloodVFX2;
+        }
+    }
+    /*
+    //Make a mark on the ground where the projectile hit
+    void MakeSplat(){
+          GameObject splat = Instantiate (splatterPrefab, transform.position, Quaternion.identity);
+          float zRotation = Random.Range(0f,179f);
+          splat.transform.eulerAngles = new Vector3(0, 0, zRotation);
+          float size = Random.Range(0.5f,0.9f);
+          splat.transform.localScale = new Vector3(splat.transform.localScale.x * size, splat.transform.localScale.y * size, 1);
+    }
+    */
 }

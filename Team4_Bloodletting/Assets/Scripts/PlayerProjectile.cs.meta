@@ -3,7 +3,11 @@ guid: b1712fcce835840d8b81038d8c291cc7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hitEffectAnim: {instanceID: 0}
+  - projectileArt: {instanceID: 0}
+  - bloodVFX1: {fileID: 4972951340452041008, guid: 34008e0ba15111a498ece18c395bd5ed, type: 3}
+  - bloodVFX2: {fileID: 7713464121876713291, guid: 5987e6247e9043b4991ce1655f3cc429, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

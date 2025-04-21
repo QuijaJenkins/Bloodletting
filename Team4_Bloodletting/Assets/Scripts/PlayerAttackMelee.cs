@@ -21,6 +21,9 @@ public class PlayerAttackMelee : MonoBehaviour{
       public LayerMask enemyLayers;
       // public int stanceNum;
       public int damageTakenFromAttack;
+      private GameObject bloodVFX;
+      public GameObject bloodVFX1;
+      public GameObject bloodVFX2;
 
 
       void Start(){
@@ -33,6 +36,8 @@ public class PlayerAttackMelee : MonoBehaviour{
            //animator = gameObject.GetComponentInChildren<Animator>();
             gameHandler = GameObject.FindObjectOfType<GameHandler>();
 
+            BloodRoll();
+            
       }
 
       void Update(){
@@ -100,12 +105,15 @@ public class PlayerAttackMelee : MonoBehaviour{
 
                   Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
 
-                  // ✅ If the enemy has that script, deal damage
+                  // ✅ If the enemy has that script, deal damage and spray blood
                   if (enemyScript != null)
                   {
                         enemyScript.takeDamage(attackDamage);
-                        // gameHandler.changeHealth(20, false);
-                  }
+                        GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
+                        StartCoroutine(DestroyVFX(bloodFX));
+                        BloodRoll();
+                // gameHandler.changeHealth(20, false);
+            }
 
                   // Destroy(enemy.gameObject);
                   // enemy.GetComponent<EnemyMeleeDamage>().TakeDamage(attackDamage);
@@ -117,4 +125,22 @@ public class PlayerAttackMelee : MonoBehaviour{
             if (attackPt == null) {return;}
             Gizmos.DrawWireSphere(attackPt.position, attackRange);
       }
+
+      IEnumerator DestroyVFX(GameObject theEffect)
+      {
+          yield return new WaitForSeconds(0.2f);
+          Destroy(theEffect);
+      }
+
+      void BloodRoll()
+    {
+        if (Random.Range(0,2) == 0)
+        {
+            bloodVFX = bloodVFX1;
+        }
+        else
+        {
+            bloodVFX = bloodVFX2;
+        }
+    }
 }
