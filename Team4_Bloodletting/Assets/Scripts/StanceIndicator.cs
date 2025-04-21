@@ -48,7 +48,13 @@ public class StanceIndicator : MonoBehaviour
             s3locked = true;
         }
 
+        if (sceneName == "Level 3") {
+            s1locked = false;
+            s2locked = false;
+            s3locked = false;
+        }
 
+        // TO DO!!!!!!
         // fetch curr wave of level, unlock stances as needed
         // (ex: s1locked = false once level2 finishes wave 2)
 
@@ -74,7 +80,7 @@ public class StanceIndicator : MonoBehaviour
         }
 
 
-        // update stance
+        // update stance based on input
         if (stanceNumber == 1 && !s1locked) {
             Stance1.SetActive(true);
             Stance2.SetActive(false);
