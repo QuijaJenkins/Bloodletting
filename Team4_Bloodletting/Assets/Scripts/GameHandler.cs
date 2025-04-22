@@ -122,9 +122,13 @@ public class GameHandler : MonoBehaviour
                 finishUpgrade();
             }
         }
-
-        healthBar.fillAmount = playerHealth / (float)maxPlayerHealth;
-        XPBar.fillAmount = xp / 100f;
+        
+        if (healthBar != null) {
+            healthBar.fillAmount = playerHealth / (float)maxPlayerHealth;
+        }
+        if (XPBar != null) {
+            XPBar.fillAmount = xp / 100f;
+        }
 
 
         if (playerHealth <= 0) {
