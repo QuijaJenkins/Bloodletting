@@ -31047,20 +31047,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyCount: 6
+  - enemyCount: 4
     spawnRate: 1.2
     minSpeedMultiplier: 0.5
-    maxSpeedMultiplier: 1.2
+    maxSpeedMultiplier: 0.8
+    waveDelay: 3.5
+  - enemyCount: 7
+    spawnRate: 1
+    minSpeedMultiplier: 0.8
+    maxSpeedMultiplier: 1
     waveDelay: 3.5
   - enemyCount: 12
-    spawnRate: 1
-    minSpeedMultiplier: 1
-    maxSpeedMultiplier: 1.4
-    waveDelay: 3.5
-  - enemyCount: 17
     spawnRate: 0.8
-    minSpeedMultiplier: 1.2
-    maxSpeedMultiplier: 1.8
+    minSpeedMultiplier: 1
+    maxSpeedMultiplier: 1.2
     waveDelay: 3.5
   enemyPrefab: {fileID: 7268578490426690952, guid: 2ab79818f5f454c1f93ab7843dcbbb98, type: 3}
   spawnDistanceFromPlayer: 20
