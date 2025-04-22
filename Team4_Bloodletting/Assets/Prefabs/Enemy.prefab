@@ -12,16 +12,11 @@ GameObject:
   - component: {fileID: 2623487608294731101}
   - component: {fileID: 7110382860230302327}
   - component: {fileID: 7139567730731025768}
-  - component: {fileID: 4488966111783586305}
-  - component: {fileID: -6322836576988054023}
-  - component: {fileID: -5214594156270971856}
   - component: {fileID: 560079837307281436}
-  - component: {fileID: -3534755377247643249}
-  - component: {fileID: -3722654821315789555}
-  - component: {fileID: -1499117352562475215}
   - component: {fileID: 381850437200700061}
   - component: {fileID: 309255478944770800}
   - component: {fileID: 8232169315759710515}
+  - component: {fileID: -4766282796398643513}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -168,45 +163,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.1727474, y: 6.2836213}
   m_EdgeRadius: 0
---- !u!114 &4488966111783586305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4adcc9215a2724624b8fae8660a56a26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
---- !u!114 &-6322836576988054023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f914717a415a54a51804e6b4f7c94855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-5214594156270971856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83327fb47f01d45c0a722145902cc62e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceHeight: 0.2
-  bounceSpeed: 2
 --- !u!114 &560079837307281436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,56 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505a43d059136436fad29d315c5b3f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
---- !u!114 &-3534755377247643249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4adcc9215a2724624b8fae8660a56a26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
---- !u!114 &-3722654821315789555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4085d0a7011549ef97cd42afdf4e288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7268578490426690952}
-  player: {fileID: 0}
-  spawnRadius: 18
-  startDelay: 5
-  waveInterval: 10
-  initialEnemies: 1
-  enemiesPerWave: 1
-  initialSpawnInterval: 5.5
-  spawnIntervalDecay: 0.1
-  minSpawnInterval: 3.5
-  baseEnemySpeed: 1.8
-  speedIncreasePerWave: 0.1
---- !u!114 &-1499117352562475215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268578490426690952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6091317fdf704f8592a43463e1c8a20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  baseSpeed: 3
 --- !u!114 &381850437200700061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,3 +223,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e235faa5899b4b62af906168e53a096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4766282796398643513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268578490426690952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857d9b72e34834f648a2ea0815cfa8ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - enemyCount: 1
+    spawnRate: 1.2
+    minSpeedMultiplier: 0.5
+    maxSpeedMultiplier: 1.2
+    waveDelay: 12
+  - enemyCount: 1
+    spawnRate: 0.9
+    minSpeedMultiplier: 1
+    maxSpeedMultiplier: 1.5
+    waveDelay: 12
+  - enemyCount: 1
+    spawnRate: 0.7
+    minSpeedMultiplier: 1.2
+    maxSpeedMultiplier: 1.8
+    waveDelay: 12
+  enemyPrefab: {fileID: 7268578490426690952}
+  spawnDistanceFromPlayer: 20
