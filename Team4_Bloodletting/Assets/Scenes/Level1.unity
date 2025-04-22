@@ -31017,6 +31017,68 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &854716301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854716303}
+  - component: {fileID: 854716302}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &854716302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854716301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857d9b72e34834f648a2ea0815cfa8ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - enemyCount: 6
+    spawnRate: 1.2
+    minSpeedMultiplier: 0.5
+    maxSpeedMultiplier: 1.2
+    waveDelay: 3.5
+  - enemyCount: 12
+    spawnRate: 1
+    minSpeedMultiplier: 1
+    maxSpeedMultiplier: 1.4
+    waveDelay: 3.5
+  - enemyCount: 17
+    spawnRate: 0.8
+    minSpeedMultiplier: 1.2
+    maxSpeedMultiplier: 1.8
+    waveDelay: 3.5
+  enemyPrefab: {fileID: 7268578490426690952, guid: 2ab79818f5f454c1f93ab7843dcbbb98, type: 3}
+  spawnDistanceFromPlayer: 20
+--- !u!4 &854716303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854716301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.1663885, y: 49.509266, z: -0.34124535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &906675257
 GameObject:
   m_ObjectHideFlags: 0
