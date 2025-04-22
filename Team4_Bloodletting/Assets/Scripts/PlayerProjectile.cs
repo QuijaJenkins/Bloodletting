@@ -43,7 +43,7 @@ public class PlayerProjectile : MonoBehaviour{
                   // ✅ If the enemy has that script, deal damage
                   if (enemyScript != null)
                   {
-                        enemyScript.takeDamage(attackDamage);
+                        enemyScript.takeDamage(attackDamage * gameHandler.attackMultiplier);
                         // gameHandler.changeHealth(20, false);
                         GameObject bloodFX = Instantiate(bloodVFX, other.transform.position, Quaternion.identity);
                         StartCoroutine(DestroyVFX(bloodFX));

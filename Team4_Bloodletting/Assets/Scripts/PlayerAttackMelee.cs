@@ -108,7 +108,7 @@ public class PlayerAttackMelee : MonoBehaviour{
                   // ✅ If the enemy has that script, deal damage and spray blood
                   if (enemyScript != null)
                   {
-                        enemyScript.takeDamage(attackDamage);
+                        enemyScript.takeDamage(attackDamage * gameHandler.attackMultiplier);
                         GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
                         StartCoroutine(DestroyVFX(bloodFX));
                         BloodRoll();

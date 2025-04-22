@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Enemy_health_will : MonoBehaviour
 {
-    static int maxHealth = 100;
-    int currHealth;
+    static float maxHealth = 100;
+    float currHealth;
     private GameHandler gameHandler;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +16,7 @@ public class Enemy_health_will : MonoBehaviour
    
     }
 
-    public void takeDamage(int damage) {
+    public void takeDamage(float damage) {
 
         currHealth -= damage;
 
@@ -30,6 +28,7 @@ public class Enemy_health_will : MonoBehaviour
     void die(){
         Destroy(gameObject);
         gameHandler.changeHealth(20, false);
+        gameHandler.xp += 10;
     }
 
     // Update is called once per frame

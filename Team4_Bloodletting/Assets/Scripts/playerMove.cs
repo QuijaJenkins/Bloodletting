@@ -7,6 +7,8 @@ public class playerMove : MonoBehaviour {
       public Rigidbody2D rb;
       public float moveSpeed = 5f;
       public Vector2 movement;
+      private GameHandler gameHandler;
+
 
       // Dash vars
       public float dashSpeed = 20f;
@@ -21,6 +23,7 @@ public class playerMove : MonoBehaviour {
 
       // Auto-load the RigidBody component into the variable:
       void Start(){
+            gameHandler = GameObject.FindObjectOfType<GameHandler>();
             rb = GetComponent<Rigidbody2D> ();
       }
 
@@ -46,6 +49,7 @@ public class playerMove : MonoBehaviour {
             }
       }
 
+      //should I be adding the multiplier to the dash speed? 
     void StartDash(){
             isDashing = true;
             dashTimeLeft = dashDuration;
@@ -59,9 +63,14 @@ public class playerMove : MonoBehaviour {
             dashTimeLeft -= Time.fixedDeltaTime;
             if (dashTimeLeft <= 0){
                   isDashing = false;
-                  moveSpeed = 5f; // Reset to normal speed
+                  moveSpeed = 5f * gameHandler.speedMultiplier; // Reset to normal speed
             }
       }
+    }
+
+    public void UpdateMoveSpeed(){
+      // moveSpeed = moveSpeed / (gameHandler.speedMultiplier - 0.2f) * gameHandler.speedMultiplier;
+      moveSpeed = 5f * gameHandler.speedMultiplier;
     }
 
 }

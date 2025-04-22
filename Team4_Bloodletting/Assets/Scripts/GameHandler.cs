@@ -12,8 +12,12 @@ public class GameHandler : MonoBehaviour
     private GameObject player;
     public int playerHealth = 100;
     public int StartPlayerHealth = 100;
+    public int maxPlayerHealth = 100;
     public UnityEngine.UI.Image healthBar;
-    
+    public UnityEngine.UI.Image XPBar;
+    public float moveSpeed = 5f;
+
+
     //state variables
     public Vector2 movement;
     public Animator playerAnim;
@@ -27,9 +31,21 @@ public class GameHandler : MonoBehaviour
     public double lockTimer = 0;
     private bool testTrigger;
 
+    public int xp = 0;
+
     //Variables for switching attack scripts based on stance
     public PlayerAttackMelee meleeScript;
     public PlayerMoveAimShoot projectileScript;
+    public playerMove playerMoveScript;
+    private GameHandler_UpgradeMenu upgradeMenuScript;
+
+
+
+    //starting values for upgrade multipliers
+    private bool isChoosingUpgrade = false;
+    public float attackMultiplier = 1;
+    public float speedMultiplier = 1;
+    public float healthMultiplier = 1;
 
     /*DON'T DELETE; reference for all the animation states
     public int idle = 0;
@@ -56,6 +72,8 @@ public class GameHandler : MonoBehaviour
         //start in first stance
         stanceNumber = 1;
         updateAttackScriptByStance();
+        upgradeMenuScript = GameObject.FindObjectOfType<GameHandler_UpgradeMenu>();
+
 
 
         player = GameObject.FindWithTag("Player");
@@ -71,7 +89,43 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = playerHealth / 100f;
+        if (Input.GetKeyDown(KeyCode.X)) { 
+            xp += 50;    
+        }
+
+
+
+        //trigger player upgrade if their xp hits 100
+        if (!isChoosingUpgrade && xp >= 100) {
+            isChoosingUpgrade = true;
+            upgradeMenuScript.OpenUpgradeMenu();
+            Debug.Log("Choose an upgrade: [5] Health, [6] Attack, [7] Speed");
+        }
+
+        if (isChoosingUpgrade) {
+            if (Input.GetKeyDown(KeyCode.Alpha5)) {
+                healthMultiplier += 0.2f;
+                int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
+                maxPlayerHealth += healthGain;
+                playerHealth += healthGain;
+                finishUpgrade();
+            } 
+            //attack upgrade
+            else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+                attackMultiplier += 0.2f;
+                finishUpgrade();
+            } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+                speedMultiplier += 0.2f;
+                // movement.UpdateMoveSpeed();
+                playerMoveScript.UpdateMoveSpeed();            
+
+                finishUpgrade();
+            }
+        }
+
+        healthBar.fillAmount = playerHealth / (float)maxPlayerHealth;
+        XPBar.fillAmount = xp / 100f;
+
 
         if (playerHealth <= 0) {
             DeathScreen();
@@ -319,8 +373,8 @@ public class GameHandler : MonoBehaviour
     public void changeHealth(int healthChange, bool playerAttack) {
       
         //health can't go over 100
-        if (playerHealth + healthChange >= 100) {
-            playerHealth = 100;
+        if (playerHealth + healthChange >= maxPlayerHealth) {
+            playerHealth = maxPlayerHealth;
         }
         else{
             //player cannot kill themself by attack, leave them on 1hp
@@ -395,6 +449,39 @@ public class GameHandler : MonoBehaviour
             meleeScript.enabled = false;
             projectileScript.enabled = true;
         }
+    }
+
+    //triggered when player reaches 
+    void upgradeLevel() {
+
+        // while (!(Input.GetKeyDown(KeyCode.Alpha5)) && !(Input.GetKeyDown(KeyCode.Alpha6)) && !(Input.GetKeyDown(KeyCode.Alpha7))){
+            //Health Upgrade
+
+            //New Dilemma: healthbar is not dynamically sizing, so players do not see
+            // their health increase, just that it goes down less quickly in the healthbar. 
+            // A Number for visualization woudl be useful. 
+            if (Input.GetKeyDown(KeyCode.Alpha5)) {
+                healthMultiplier += 0.2f;
+                maxPlayerHealth = Mathf.RoundToInt(maxPlayerHealth * healthMultiplier);
+                playerHealth = Mathf.RoundToInt(playerHealth * healthMultiplier);
+            } 
+            //attack upgrade
+            else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+                attackMultiplier += 0.2f;
+            } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+                speedMultiplier += 0.2f;
+                // playerMoveScript.UpdateMoveSpeed();            
+            }
+        
+            xp -= 100;
+
+        }
+    // }
+
+    void finishUpgrade(){
+        xp -= 100;
+        isChoosingUpgrade = false;
+        upgradeMenuScript.Resume();
     }
 
 }
