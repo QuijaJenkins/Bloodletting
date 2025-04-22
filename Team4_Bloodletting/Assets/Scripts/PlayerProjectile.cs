@@ -7,7 +7,7 @@ public class PlayerProjectile : MonoBehaviour{
       private GameHandler gameHandler;
 
 
-      public int attackDamage = 50;
+      public int arrowAttackDamage = 99;
       public GameObject hitEffectAnim;
       public float SelfDestructTime = 4.0f;
       public float SelfDestructVFX = 0.5f;
@@ -31,6 +31,7 @@ public class PlayerProjectile : MonoBehaviour{
                   //gameHandlerObj.playerGetHit(damage);
 
                   Debug.Log("We hit an enemy with the arrow");
+                  Debug.Log("arrow attack damage: " + arrowAttackDamage);
 
 
 
@@ -43,7 +44,7 @@ public class PlayerProjectile : MonoBehaviour{
                   // ✅ If the enemy has that script, deal damage
                   if (enemyScript != null)
                   {
-                        enemyScript.takeDamage(attackDamage * gameHandler.attackMultiplier);
+                        enemyScript.takeDamage(arrowAttackDamage * gameHandler.attackMultiplier);
                         // gameHandler.changeHealth(20, false);
                         GameObject bloodFX = Instantiate(bloodVFX, other.transform.position, Quaternion.identity);
                         StartCoroutine(DestroyVFX(bloodFX));
