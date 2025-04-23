@@ -39,7 +39,10 @@ public class GameHandler : MonoBehaviour
     public playerMove playerMoveScript;
     private GameHandler_UpgradeMenu upgradeMenuScript;
 
-
+    //public StanceIndicator stance_script;
+    public bool s1locked = false;
+    public bool s2locked = true;
+    public bool s3locked = true;
 
     //starting values for upgrade multipliers
     private bool isChoosingUpgrade = false;
@@ -135,16 +138,37 @@ public class GameHandler : MonoBehaviour
             DeathScreen();
         }
 
+        // s1locked = stance_script.s1locked;
+        // s2locked = stance_script.s2locked;
+        // s3locked = stance_script.s3locked;
+
+        if (sceneName == "Level1") {
+            s1locked = false;
+            s2locked = true;
+            s3locked = true;
+        }
+        if (sceneName == "Level 2") {
+            s1locked = false;
+            s2locked = false;
+            s3locked = true;
+        }
+
+        if (sceneName == "Level 3") {
+            s1locked = false;
+            s2locked = false;
+            s3locked = false;
+        }
+
         //code for stance switching. Click 1 2 or 3 for respective stance
-        if (Input.GetKeyDown(KeyCode.Alpha1) && stanceNumber != 1) { 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && stanceNumber != 1 && !s1locked) { 
             Debug.Log("Entering stance 1");
             stanceNumber = 1;
             updateAttackScriptByStance();
-        } else if (Input.GetKeyDown(KeyCode.Alpha2) && stanceNumber != 2) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && stanceNumber != 2 && !s2locked) {
             Debug.Log("Entering stance 2");
             stanceNumber = 2;
             updateAttackScriptByStance();
-        } else if (Input.GetKeyDown(KeyCode.Alpha3) && stanceNumber != 3) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && stanceNumber != 3 && !s3locked) {
             Debug.Log("Entering stance 3");
             stanceNumber = 3;
             updateAttackScriptByStance();

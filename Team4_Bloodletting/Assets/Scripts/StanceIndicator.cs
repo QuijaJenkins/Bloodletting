@@ -15,9 +15,9 @@ public class StanceIndicator : MonoBehaviour
 
     public string sceneName;
     
-    public bool s1locked = false;
-    public bool s2locked = true;
-    public bool s3locked = true;
+    public bool s1locked;
+    public bool s2locked;
+    public bool s3locked;
 
 
 
@@ -39,20 +39,22 @@ public class StanceIndicator : MonoBehaviour
         // fetch stanceNumber & current scene from the GameHandler
         stanceNumber = gamescript.stanceNumber;
         sceneName = gamescript.sceneName;
+        s1locked = gamescript.s1locked;
+        s2locked = gamescript.s2locked;
+        s3locked = gamescript.s3locked;
+        // if (sceneName == "Level1") {
+        //     s2locked = true;
+        //     s3locked = true;
+        // }
+        // if (sceneName == "Level 2") {
+        //     s3locked = true;
+        // }
 
-        if (sceneName == "Level1") {
-            s2locked = true;
-            s3locked = true;
-        }
-        if (sceneName == "Level 2") {
-            s3locked = true;
-        }
-
-        if (sceneName == "Level 3") {
-            s1locked = false;
-            s2locked = false;
-            s3locked = false;
-        }
+        // if (sceneName == "Level 3") {
+        //     s1locked = false;
+        //     s2locked = false;
+        //     s3locked = false;
+        // }
 
         // TO DO!!!!!!
         // fetch curr wave of level, unlock stances as needed
