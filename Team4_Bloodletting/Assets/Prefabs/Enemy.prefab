@@ -252,4 +252,4 @@ MonoBehaviour:
     maxSpeedMultiplier: 1.8
     waveDelay: 12
   enemyPrefab: {fileID: 7268578490426690952}
-  spawnDistanceFromPlayer: 20
+  spawnPoints: []
