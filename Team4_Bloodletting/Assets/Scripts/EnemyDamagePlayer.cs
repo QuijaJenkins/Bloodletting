@@ -111,6 +111,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Windows;
 
 public class EnemyDamagePlayer : MonoBehaviour
 {
@@ -121,6 +122,9 @@ public class EnemyDamagePlayer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
+    private GameObject player;
+    public Animator playerAnim;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -128,6 +132,8 @@ public class EnemyDamagePlayer : MonoBehaviour
         {
             originalColor = spriteRenderer.color;
         }
+        player = GameObject.FindWithTag("Player");
+        playerAnim = player.GetComponentInChildren<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -139,6 +145,13 @@ public class EnemyDamagePlayer : MonoBehaviour
             {
                 handler.changeHealth(-damageAmount, false);
                 StartCoroutine(DamageCooldown());
+
+                //player hurt animation
+                playerAnim.ResetTrigger("trigger");
+                playerAnim.SetTrigger("trigger");
+                handler.input = 15;
+                playerAnim.SetInteger("input", handler.input);
+                handler.InputLock(0.3);
             }
         }
     }
