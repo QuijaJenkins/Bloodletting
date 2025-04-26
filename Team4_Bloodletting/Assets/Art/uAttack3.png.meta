@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c89059979964e7479395a4eb72168d2
+guid: 6b449a7469eddf942a4417ac1837c95b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dAttack3_0
+      name: uAttack3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ace956c5ffadbb74c966f3e02a3e7061
-      internalID: -238907933
+      spriteID: 0d97003e346f7e34e8d4cf6db951fb19
+      internalID: 247948926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_1
+      name: uAttack3_1
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44f33e1339df2a94cb412042f81510e2
-      internalID: 1934671316
+      spriteID: 763144818648e904bb810cdcbfcb727b
+      internalID: -1524739353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_2
+      name: uAttack3_2
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 079e74b81daa0aa479086581f73477b1
-      internalID: -1039021363
+      spriteID: dca41803030e2bd4b8dbb53cbfb55017
+      internalID: 1153237069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_3
+      name: uAttack3_3
       rect:
         serializedVersion: 2
         x: 768
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14753819dfcd96c45a4a86fd43084599
-      internalID: -631510171
+      spriteID: 8b0b199734ad8374fa621b837b6f8935
+      internalID: -2054078201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_4
+      name: uAttack3_4
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 439d99ee4cd31304790106fc8b951ead
-      internalID: 994299187
+      spriteID: a9e45e3761d233f4eacae86a3b681881
+      internalID: -329861855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_5
+      name: uAttack3_5
       rect:
         serializedVersion: 2
         x: 1280
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81607093fc89fe44a884bc4802ef5b3a
-      internalID: -1099380691
+      spriteID: 6ec9eb03fdb777947a426eb781b3ec4f
+      internalID: 1883184074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_6
+      name: uAttack3_6
       rect:
         serializedVersion: 2
         x: 1536
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e2cd849563dc9d428a1564e62ee4296
-      internalID: 825348091
+      spriteID: 503c8931415e56b4b87e944864fef210
+      internalID: 78681940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dAttack3_7
+      name: uAttack3_7
       rect:
         serializedVersion: 2
         x: 1792
         y: 0
-        width: 174
-        height: 220
+        width: 190
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 582da23e16daf864cbda58307d06c891
-      internalID: 214265531
+      spriteID: 7dc0259e22f238e478a35954f2c0239b
+      internalID: -1149626075
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dAttack3_0: -238907933
-      dAttack3_1: 1934671316
-      dAttack3_2: -1039021363
-      dAttack3_3: -631510171
-      dAttack3_4: 994299187
-      dAttack3_5: -1099380691
-      dAttack3_6: 825348091
-      dAttack3_7: 214265531
+      uAttack3_0: 247948926
+      uAttack3_1: -1524739353
+      uAttack3_2: 1153237069
+      uAttack3_3: -2054078201
+      uAttack3_4: -329861855
+      uAttack3_5: 1883184074
+      uAttack3_6: 78681940
+      uAttack3_7: -1149626075
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

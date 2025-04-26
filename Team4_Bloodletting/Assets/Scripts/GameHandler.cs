@@ -62,8 +62,10 @@ public class GameHandler : MonoBehaviour
     public int dAttack = 11;
     public int stanceSwap1 = 12; //just one swap needed?
     public int stanceSwap2 = 13;
-    public int stanceSwap3 = 14;*/
-
+    public int stanceSwap3 = 14;
+    public int hurt = 15;
+    */
+    
     // public GameObject healthText;
 
     // maybe should be private?? but i'm chainging to public for Stance Indicator
@@ -194,10 +196,11 @@ public class GameHandler : MonoBehaviour
         {
             player.GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
-        else
+        else if (spr_dir == 2)
         {
             player.GetComponentInChildren<SpriteRenderer>().flipX = false;
         }
+
         if (inputActive)
         {
             //gets movement direction via movement vector
@@ -260,7 +263,7 @@ public class GameHandler : MonoBehaviour
                 playerAnim.SetInteger("spr_dir", spr_dir);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            /*if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 if (input != 0)
                 {
@@ -268,8 +271,8 @@ public class GameHandler : MonoBehaviour
                 }
                 input = 5;
                 playerAnim.SetInteger("input", input);
-                InputLock(10);
-            }
+                InputLock(.4);
+            }*/
 
             //sets attack state based on current stance and direction
             //I haven't implemented combo attacks yet
@@ -301,7 +304,13 @@ public class GameHandler : MonoBehaviour
 
                      if (stanceNumber == 3)
                      {
-                        InputLock(4);
+                        if (input != 8)
+                        {
+                            Trigger();
+                        }
+                        input = 8;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(.9);
                      }          
                  }
                 if (spr_dir == 4) {
@@ -328,7 +337,13 @@ public class GameHandler : MonoBehaviour
 
                     if (stanceNumber == 3)
                     {
-                        InputLock(4);
+                        if (input != 8)
+                        {
+                            Trigger();
+                        }
+                        input = 8;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(.9);
                     }
                 }
                 if(spr_dir == 1) 
@@ -355,7 +370,13 @@ public class GameHandler : MonoBehaviour
                     }
                     if (stanceNumber == 3)
                     {
-                        InputLock(4);
+                        if (input != 8)
+                        {
+                            Trigger();
+                        }
+                        input = 8;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(.9);
                     }
                 }
                 if (spr_dir == 3)
@@ -382,7 +403,13 @@ public class GameHandler : MonoBehaviour
                     }
                     if (stanceNumber == 3)
                     {
-                       InputLock(4);
+                        if (input != 8)
+                        {
+                            Trigger();
+                        }
+                        input = 8;
+                        playerAnim.SetInteger("input", input);
+                        InputLock(.9);
                     }
                 }
             }
