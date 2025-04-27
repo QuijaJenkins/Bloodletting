@@ -28,12 +28,14 @@
 // }
 
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class EnemyChasePlayer : MonoBehaviour
 {
     public float baseSpeed = 3f;
     private float speedMultiplier = 1f;
     private Transform player;
+    public int spr_dir = 2;
 
     void Start()
     {
@@ -57,11 +59,49 @@ public class EnemyChasePlayer : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
+
+        //Rat Animator
+        if (gameObject.tag == "Rat")
+        {
+            if (direction.x >= Mathf.Abs(direction.y))
+            {
+                if (spr_dir != 2)
+                {
+                    Trigger();
+                }
+                GetComponent<Animator>().SetInteger("spr_dir", 2);
+            }
+            else if (direction.y > Mathf.Abs(direction.x))
+            {
+                if (direction.y > 0)
+                {
+                    if (spr_dir != 1)
+                    {
+                        Trigger();
+                    }
+                    GetComponent<Animator>().SetInteger("spr_dir", 1);
+                }
+                else
+                {
+                    if (spr_dir != 3)
+                    {
+                        Trigger();
+                    }
+                    GetComponent<Animator>().SetInteger("spr_dir", 3);
+                }
+            }
+        }
     }
 
     // Called by WaveManager to scale difficulty
     public void SetSpeedMultiplier(float multiplier)
     {
         speedMultiplier = multiplier;
+    }
+
+    public void Trigger()
+    {
+        GetComponent<Animator>().ResetTrigger("trigger");
+        GetComponent<Animator>().SetTrigger("trigger");
     }
 }
