@@ -109,9 +109,76 @@
 //     }
 // }
 
+// using UnityEngine;
+// using System.Collections;
+// using UnityEngine.Windows;
+
+// public class EnemyDamagePlayer : MonoBehaviour
+// {
+//     public int damageAmount = 15;
+//     public float cooldownTime = 1.2f;
+//     private bool canDamagePlayer = true;
+
+//     private SpriteRenderer spriteRenderer;
+//     private Color originalColor;
+
+//     private GameObject player;
+//     public Animator playerAnim;
+
+//     void Start()
+//     {
+//         spriteRenderer = GetComponent<SpriteRenderer>();
+//         if (spriteRenderer != null)
+//         {
+//             originalColor = spriteRenderer.color;
+//         }
+//         player = GameObject.FindWithTag("Player");
+//         playerAnim = player.GetComponentInChildren<Animator>();
+//     }
+
+//     void OnTriggerEnter2D(Collider2D other)
+//     {
+//         if (canDamagePlayer && other.CompareTag("Player"))
+//         {
+//             GameHandler handler = FindObjectOfType<GameHandler>();
+//             if (handler != null)
+//             {
+//                 handler.changeHealth(-damageAmount, false);
+//                 StartCoroutine(DamageCooldown());
+
+//                 //player hurt animation
+//                 playerAnim.ResetTrigger("trigger");
+//                 playerAnim.SetTrigger("trigger");
+//                 handler.input = 15;
+//                 playerAnim.SetInteger("input", handler.input);
+//                 handler.InputLock(0.3);
+//             }
+//         }
+//     }
+
+//     IEnumerator DamageCooldown()
+//     {
+//         canDamagePlayer = false;
+
+//         if (spriteRenderer != null)
+//         {
+//             spriteRenderer.color = Color.gray;
+//         }
+
+//         yield return new WaitForSeconds(0.15f); // flicker duration
+
+//         if (spriteRenderer != null)
+//         {
+//             spriteRenderer.color = originalColor; // reset color exactly
+//         }
+
+//         yield return new WaitForSeconds(cooldownTime - 0.15f); // rest of cooldown
+//         canDamagePlayer = true;
+//     }
+// }
+
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Windows;
 
 public class EnemyDamagePlayer : MonoBehaviour
 {
@@ -125,6 +192,8 @@ public class EnemyDamagePlayer : MonoBehaviour
     private GameObject player;
     public Animator playerAnim;
 
+    public float knockbackForce = 10f; // New: knockback force value
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -136,25 +205,34 @@ public class EnemyDamagePlayer : MonoBehaviour
         playerAnim = player.GetComponentInChildren<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+void OnTriggerEnter2D(Collider2D other)
+{
+    if (canDamagePlayer && other.CompareTag("Player"))
     {
-        if (canDamagePlayer && other.CompareTag("Player"))
+        GameHandler handler = FindObjectOfType<GameHandler>();
+        if (handler != null)
         {
-            GameHandler handler = FindObjectOfType<GameHandler>();
-            if (handler != null)
-            {
-                handler.changeHealth(-damageAmount, false);
-                StartCoroutine(DamageCooldown());
+            handler.changeHealth(-damageAmount, false);
+            StartCoroutine(DamageCooldown());
 
-                //player hurt animation
-                playerAnim.ResetTrigger("trigger");
-                playerAnim.SetTrigger("trigger");
-                handler.input = 15;
-                playerAnim.SetInteger("input", handler.input);
-                handler.InputLock(0.3);
+            // player hurt animation
+            playerAnim.ResetTrigger("trigger");
+            playerAnim.SetTrigger("trigger");
+            handler.input = 15;
+            playerAnim.SetInteger("input", handler.input);
+            handler.InputLock(0.3);
+
+            // Knockback
+            playerMove playerMoveScript = player.GetComponent<playerMove>();
+            if (playerMoveScript != null)
+            {
+                Vector2 knockDirection = (player.transform.position - transform.position).normalized;
+                playerMoveScript.ApplyKnockback(knockDirection, knockbackForce);
             }
         }
     }
+}
+
 
     IEnumerator DamageCooldown()
     {
