@@ -131,6 +131,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1383521834000011201, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10.9222
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383521834000011201, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 27.3055
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383521834000011201, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383521834000011201, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000019073486
+      objectReference: {fileID: 0}
     - target: {fileID: 1474681475155518034, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_Name
       value: DeathScreen
@@ -138,6 +154,22 @@ PrefabInstance:
     - target: {fileID: 1597413648698762884, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_Text
       value: YOU SURVIVED!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597413648698762884, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: def10282b08db4613879d997129b8af7, type: 3}
+    - target: {fileID: 1597413648698762884, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597413648698762884, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597413648698762884, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2013409807509562189, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -258,6 +290,34 @@ PrefabInstance:
     - target: {fileID: 5964944835531086064, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964944835531086064, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 220.9941
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964944835531086064, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964944835531086064, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 127.49708
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285756547402096167, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_Text
+      value: MAIN MENU
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285756547402096167, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: def10282b08db4613879d997129b8af7, type: 3}
+    - target: {fileID: 6285756547402096167, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285756547402096167, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6318609557068504074, guid: be326ec3558a9444e969864fa9a60ad2, type: 3}
       propertyPath: m_IsActive
