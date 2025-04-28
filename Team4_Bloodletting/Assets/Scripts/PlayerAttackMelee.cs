@@ -227,7 +227,88 @@ public class PlayerAttackMelee : MonoBehaviour
         }
     }
 
-    void Attack()
+//     void Attack()
+// {
+//     Debug.Log("We hit spacebar to attack");
+
+//     if (gameHandler != null)
+//     {
+//         gameHandler.changeHealth(-damageTakenFromAttack, true);
+//     }
+
+//     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPt.position, attackRange, enemyLayers);
+
+//     if (hitEnemies.Length == 0)
+//     {
+//         Debug.Log("No enemies hit.");
+//     }
+
+//     foreach (Collider2D enemy in hitEnemies)
+//     {
+//         Debug.Log("We hit " + enemy.name);
+
+//         Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
+//         Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+
+//         if (enemyScript != null && enemyRb != null)
+//         {
+//             // 1. Knockback BEFORE damage
+//             Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+//             enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+
+//             // 2. Deal damage
+//             enemyScript.takeDamage((int)(attackDamage * gameHandler.attackMultiplier));
+
+//             // 3. Blood VFX
+//             GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
+//             StartCoroutine(DestroyVFX(bloodFX));
+//             BloodRoll();
+//         }
+//     }
+// }
+
+// working attack below: 
+// void Attack()
+// {
+//     Debug.Log("We hit spacebar to attack");
+
+//     if (gameHandler != null)
+//     {
+//         gameHandler.changeHealth(-damageTakenFromAttack, true);
+//     }
+
+//     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPt.position, attackRange, enemyLayers);
+
+//     if (hitEnemies.Length == 0)
+//     {
+//         Debug.Log("No enemies hit.");
+//     }
+
+//     foreach (Collider2D enemy in hitEnemies)
+//     {
+//         Debug.Log("We hit " + enemy.name);
+
+//         Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
+//         Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+
+//         if (enemyScript != null)
+//         {
+//             if (enemyRb != null)
+//             {
+//                 Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+//                 enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+//             }
+
+//             enemyScript.takeDamage((int)(attackDamage * gameHandler.attackMultiplier));
+
+//             GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
+//             StartCoroutine(DestroyVFX(bloodFX));
+//             BloodRoll();
+//         }
+//     }
+// }
+
+void Attack()
 {
     Debug.Log("We hit spacebar to attack");
 
@@ -250,19 +331,28 @@ public class PlayerAttackMelee : MonoBehaviour
         Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
         Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
 
-        if (enemyScript != null && enemyRb != null)
+        if (enemyScript != null)
         {
-            // 1. Knockback BEFORE damage
-            Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
-            enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-
-            // 2. Deal damage
+            // 1. Deal damage
             enemyScript.takeDamage((int)(attackDamage * gameHandler.attackMultiplier));
+
+            // 2. Knockback if still alive
+            if (enemyScript.currentHealth > 0)
+            {
+                EnemyChasePlayer chaseScript = enemy.GetComponent<EnemyChasePlayer>();
+                if (chaseScript != null)
+                {
+                    Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+                    chaseScript.ApplyKnockback(knockbackDirection, 8f); // 8f = knockback strength
+                }
+            }
 
             // 3. Blood VFX
             GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
             StartCoroutine(DestroyVFX(bloodFX));
             BloodRoll();
+
+            // 4. Kill enemy if health <= 0 (your Enemy_health_will handles destruction separately)
         }
     }
 }
