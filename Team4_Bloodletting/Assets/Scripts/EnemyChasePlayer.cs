@@ -60,8 +60,8 @@ public class EnemyChasePlayer : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        //Rat Animator
-        if (gameObject.tag == "Rat")
+        //Rat Animator; rats are order 1
+        if (GetComponent<SpriteRenderer>().sortingOrder == 1)
         {
             if (direction.x >= Mathf.Abs(direction.y))
             {
