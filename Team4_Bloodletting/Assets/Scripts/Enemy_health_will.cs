@@ -67,16 +67,21 @@
 //     }
 // }
 
+
+
+
 using UnityEngine;
 
 public class Enemy_health_will : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    private GameHandler gameHandler;
 
     void Start()
     {
         currentHealth = maxHealth;
+        gameHandler = GameObject.FindObjectOfType<GameHandler>();
     }
 
     public void takeDamage(int damage)
@@ -91,5 +96,7 @@ public class Enemy_health_will : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        gameHandler.changeHealth(20, false);
+        gameHandler.xp += 10;
     }
 }

@@ -1,171 +1,92 @@
-// using System.Collections.Generic;
-// using System.Collections;
-// using UnityEngine;
+ using System.Collections.Generic;
+ using System.Collections;
+ using UnityEngine;
 
-// public class playerMove : MonoBehaviour {
+ public class playerMove : MonoBehaviour {
 
-//       public Rigidbody2D rb;
-//       public float moveSpeed = 5f;
-//       public Vector2 movement;
-//       private GameHandler gameHandler;
+       public Rigidbody2D rb;
+       public float moveSpeed = 5f;
+       public Vector2 movement;
+       private GameHandler gameHandler;
 
-//       // Dash vars
-//       public float dashSpeed = 20f;
-//       public float dashDuration = 0.2f;
-//       public float dashCooldown = 1f;
-//       private bool isDashing = false;
-//       private float dashTimeLeft;
-//       private float lastDashTime;
+       // Dash vars
+       public float dashSpeed = 20f;
+       public float dashDuration = 0.2f;
+       public float dashCooldown = 1f;
+       private bool isDashing = false;
+       private float dashTimeLeft;
+       private float lastDashTime;
 
-//       // audio vars
-//       public AudioSource dash_sfx;
+        // Knockback variables
+        private bool isKnockedBack = false;
+        private float knockbackDuration = 0.2f;
+        private float knockbackTimer = 0f;
 
-//       // Auto-load the RigidBody component into the variable:
-//       void Start(){
-//             gameHandler = GameObject.FindObjectOfType<GameHandler>();
-//             rb = GetComponent<Rigidbody2D> ();
-//       }
+       // audio vars
+       public AudioSource dash_sfx;
 
-//       // Listen for player input to move the object:
-//       void FixedUpdate(){
+       // Auto-load the RigidBody component into the variable:
+       void Start(){
+             gameHandler = GameObject.FindObjectOfType<GameHandler>();
+             rb = GetComponent<Rigidbody2D> ();
+       }
 
-//             if (!isDashing){
-//                   movement.x = Input.GetAxisRaw ("Horizontal");
-//                   //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-//                   movement.y = Input.GetAxisRaw ("Vertical");
-//                   //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-//             }
+       // Listen for player input to move the object:
+       void FixedUpdate(){
 
-//             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-            
-//             HandleDash();
-//       }
-      
-//       void Update(){
-//             if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= lastDashTime + dashCooldown){
-//                   dash_sfx.Play();
-//                   StartDash();
-//             }
-//       }
-
-//       //should I be adding the multiplier to the dash speed? 
-//     void StartDash(){
-//             isDashing = true;
-//             dashTimeLeft = dashDuration;
-//             lastDashTime = Time.time;
-//             moveSpeed = dashSpeed;
-//       }
-
-//     void HandleDash()
-//     {
-//         if (isDashing){
-//             dashTimeLeft -= Time.fixedDeltaTime;
-//             if (dashTimeLeft <= 0){
-//                   isDashing = false;
-//                   moveSpeed = 5f * gameHandler.speedMultiplier; // Reset to normal speed
-//             }
-//       }
-//     }
-
-//     public void UpdateMoveSpeed(){
-//       // moveSpeed = moveSpeed / (gameHandler.speedMultiplier - 0.2f) * gameHandler.speedMultiplier;
-//       moveSpeed = 5f * gameHandler.speedMultiplier;
-//     }
-
-// }
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class playerMove : MonoBehaviour
-{
-    public Rigidbody2D rb;
-    public float moveSpeed = 5f;
-    public Vector2 movement;
-    private GameHandler gameHandler;
-
-    // Dash variables
-    public float dashSpeed = 20f;
-    public float dashDuration = 0.2f;
-    public float dashCooldown = 1f;
-    private bool isDashing = false;
-    private float dashTimeLeft;
-    private float lastDashTime;
-    public AudioSource dash_sfx;
-
-    // Knockback variables
-    private bool isKnockedBack = false;
-    private float knockbackDuration = 0.2f;
-    private float knockbackTimer = 0f;
-
-    void Start()
-    {
-        gameHandler = GameObject.FindObjectOfType<GameHandler>();
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    void FixedUpdate()
-    {
-        if (!isDashing && !isKnockedBack)
-        {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        }
-        else if (isKnockedBack)
-        {
-            knockbackTimer -= Time.fixedDeltaTime;
-            if (knockbackTimer <= 0f)
+             if (!isDashing && !isKnockedBack){
+                   movement.x = Input.GetAxisRaw ("Horizontal");
+                   //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+                   movement.y = Input.GetAxisRaw ("Vertical");
+                   //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+             }
+            else if (isKnockedBack)
             {
-                isKnockedBack = false;
-                rb.velocity = Vector2.zero; // stop sliding after knockback
+                knockbackTimer -= Time.fixedDeltaTime;
+                if (knockbackTimer <= 0f)
+                {
+                    isKnockedBack = false;
+                    rb.velocity = Vector2.zero; // stop sliding after knockback
+                }
             }
-        }
+             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+             HandleDash();
 
-        HandleDash();
-    }
+       }
+       void Update(){
+             if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= lastDashTime + dashCooldown){
+                   dash_sfx.Play();
+                   StartDash();
+             }
+       }
+       //should I be adding the multiplier to the dash speed? 
+     void StartDash(){
+             isDashing = true;
+             dashTimeLeft = dashDuration;
+             lastDashTime = Time.time;
+             moveSpeed = dashSpeed;
+       }
+     void HandleDash()
+     {
+         if (isDashing){
+             dashTimeLeft -= Time.fixedDeltaTime;
+             if (dashTimeLeft <= 0){
+                   isDashing = false;
+                   moveSpeed = 5f * gameHandler.speedMultiplier; // Reset to normal speed
+             }
+       }
+     }
+     public void UpdateMoveSpeed(){
+       // moveSpeed = moveSpeed / (gameHandler.speedMultiplier - 0.2f) * gameHandler.speedMultiplier;
+       moveSpeed = 5f * gameHandler.speedMultiplier;
+     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= lastDashTime + dashCooldown)
+        public void ApplyKnockback(Vector2 direction, float force)
         {
-            dash_sfx.Play();
-            StartDash();
+            isKnockedBack = true;
+            knockbackTimer = knockbackDuration;
+            rb.velocity = direction.normalized * force;
         }
-    }
 
-    void StartDash()
-    {
-        isDashing = true;
-        dashTimeLeft = dashDuration;
-        lastDashTime = Time.time;
-        moveSpeed = dashSpeed;
-    }
+ }
 
-    void HandleDash()
-    {
-        if (isDashing)
-        {
-            dashTimeLeft -= Time.fixedDeltaTime;
-            if (dashTimeLeft <= 0f)
-            {
-                isDashing = false;
-                moveSpeed = 5f * gameHandler.speedMultiplier; // reset speed
-            }
-        }
-    }
-
-    public void ApplyKnockback(Vector2 direction, float force)
-    {
-        isKnockedBack = true;
-        knockbackTimer = knockbackDuration;
-        rb.velocity = direction.normalized * force;
-    }
-
-    public void UpdateMoveSpeed()
-    {
-        moveSpeed = 5f * gameHandler.speedMultiplier;
-    }
-}
