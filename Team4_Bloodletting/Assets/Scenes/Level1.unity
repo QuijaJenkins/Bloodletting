@@ -75524,7 +75524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1510885699988464507, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3665586043876218129, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_Name
@@ -75532,7 +75532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860963330173939086, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3953733821519980833, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: bloodVFX1
@@ -75592,7 +75592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085589786842262180, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6501996446911535673, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_Size.x
@@ -75616,7 +75616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830243516307490019, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
