@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 3
-  spr_dir: 2
 --- !u!114 &381850437200700061
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -333,17 +333,15 @@ void Attack()
 
         if (enemyScript != null)
         {
-            // 1. Deal damage
             enemyScript.takeDamage((int)(attackDamage * gameHandler.attackMultiplier));
 
-            // 2. Knockback if still alive
             if (enemyScript.currentHealth > 0)
             {
                 EnemyChasePlayer chaseScript = enemy.GetComponent<EnemyChasePlayer>();
                 if (chaseScript != null)
                 {
                     Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
-                    chaseScript.ApplyKnockback(knockbackDirection, 8f); // 8f = knockback strength
+                    chaseScript.ApplyKnockback(knockbackDirection, 8f); 
                 }
             }
 
@@ -351,8 +349,6 @@ void Attack()
             GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
             StartCoroutine(DestroyVFX(bloodFX));
             BloodRoll();
-
-            // 4. Kill enemy if health <= 0 (your Enemy_health_will handles destruction separately)
         }
     }
 }
