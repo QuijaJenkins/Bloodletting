@@ -324,7 +324,7 @@ void Attack()
         Debug.Log("No enemies hit.");
     }
 
-    foreach (Collider2D enemy in hitEnemies)
+    foreach (BoxCollider2D enemy in hitEnemies)
     {
         Debug.Log("We hit " + enemy.name);
 

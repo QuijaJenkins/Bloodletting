@@ -13,7 +13,7 @@
 //     {
 //         currHealth = maxHealth; 
 //         gameHandler = GameObject.FindObjectOfType<GameHandler>();
-   
+
 //     }
 
 //     public void takeDamage(float damage) {
@@ -34,7 +34,7 @@
 //     // Update is called once per frame
 //     void Update()
 //     {
-        
+
 //     }
 // }
 
@@ -70,6 +70,7 @@
 
 
 
+using System.Collections;
 using UnityEngine;
 
 public class Enemy_health_will : MonoBehaviour
@@ -77,16 +78,74 @@ public class Enemy_health_will : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     private GameHandler gameHandler;
+    public bool shield;
+    private int input;
+    private float timer;
+    private float maxTime;
+    private bool shatter;
+    private bool guard;
 
     void Start()
     {
+        if (gameObject.GetComponent<Renderer>().sortingOrder == 2)
+        {
+            shield = true;
+        }
         currentHealth = maxHealth;
         gameHandler = GameObject.FindObjectOfType<GameHandler>();
+        timer = 0;
+        input = 0;
+        gameObject.GetComponent<Animator>().SetInteger("input", input);
     }
 
+    public void Update()
+    { 
+        if (shatter)
+        {
+            if (timer >= maxTime)
+            {
+                input = 3;
+                gameObject.GetComponent<Animator>().SetInteger("input", input);
+                timer = 0;
+                shatter = false;
+            }
+            else
+            {
+                timer++;
+            }
+        }
+        if (guard)
+        {
+            if (timer >= maxTime)
+            {
+                input = 0;
+                gameObject.GetComponent<Animator>().SetInteger("input", input);
+                timer = 0;
+                guard = false;
+            }
+            else
+            {
+                timer++;
+            }
+        }
+    }
     public void takeDamage(int damage)
     {
         currentHealth -= damage;
+
+        if (gameObject.GetComponent<Renderer>().sortingOrder == 2)
+        {
+            if (currentHealth <= 0 && shield)
+            {
+                currentHealth = maxHealth/2;
+                shield = false;
+                Shatter(110);
+            }
+            else if(shield)
+            {
+                Guard(150);
+            }
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -98,5 +157,24 @@ public class Enemy_health_will : MonoBehaviour
         Destroy(gameObject);
         gameHandler.changeHealth(20, false);
         gameHandler.xp += 10;
+    }
+
+
+    //sets animation to walk after shatter
+    void Shatter(float time)
+    {
+        input = 2;
+        gameObject.GetComponent<Animator>().SetInteger("input", input);
+        maxTime = time;
+        shatter = true;
+    }
+
+    //sets animation to guard on hit
+    void Guard(float time)
+    {
+        input = 1;
+        gameObject.GetComponent<Animator>().SetInteger("input", input);
+        maxTime = time;
+        guard = true;
     }
 }
