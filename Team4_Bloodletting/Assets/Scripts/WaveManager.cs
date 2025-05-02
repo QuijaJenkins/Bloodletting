@@ -1,6 +1,6 @@
-
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; //check if need
 using System.Collections.Generic;
 
 public class WaveManager : MonoBehaviour
@@ -23,11 +23,17 @@ public class WaveManager : MonoBehaviour
     private int enemiesRemaining = 0;
     private bool waveInProgress = false;
 
-    //added vars
-    //public bool wavesComplete = false;
+    private GameHandler gameHandler;
 
     void Start()
     {
+
+        gameHandler = FindObjectOfType<GameHandler>();
+        if (gameHandler == null)
+        Debug.LogError("GameHandler not found by WaveManager!");
+        else
+        Debug.Log("WaveManager found GameHandler successfully.");
+
         if (enemyPrefab == null)
         {
             Debug.LogError("Enemy prefab not assigned!");
@@ -40,17 +46,46 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
+        gameHandler = FindObjectOfType<GameHandler>();
         StartCoroutine(BeginNextWaveAfterDelay(2f)); // Initial delay before wave 1
     }
 
     void Update()
     {
-        // When all enemies are dead and we're ready for a new wave
-        if (!waveInProgress && enemiesRemaining == 0 && currentWaveIndex + 1 < waves.Count)
+        if (!waveInProgress && enemiesRemaining == 0)
         {
-            float delay = waves[currentWaveIndex + 1].waveDelay;
-            Debug.Log($"Wave {currentWaveIndex + 1} complete. Next wave in {delay} seconds.");
-            StartCoroutine(BeginNextWaveAfterDelay(delay));
+            // If more waves remain, start next one
+            if (currentWaveIndex + 1 < waves.Count)
+            {
+                float delay = waves[currentWaveIndex + 1].waveDelay;
+                Debug.Log($"Wave {currentWaveIndex + 1} complete. Next wave in {delay} seconds.");
+                StartCoroutine(BeginNextWaveAfterDelay(delay));
+            }
+           
+            else
+            {
+                Debug.Log("All waves completed. Advancing to next level.");
+                if (gameHandler != null)
+                { // generalized for all levels
+                    int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                    int nextSceneIndex = currentSceneIndex + 1;
+
+                    if (gameHandler != null)
+                    {
+                        gameHandler.GoToNextLevel();
+                    }
+
+                    // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+                    // {
+                    //     SceneManager.LoadScene(nextSceneIndex);
+                    // }
+                    else
+                    {
+                        Debug.Log("No more levels to load. Game complete!");
+                    }
+                    // gameHandler.GoToNextLevel("Level2"); // "Level2" is added to Build Settings
+                }
+            }
         }
 
         // // end of waves for level transition
@@ -64,11 +99,11 @@ public class WaveManager : MonoBehaviour
         waveInProgress = true;
         yield return new WaitForSeconds(delay);
 
-        currentWaveIndex++;  // ✅ Safely increment index before accessing the list
+        currentWaveIndex++;
 
         if (currentWaveIndex >= waves.Count)
         {
-            Debug.Log("All waves complete!");
+            Debug.Log("No more waves.");
             yield break;
         }
 
@@ -86,7 +121,7 @@ public class WaveManager : MonoBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
 
-            // Set random speed for each enemy
+            // Randomize speed
             EnemyChasePlayer chase = enemy.GetComponent<EnemyChasePlayer>();
             if (chase != null)
             {
@@ -94,13 +129,12 @@ public class WaveManager : MonoBehaviour
                 chase.SetSpeedMultiplier(speed);
             }
 
-            // Track when the enemy dies
+            // Death tracking
             EnemyDeathNotifier notifier = enemy.GetComponent<EnemyDeathNotifier>();
             if (notifier == null)
                 notifier = enemy.AddComponent<EnemyDeathNotifier>();
             notifier.manager = this;
 
-            Debug.Log($"Spawned enemy {i + 1} at {spawnPoint.name}");
             yield return new WaitForSeconds(wave.spawnRate);
         }
     }
@@ -111,4 +145,3 @@ public class WaveManager : MonoBehaviour
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
     }
 }
-

@@ -479,7 +479,6 @@ public class GameHandler : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
     }
 
-    
     public void Credits() {
         SceneManager.LoadScene("CreditScene");
     }
@@ -548,5 +547,21 @@ public class GameHandler : MonoBehaviour
         upgradeMenuScript.Resume();
     }
 
+    // move to next level 
+    public void GoToNextLevel()
+    {
+    string current = SceneManager.GetActiveScene().name;
+
+    if (current == "Level1")
+        SceneManager.LoadScene("Level 2");
+    else if (current == "Level 2")
+        SceneManager.LoadScene("Level 3");
+    else if (current == "Level 3")
+        SceneManager.LoadScene("CreditScene");
+    else
+        Debug.Log("No next level defined for " + current);
+    }
+
 }
+
 
