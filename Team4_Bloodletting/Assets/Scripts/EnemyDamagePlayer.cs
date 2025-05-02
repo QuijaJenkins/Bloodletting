@@ -194,6 +194,9 @@ public class EnemyDamagePlayer : MonoBehaviour
 
     public float knockbackForce = 10f; // New: knockback force value
 
+
+    // public AudioSource playerhurt_sfx;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -214,6 +217,9 @@ void OnTriggerEnter2D(Collider2D other)
         {
             handler.changeHealth(-damageAmount, false);
             StartCoroutine(DamageCooldown());
+
+            // player hurt sfx
+            handler.playerHurtAudio();
 
             // player hurt animation
             playerAnim.ResetTrigger("trigger");

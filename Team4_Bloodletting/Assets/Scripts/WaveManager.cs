@@ -23,6 +23,9 @@ public class WaveManager : MonoBehaviour
     private int enemiesRemaining = 0;
     private bool waveInProgress = false;
 
+    //added vars
+    //public bool wavesComplete = false;
+
     void Start()
     {
         if (enemyPrefab == null)
@@ -49,6 +52,11 @@ public class WaveManager : MonoBehaviour
             Debug.Log($"Wave {currentWaveIndex + 1} complete. Next wave in {delay} seconds.");
             StartCoroutine(BeginNextWaveAfterDelay(delay));
         }
+
+        // // end of waves for level transition
+        // if (waves.Count == 0) {
+        //     wavesComplete = true;
+        // }
     }
 
     IEnumerator BeginNextWaveAfterDelay(float delay)

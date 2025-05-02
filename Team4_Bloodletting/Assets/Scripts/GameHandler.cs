@@ -39,7 +39,7 @@ public class GameHandler : MonoBehaviour
     public playerMove playerMoveScript;
     private GameHandler_UpgradeMenu upgradeMenuScript;
 
-    //public StanceIndicator stance_script;
+    // vars for stance indicator & locking based on lvl
     public bool s1locked = false;
     public bool s2locked = true;
     public bool s3locked = true;
@@ -49,6 +49,9 @@ public class GameHandler : MonoBehaviour
     public float attackMultiplier = 1;
     public float speedMultiplier = 1;
     public float healthMultiplier = 1;
+
+    // audio vars
+    public AudioSource playerhurt_sfx;
 
     /*DON'T DELETE; reference for all the animation states
     public int idle = 0;
@@ -440,6 +443,12 @@ public class GameHandler : MonoBehaviour
                 playerHealth += healthChange;
             }
         }
+    }
+
+    public void playerHurtAudio() {
+        // TESTING
+        playerhurt_sfx.Play();
+        Debug.Log("Player hurt sound played.");
     }
 
 

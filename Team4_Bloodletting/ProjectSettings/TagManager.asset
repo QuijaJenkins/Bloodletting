@@ -11,6 +11,7 @@ TagManager:
   - PauseMenuSlider_sfx
   - AudioManager
   - PlayerArt
+  - MonologueManager
   layers:
   - Default
   - TransparentFX
