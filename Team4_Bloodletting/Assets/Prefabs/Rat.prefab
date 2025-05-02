@@ -99,7 +99,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7268578490426690952}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 3
-  spr_dir: 2
 --- !u!114 &381850437200700061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +191,7 @@ MonoBehaviour:
   damageAmount: 7
   cooldownTime: 1.2
   playerAnim: {fileID: 0}
+  knockbackForce: 10
 --- !u!95 &309255478944770800
 Animator:
   serializedVersion: 5
@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e235faa5899b4b62af906168e53a096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!114 &-4766282796398643513
 MonoBehaviour:
   m_ObjectHideFlags: 0
