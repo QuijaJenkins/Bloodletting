@@ -11679,7 +11679,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1976842607640461380, guid: 25d7562860a6f45708de621303f9943c, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1976842607640461380, guid: 25d7562860a6f45708de621303f9943c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52881,6 +52881,7 @@ MonoBehaviour:
   attackMultiplier: 1
   speedMultiplier: 1
   healthMultiplier: 1
+  playerhurt_sfx: {fileID: 0}
   sceneName: 
 --- !u!1 &1495128665
 GameObject:
@@ -53507,6 +53508,7 @@ MonoBehaviour:
   attackMultiplier: 1
   speedMultiplier: 1
   healthMultiplier: 1
+  playerhurt_sfx: {fileID: 0}
   sceneName: 
 --- !u!1001 &1698301939
 PrefabInstance:
