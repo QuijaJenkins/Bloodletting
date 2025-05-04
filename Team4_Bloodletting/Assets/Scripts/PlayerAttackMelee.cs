@@ -206,13 +206,13 @@ public class PlayerAttackMelee : MonoBehaviour
         // Stance modifications
         if (gameHandler.stanceNumber == 1)
         {
-            attackRange = 1f;
+            attackRange = 2f;
             damageTakenFromAttack = 5;
             attackDamage = 50;
         }
         else if (gameHandler.stanceNumber == 3)
         {
-            attackRange = 1f;
+            attackRange = 5f;
             damageTakenFromAttack = 10;
             attackDamage = 100;
         }
