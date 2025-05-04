@@ -74,6 +74,8 @@ public class GameHandler : MonoBehaviour
     // maybe should be private?? but i'm chainging to public for Stance Indicator
     public string sceneName;
 
+    // var to start waves after tutorial
+    public bool tut_complete = false;
     
     // Start is called before the first frame update
     void Start(){
@@ -101,6 +103,14 @@ public class GameHandler : MonoBehaviour
             xp += 50;    
         }
 
+        // checks for tutorial over to start waves
+        if (Input.GetKeyDown(KeyCode.T) && !tut_complete) {
+            tut_complete = true;
+            Debug.Log("TUTORIAL COMPLETE");
+
+            // reset their health for whatever they lost in tutorial
+            playerHealth = maxPlayerHealth;
+        }
 
 
         //trigger player upgrade if their xp hits 100

@@ -25,6 +25,8 @@ public class WaveManager : MonoBehaviour
 
     private GameHandler gameHandler;
 
+    // private bool tut_complete = false;
+
     void Start()
     {
 
@@ -47,43 +49,45 @@ public class WaveManager : MonoBehaviour
         }
 
         gameHandler = FindObjectOfType<GameHandler>();
-        StartCoroutine(BeginNextWaveAfterDelay(2f)); // Initial delay before wave 1
+        StartCoroutine(WaitForTutorialThenStart()); // Wait for tutorial/NPC chat to finish
     }
 
     void Update()
     {
-        if (!waveInProgress && enemiesRemaining == 0)
-        {
-            // If more waves remain, start next one
-            if (currentWaveIndex + 1 < waves.Count)
+        if(gameHandler.tut_complete) {
+            if (!waveInProgress && enemiesRemaining == 0)
             {
-                float delay = waves[currentWaveIndex + 1].waveDelay;
-                Debug.Log($"Wave {currentWaveIndex + 1} complete. Next wave in {delay} seconds.");
-                StartCoroutine(BeginNextWaveAfterDelay(delay));
-            }
-           
-            else
-            {
-                Debug.Log("All waves completed. Advancing to next level.");
-                if (gameHandler != null)
-                { // generalized for all levels
-                    int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                    int nextSceneIndex = currentSceneIndex + 1;
-
+                // If more waves remain, start next one
+                if (currentWaveIndex + 1 < waves.Count)
+                {
+                    float delay = waves[currentWaveIndex + 1].waveDelay;
+                    Debug.Log($"Wave {currentWaveIndex + 1} complete. Next wave in {delay} seconds.");
+                    StartCoroutine(BeginNextWaveAfterDelay(delay));
+                }
+            
+                else
+                {
+                    Debug.Log("All waves completed. Advancing to next level.");
                     if (gameHandler != null)
-                    {
-                        gameHandler.GoToNextLevel();
-                    }
+                    { // generalized for all levels
+                        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                        int nextSceneIndex = currentSceneIndex + 1;
 
-                    // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-                    // {
-                    //     SceneManager.LoadScene(nextSceneIndex);
-                    // }
-                    else
-                    {
-                        Debug.Log("No more levels to load. Game complete!");
+                        if (gameHandler != null)
+                        {
+                            gameHandler.GoToNextLevel();
+                        }
+
+                        // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+                        // {
+                        //     SceneManager.LoadScene(nextSceneIndex);
+                        // }
+                        else
+                        {
+                            Debug.Log("No more levels to load. Game complete!");
+                        }
+                        // gameHandler.GoToNextLevel("Level2"); // "Level2" is added to Build Settings
                     }
-                    // gameHandler.GoToNextLevel("Level2"); // "Level2" is added to Build Settings
                 }
             }
         }
@@ -141,7 +145,23 @@ public class WaveManager : MonoBehaviour
 
     public void OnEnemyDied()
     {
+        // play enemy sound!!
         enemiesRemaining--;
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
     }
+
+
+    IEnumerator WaitForTutorialThenStart()
+    {
+        Debug.Log("Waiting for tutorial to complete...");
+        // Wait until the GameHandler sets tut_complete to true
+        while (gameHandler != null && !gameHandler.tut_complete)
+        {
+            yield return null; // Wait one frame and check again
+        }
+
+        Debug.Log("Tutorial complete! Starting waves...");
+        StartCoroutine(BeginNextWaveAfterDelay(2f));
+    }
 }
+

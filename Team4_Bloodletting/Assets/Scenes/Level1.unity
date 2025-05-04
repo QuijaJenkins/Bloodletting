@@ -83647,6 +83647,56 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1388670940}
     m_Modifications:
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[2]
+      value: 'Use WASD to move. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[3]
+      value: 'Use Space to attack. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[4]
+      value: Your condition makes you strong, but also vulnerable.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[5]
+      value: You bleed continuously, allowing you to wield powerful blood weapons.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[6]
+      value: 'But every strike comes at a cost! when you attack, you will hurt yourself
+        in the process.  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[7]
+      value: 'Regain your health by defeating enemies.  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[8]
+      value: 'Use LeftShift to Dash and evade your enemies. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[9]
+      value: 'In order to escape, you''ll need to battle your way to the top. And
+        kill Mr.Dr.    '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[10]
+      value: 'I''ll be keeping an eye on you, kid. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[11]
+      value: Good luck!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174041288816492504, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: monologue.Array.data[12]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3675120575792585838, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -83978,3 +84028,104 @@ PrefabInstance:
       addedObject: {fileID: 1546620387}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+--- !u!1001 &6575624577930417520
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1675597884561521707, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_Name
+      value: LevelTitles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582844700894966313, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 74215c919c21349b2b2e565c7d4b25eb, type: 3}
