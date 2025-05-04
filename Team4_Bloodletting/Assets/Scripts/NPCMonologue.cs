@@ -37,3 +37,49 @@ public class NPCMonologue : MonoBehaviour {
               }
        }
 }
+
+
+// using System.Collections.Generic;
+// using System.Collections;
+// using UnityEngine;
+// using UnityEngine.UI;
+// using TMPro; // Add this
+// using UnityEngine;
+
+// public class NPCMonologue : MonoBehaviour {
+//     public string[] monologue;
+//     public bool playerInRange = false;
+
+//     public TextMeshPro monologueText; // Assign this in the Inspector
+//     private int currentLine = 0;
+//     private Coroutine typingRoutine;
+
+//     void Start() {
+//         monologueText.text = "";
+//     }
+
+//     private void OnTriggerEnter2D(Collider2D other) {
+//         if (other.CompareTag("Player")) {
+//             playerInRange = true;
+//             currentLine = 0;
+//             typingRoutine = StartCoroutine(ShowMonologue());
+//         }
+//     }
+
+//     private void OnTriggerExit2D(Collider2D other) {
+//         if (other.CompareTag("Player")) {
+//             playerInRange = false;
+//             StopCoroutine(typingRoutine);
+//             monologueText.text = "";
+//         }
+//     }
+
+//     IEnumerator ShowMonologue() {
+//         while (currentLine < monologue.Length) {
+//             monologueText.text = monologue[currentLine];
+//             currentLine++;
+//             yield return new WaitForSeconds(3f); // Adjust time per line
+//         }
+//         monologueText.text = "";
+//     }
+// }

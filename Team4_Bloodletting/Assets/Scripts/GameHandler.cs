@@ -147,18 +147,20 @@ public class GameHandler : MonoBehaviour
         // s2locked = stance_script.s2locked;
         // s3locked = stance_script.s3locked;
 
-        if (sceneName == "Level1") {
+        // tutorial & lvl1 get knife
+        if (sceneName == "Level1" || sceneName == "Level 2") {
             s1locked = false;
             s2locked = true;
             s3locked = true;
         }
-        if (sceneName == "Level 2") {
+        // level 3 gets bow
+        if (sceneName == "Level 3") {
             s1locked = false;
             s2locked = false;
             s3locked = true;
         }
-
-        if (sceneName == "Level 3") {
+        // level 3 gets axe
+        if (sceneName == "Level 4") {
             s1locked = false;
             s2locked = false;
             s3locked = false;
