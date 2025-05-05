@@ -24,6 +24,8 @@ public class EnemyMoveShoot : MonoBehaviour {
        public float attackRange = 10;
        public bool isAttacking = false;
        private float scaleX;
+       private Animator mAnim;
+    private bool shot = false;
 
        void Start () {
               Physics2D.queriesStartInColliders = false;
@@ -36,15 +38,23 @@ public class EnemyMoveShoot : MonoBehaviour {
               timeBtwShots = startTimeBtwShots;
 
               rend = GetComponentInChildren<Renderer> ();
-              //anim = GetComponentInChildren<Animator> ();
+            //anim = GetComponentInChildren<Animator> ();
 
-              //if (GameObject.FindWithTag ("GameHandler") != null) {
-              // gameHander = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
-              //}
-       }
+            //if (GameObject.FindWithTag ("GameHandler") != null) {
+            // gameHander = GameObject.FindWithTag ("GameHandler").GetComponent<GameHandler> ();
+            //}
+            mAnim = gameObject.GetComponent<Animator>();
+
+    }
 
        void Update () {
-              float DistToPlayer = Vector3.Distance(transform.position, player.position);
+        if (shot)
+        {
+            mAnim.ResetTrigger("trigger");
+            mAnim.SetTrigger("trigger");
+            mAnim.SetInteger("input", 0);
+        }
+        float DistToPlayer = Vector3.Distance(transform.position, player.position);
               if ((player != null) && (DistToPlayer <= attackRange)) {
                      // approach player
                      if (Vector2.Distance (transform.position, player.position) > stoppingDistance) {
@@ -84,12 +94,21 @@ public class EnemyMoveShoot : MonoBehaviour {
                             Instantiate (projectile, transform.position, Quaternion.identity);
                             timeBtwShots = startTimeBtwShots;
                             mrDrHandler.switchMRDRStance();  // Or nextStance(), depending on your logic
+                            if (!shot)
+                            {
+                                mAnim.ResetTrigger("trigger");
+                                mAnim.SetTrigger("trigger");
+                                mAnim.SetInteger("input", 2);
+                            }
+                            shot = true;
 
-                     } else {
+            } else {
                             timeBtwShots -= Time.deltaTime;
                             isAttacking = false;
                      }
-              }
+
+                }
+
        }
 
        void OnCollisionEnter2D(Collision2D collision){
@@ -121,4 +140,9 @@ public class EnemyMoveShoot : MonoBehaviour {
        void OnDrawGizmosSelected(){
               Gizmos.DrawWireSphere(transform.position, attackRange);
        }
+
+        public void Shot()
+    {
+        shot = false;
+    }
 }

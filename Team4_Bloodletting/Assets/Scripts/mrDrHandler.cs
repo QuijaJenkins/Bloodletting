@@ -44,11 +44,11 @@ public class mrDrHandler : MonoBehaviour
             MRDRmovementScript.enabled = false;
             MRDRenemyChaseScript.enabled = true;
             MRDRmeleeScript.enabled = true;
+            MRDRprojectileScipt.Shot();
         } else if (stanceNumber == 2) {
              MRDRprojectileScipt.enabled = true;
             MRDRmovementScript.enabled = false;
             MRDRenemyChaseScript.enabled = false;
-            MRDRmeleeScript.enabled = false;
         }
     }
 
