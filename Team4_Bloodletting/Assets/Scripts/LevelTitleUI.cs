@@ -21,10 +21,10 @@ public class LevelTitleUI : MonoBehaviour
     {
         switch (rawName)
         {
-            case "Level1": return "TUTORIAL";
-            case "Level 2": return "Level 1: Prison Basement";
-            case "Level 3": return "Level 2: Sewers";
-            case "Level 4": return "Level 3: Alchemists' Lab";
+            case "Level1": return "Level 1: Tutorial";
+            case "Level 2": return "Level 2: Prison Basement";
+            case "Level 3": return "Level 3: Sewers";
+            case "Level 4": return "Level 4: Alchemists' Lab";
             default: return rawName;
         }
     }

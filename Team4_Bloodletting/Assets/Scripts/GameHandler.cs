@@ -76,6 +76,8 @@ public class GameHandler : MonoBehaviour
 
     // var to start waves after tutorial
     public bool tut_complete = false;
+    public GameObject Lvl1_HUD;
+    public GameObject NPC; 
     
     // Start is called before the first frame update
     void Start(){
@@ -94,6 +96,11 @@ public class GameHandler : MonoBehaviour
         playerAnim = player.GetComponentInChildren<Animator>();
         updateStatsDisplay();
         spr_dir = 2;
+
+        // for level 1 HUD
+        if (Lvl1_HUD != null){
+            Lvl1_HUD.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -103,13 +110,20 @@ public class GameHandler : MonoBehaviour
             xp += 50;    
         }
 
+        // NPC HANDLING
         // checks for tutorial over to start waves
         if (Input.GetKeyDown(KeyCode.T) && !tut_complete) {
             tut_complete = true;
+            NPC.SetActive(false);
             Debug.Log("TUTORIAL COMPLETE");
 
             // reset their health for whatever they lost in tutorial
             playerHealth = maxPlayerHealth;
+
+            if (sceneName == "Level1") {
+                Lvl1_HUD.SetActive(true);
+                StartCoroutine(HideHUDDelayed(30f));
+            }
         }
 
 
@@ -120,26 +134,25 @@ public class GameHandler : MonoBehaviour
             Debug.Log("Choose an upgrade: [5] Health, [6] Attack, [7] Speed");
         }
 
-        if (isChoosingUpgrade) {
-            if (Input.GetKeyDown(KeyCode.Alpha5)) {
-                healthMultiplier += 0.2f;
-                int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
-                maxPlayerHealth += healthGain;
-                playerHealth += healthGain;
-                finishUpgrade();
-            } 
-            //attack upgrade
-            else if (Input.GetKeyDown(KeyCode.Alpha6)) {
-                attackMultiplier += 0.2f;
-                finishUpgrade();
-            } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
-                speedMultiplier += 0.2f;
-                // movement.UpdateMoveSpeed();
-                playerMoveScript.UpdateMoveSpeed();            
-
-                finishUpgrade();
-            }
-        }
+        // if (isChoosingUpgrade) {
+        //     if (Input.GetKeyDown(KeyCode.Alpha5)) {
+        //         healthMultiplier += 0.2f;
+        //         int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
+        //         maxPlayerHealth += healthGain;
+        //         playerHealth += healthGain;
+        //         finishUpgrade();
+        //     } 
+        //     //attack upgrade
+        //     else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+        //         attackMultiplier += 0.2f;
+        //         finishUpgrade();
+        //     } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+        //         speedMultiplier += 0.2f;
+        //         // movement.UpdateMoveSpeed();
+        //         playerMoveScript.UpdateMoveSpeed();            
+        //         finishUpgrade();
+        //     }
+        // }
         
         if (healthBar != null) {
             healthBar.fillAmount = playerHealth / (float)maxPlayerHealth;
@@ -574,6 +587,41 @@ public class GameHandler : MonoBehaviour
         Debug.Log("No next level defined for " + current);
     }
 
+
+    IEnumerator HideHUDDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (Lvl1_HUD != null)
+        {
+            Lvl1_HUD.SetActive(false);
+        }
+    }
+
+
+
+
+
+    public void healthUpgrade() {
+        healthMultiplier += 0.2f;
+        int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
+        maxPlayerHealth += healthGain;
+        playerHealth += healthGain;
+        finishUpgrade();
+    }
+    public void attackUpgrade() {
+        attackMultiplier += 0.2f;
+        finishUpgrade();
+    }
+    public void speedUpgrade() {
+        speedMultiplier += 0.2f;
+        // movement.UpdateMoveSpeed();
+        playerMoveScript.UpdateMoveSpeed();            
+        finishUpgrade();
+    }
+
+
 }
+
 
 

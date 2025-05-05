@@ -57,7 +57,7 @@ public class WaveManager : MonoBehaviour
         if(gameHandler.tut_complete) {
             if (!waveInProgress && enemiesRemaining == 0)
             {
-                // If more waves remain, start next one
+                // If more waves remain, starat next one
                 if (currentWaveIndex + 1 < waves.Count)
                 {
                     float delay = waves[currentWaveIndex + 1].waveDelay;
