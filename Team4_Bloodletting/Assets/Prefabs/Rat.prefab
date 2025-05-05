@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: -1803486153, guid: 31aa0b9a865b6704e9f8b67d3769d693, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
@@ -264,6 +264,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   shield: 0
+  waveManager: {fileID: 0}
+  door: {fileID: 0}
 --- !u!114 &-4766282796398643513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,3 +296,4 @@ MonoBehaviour:
     waveDelay: 12
   enemyPrefab: {fileID: 7268578490426690952}
   spawnPoints: []
+  door: {fileID: 0}

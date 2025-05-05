@@ -209,10 +209,21 @@ public class EnemyChasePlayer : MonoBehaviour
 
         transform.Translate(direction * finalSpeed * Time.deltaTime);
 
-        if (direction.x > 0)
-            GetComponent<SpriteRenderer>().flipX = true;
-        else if (direction.x < 0)
-            GetComponent<SpriteRenderer>().flipX = false;
+        if (GetComponent<Renderer>().sortingOrder == 0 || GetComponent<Renderer>().sortingOrder == 2)
+        {
+            if (direction.x > 0)
+                GetComponent<SpriteRenderer>().flipX = true;
+            else if (direction.x < 0)
+                GetComponent<SpriteRenderer>().flipX = false;
+        }
+        if (GetComponent<Renderer>().sortingOrder == 1 || GetComponent<Renderer>().sortingOrder == 10 )
+        {
+            if (direction.x < 0)
+                GetComponent<SpriteRenderer>().flipX = true;
+            else if (direction.x > 0)
+                GetComponent<SpriteRenderer>().flipX = false;
+        }
+
     }
 
     public void SetSpeedMultiplier(float multiplier)
