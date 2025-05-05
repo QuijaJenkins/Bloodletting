@@ -14696,17 +14696,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &377881221 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4714885694952524091, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
-  m_PrefabInstance: {fileID: 3530201749828628773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &432672489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55881,7 +55870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemaining: 60
-  timerText: {fileID: 377881221}
+  timerText: {fileID: 0}
 --- !u!114 &1036317524 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
@@ -82289,7 +82278,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: fc2de79664bcf4de8a033ec7e63a34ff, type: 2}
-  m_audioClip: {fileID: 8300000, guid: eba81a3e4a4394a668164a0864030774, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8684b257037d64e0ab3ae1465f43db47, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.497
   m_Pitch: 1
