@@ -228,7 +228,6 @@ MonoBehaviour:
   cooldownTime: 1.2
   playerAnim: {fileID: 0}
   knockbackForce: 10
-  enemyCollider: {fileID: 0}
 --- !u!95 &309255478944770800
 Animator:
   serializedVersion: 5
@@ -239,7 +238,7 @@ Animator:
   m_GameObject: {fileID: 7268578490426690952}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e43fe2d86c3940249a7f24f2c3676e85, type: 2}
+  m_Controller: {fileID: 9100000, guid: bba79e08f03b9ba468cd99b5d9e75db1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -264,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  shield: 0
 --- !u!114 &-4766282796398643513
 MonoBehaviour:
   m_ObjectHideFlags: 0
