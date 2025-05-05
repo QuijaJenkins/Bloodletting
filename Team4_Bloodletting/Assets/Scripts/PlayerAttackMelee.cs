@@ -186,21 +186,40 @@ public class PlayerAttackMelee : MonoBehaviour
     void Update()
     {
         // Change attack point based on movement input
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            attackPt = attackPtW;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            attackPt = attackPtD;
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            attackPt = attackPtA;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
+        // if (Input.GetKeyDown(KeyCode.W))
+        // {
+        //     attackPt = attackPtW;
+        // }
+        // else if (Input.GetKeyDown(KeyCode.D))
+        // {
+        //     attackPt = attackPtD;
+        // }
+        // else if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     attackPt = attackPtA;
+        // }
+        // else if (Input.GetKeyDown(KeyCode.S))
+        // {
+        //     attackPt = attackPtS;
+        // }
+
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if (moveInput.y > 0){ 
+            attackPt = attackPtW; 
+            if (attackPt == attackPtW) {
+            Debug.Log("W");
+
+            }
+        } else if (moveInput.y < 0) {
+            Debug.Log("S");
             attackPt = attackPtS;
+        } else if (moveInput.x > 0) {
+            Debug.Log("D");
+            attackPt = attackPtD;
+        } else if (moveInput.x < 0) {
+            Debug.Log("A");
+            attackPt = attackPtA;
         }
 
         // Stance modifications
@@ -311,9 +330,13 @@ public class PlayerAttackMelee : MonoBehaviour
 void Attack()
 {
     Debug.Log("We hit spacebar to attack");
+    if (attackPt == attackPtW) {
+            Debug.Log("W attack");
+
+        }
 
     if (gameHandler != null)
-    {
+    {   
         gameHandler.changeHealth(-damageTakenFromAttack, true);
     }
 
@@ -324,8 +347,11 @@ void Attack()
         Debug.Log("No enemies hit.");
     }
 
-    foreach (BoxCollider2D enemy in hitEnemies)
+    // foreach (BoxCollider2D enemy in hitEnemies)
+    foreach (Collider2D enemy in hitEnemies)
     {
+        if (enemy is CapsuleCollider2D) continue;
+
         Debug.Log("We hit " + enemy.name);
 
         Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
