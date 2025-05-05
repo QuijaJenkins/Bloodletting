@@ -64,7 +64,8 @@
              isDashing = true;
              dashTimeLeft = dashDuration;
              lastDashTime = Time.time;
-             moveSpeed = dashSpeed;
+             //scale dashspeed at half the rate of move speed so as to not be too egregious
+             moveSpeed = dashSpeed * (((gameHandler.speedMultiplier - 1f) / 4f ) +1f);
        }
      void HandleDash()
      {
