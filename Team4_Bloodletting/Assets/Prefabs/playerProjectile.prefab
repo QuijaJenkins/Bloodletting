@@ -50,7 +50,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1712fcce835840d8b81038d8c291cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 50
+  arrowAttackDamage: 99
   hitEffectAnim: {fileID: 7950851185789186686, guid: 75cd7fbf98886489194be2fc0078afa1, type: 3}
   SelfDestructTime: 4
   SelfDestructVFX: 0.5

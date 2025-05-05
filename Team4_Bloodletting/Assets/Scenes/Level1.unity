@@ -44095,6 +44095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854716303}
   - component: {fileID: 854716302}
+  - component: {fileID: 854716304}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -44142,6 +44143,8 @@ MonoBehaviour:
   - {fileID: 34206164}
   - {fileID: 1882066335}
   - {fileID: 127999397}
+  transition: {fileID: 0}
+  door: {fileID: 1057864063}
 --- !u!4 &854716303
 Transform:
   m_ObjectHideFlags: 0
@@ -44167,6 +44170,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &854716304
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854716301}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.4339857, y: 15.787609}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.0189133, y: 1.9767303}
+  m_EdgeRadius: 0
 --- !u!1 &945893799
 GameObject:
   m_ObjectHideFlags: 0
@@ -55880,7 +55928,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057864063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b2270e650edc0004b862af20fd8ab8de, type: 2}
   m_CullingMode: 0
@@ -84140,6 +84188,22 @@ PrefabInstance:
     - target: {fileID: 738266474891858810, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6041617226896363367, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626970931223595424, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626970931223595424, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626970931223595424, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.49
       objectReference: {fileID: 0}
     - target: {fileID: 9088217091731007894, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
       propertyPath: m_RootOrder

@@ -32,7 +32,7 @@ Transform:
   - {fileID: 7890779571319709905}
   - {fileID: 6332551791575642148}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &500589151492824856
 PrefabInstance:
@@ -362,6 +362,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3979275685313143597, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 686817ae8ef27844b90ec15daa2084ed, type: 3}
     - target: {fileID: 3979275685313143597, guid: 6ff736fbfcd1d4e74853f57c55eda68d, type: 3}
       propertyPath: m_SortingLayer
       value: 7

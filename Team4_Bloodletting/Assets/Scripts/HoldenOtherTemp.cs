@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UI;
 
 public class HoldenOtherTemp : MonoBehaviour
 {
-    private bool trigger = false;
+    private bool trigger = true;
     private GameObject player;
     public GameObject movePoint;
     public GameObject crystal;
@@ -38,7 +37,6 @@ public class HoldenOtherTemp : MonoBehaviour
         crystalAnim = crystal.GetComponent<Animator>();
         deskAnim = desk.GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
-        trigger = true;
     }
 
 

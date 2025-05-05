@@ -472,7 +472,7 @@ public class GameHandler : MonoBehaviour
 
     public void playerHurtAudio() {
         // TESTING
-        playerhurt_sfx.Play();
+        //playerhurt_sfx.Play();
         Debug.Log("Player hurt sound played.");
     }
 
@@ -582,7 +582,9 @@ public class GameHandler : MonoBehaviour
     else if (current == "Level 2")
         SceneManager.LoadScene("Level 3");
     else if (current == "Level 3")
-        SceneManager.LoadScene("CreditScene");
+        SceneManager.LoadScene("Level 4");
+    else if (current == "Level 4")
+       SceneManager.LoadScene("WinScreen");
     else
         Debug.Log("No next level defined for " + current);
     }

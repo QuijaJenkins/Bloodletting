@@ -565,7 +565,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1845133202, guid: a0f931b86863ab643bde816b38dd4bb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e235faa5899b4b62af906168e53a096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 800
   currentHealth: 0
   shield: 0
 --- !u!114 &390478677970341928
@@ -776,6 +776,7 @@ MonoBehaviour:
     waveDelay: 12
   enemyPrefab: {fileID: 7717490488855642469}
   spawnPoints: []
+  door: {fileID: 0}
 --- !u!114 &2853126759806655463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   rb2D: {fileID: 1622388484890552357}
-  speed: 4
+  speed: 8
   damage: 10
   EnemyLives: 3
   attackRange: 10

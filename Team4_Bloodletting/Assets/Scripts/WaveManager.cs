@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement; //check if need
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class WaveManager : MonoBehaviour
 {
@@ -21,9 +22,12 @@ public class WaveManager : MonoBehaviour
 
     private int currentWaveIndex = -1;
     private int enemiesRemaining = 0;
+    //private int kills = 0;
+    //private double killsNeeded = 0;
     private bool waveInProgress = false;
 
     private GameHandler gameHandler;
+    public GameObject door;
 
     // private bool tut_complete = false;
 
@@ -67,7 +71,7 @@ public class WaveManager : MonoBehaviour
             
                 else
                 {
-                    Debug.Log("All waves completed. Advancing to next level.");
+                    //Debug.Log("All waves completed. Advancing to next level.");
                     if (gameHandler != null)
                     { // generalized for all levels
                         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -75,7 +79,15 @@ public class WaveManager : MonoBehaviour
 
                         if (gameHandler != null)
                         {
-                            gameHandler.GoToNextLevel();
+                            if (currentSceneIndex == 4)
+                            {
+                                GetComponent<HoldenOtherTemp>().enabled = true;
+                            }
+                            else
+                            {
+                                door.GetComponent<Animator>().enabled = true;
+                                GetComponent<BoxCollider2D>().enabled = true;
+                            }
                         }
 
                         // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
@@ -91,13 +103,19 @@ public class WaveManager : MonoBehaviour
                 }
             }
         }
-
         // // end of waves for level transition
         // if (waves.Count == 0) {
         //     wavesComplete = true;
         // }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameHandler.GoToNextLevel();
+        }   
+    }
     IEnumerator BeginNextWaveAfterDelay(float delay)
     {
         waveInProgress = true;
@@ -118,6 +136,8 @@ public class WaveManager : MonoBehaviour
     IEnumerator SpawnWave(Wave wave)
     {
         enemiesRemaining = wave.enemyCount;
+        //killsNeeded += wave.enemyCount * 0.8;
+        
         Debug.Log($"Spawning Wave {currentWaveIndex + 1} with {wave.enemyCount} enemies.");
 
         for (int i = 0; i < wave.enemyCount; i++)
@@ -147,6 +167,7 @@ public class WaveManager : MonoBehaviour
     {
         // play enemy sound!!
         enemiesRemaining--;
+        //kills++;
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
     }
 
@@ -163,5 +184,6 @@ public class WaveManager : MonoBehaviour
         Debug.Log("Tutorial complete! Starting waves...");
         StartCoroutine(BeginNextWaveAfterDelay(2f));
     }
+
 }
 

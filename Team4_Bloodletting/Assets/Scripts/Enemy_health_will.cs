@@ -71,6 +71,7 @@
 
 
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_health_will : MonoBehaviour
@@ -84,6 +85,8 @@ public class Enemy_health_will : MonoBehaviour
     private float maxTime;
     private bool shatter;
     private bool guard;
+    public GameObject waveManager;
+    public GameObject door;
 
     void Start()
     {
@@ -149,6 +152,12 @@ public class Enemy_health_will : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            if(tag == "enemyShooter") {
+                Debug.Log("yay");
+                waveManager.GetComponent<BoxCollider2D>().enabled = true;
+                door.GetComponent<Animator>().enabled = true;
+            }
+            
         }
     }
 

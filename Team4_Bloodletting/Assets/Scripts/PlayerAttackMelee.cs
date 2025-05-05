@@ -208,17 +208,17 @@ public class PlayerAttackMelee : MonoBehaviour
         if (moveInput.y > 0){ 
             attackPt = attackPtW; 
             if (attackPt == attackPtW) {
-            Debug.Log("W");
+            //Debug.Log("W");
 
             }
         } else if (moveInput.y < 0) {
-            Debug.Log("S");
+            //Debug.Log("S");
             attackPt = attackPtS;
         } else if (moveInput.x > 0) {
-            Debug.Log("D");
+            //Debug.Log("D");
             attackPt = attackPtD;
         } else if (moveInput.x < 0) {
-            Debug.Log("A");
+            //Debug.Log("A");
             attackPt = attackPtA;
         }
 

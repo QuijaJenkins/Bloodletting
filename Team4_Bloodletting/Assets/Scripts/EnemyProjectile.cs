@@ -45,9 +45,9 @@ public class EnemyProjectile : MonoBehaviour {
                     gameHandlerObj.changeHealth(-10, false);
               }
               if (collision.gameObject.tag != "enemyShooter") {
-                     GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);
-                     Destroy (animEffect, 0.5f);
-                     Destroy (gameObject);
+                     //GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);
+                     //Destroy (animEffect, 0.5f);
+                     //Destroy (gameObject);
               }
        }
 
