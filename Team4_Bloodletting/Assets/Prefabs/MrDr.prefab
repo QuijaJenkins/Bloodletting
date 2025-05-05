@@ -520,7 +520,7 @@ Transform:
   - {fileID: 7259815670419068603}
   - {fileID: 494355463877409999}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3734127669480207634
 SpriteRenderer:
@@ -852,7 +852,7 @@ MonoBehaviour:
   startTimeBtwShots: 2
   projectile: {fileID: 2329382661620397278, guid: f5a0bc3b5a58d497ca2b2e2e9ddeb836, type: 3}
   mrDrHandler: {fileID: 8360587440495689404}
-  EnemyLives: 30
+  EnemyLives: 300
   attackRange: 10
   isAttacking: 0
 --- !u!1 &7835882760130845892

@@ -15,6 +15,7 @@ public class HoldenOtherTemp : MonoBehaviour
     public GameObject desk;
     public GameObject art;
     public GameObject finalArt;
+    public GameObject mrDr;
     private Animator crystalAnim;
     private Animator deskAnim;
     private double timer = 0;
@@ -28,6 +29,7 @@ public class HoldenOtherTemp : MonoBehaviour
     private bool fadeIn = false;
     private bool fadeOut = false;
     private float fadeRate = 2;
+
 
 
     // Start is called before the first frame update
@@ -71,10 +73,16 @@ public class HoldenOtherTemp : MonoBehaviour
             timer++;
 
             //set animations for crystal and desk
-            deskAnim.SetTrigger("trigger");
+            if (desk) {
+                deskAnim.SetTrigger("trigger");
+            }
+            
             if (timer >= shatterTime)
             {
-                crystalAnim.enabled = true;
+                if (crystal) {
+                    crystalAnim.enabled = true;
+                }
+                
             }
 
             if(timer >= freezeTime && timer < maxTime)
@@ -106,6 +114,7 @@ public class HoldenOtherTemp : MonoBehaviour
         Destroy(desk);
         Destroy(art);
         finalArt.SetActive(true);
+        //GameObject boss = Instantiate(mrDr,transform.position, Quaternion.identity);
     }
 
 }
