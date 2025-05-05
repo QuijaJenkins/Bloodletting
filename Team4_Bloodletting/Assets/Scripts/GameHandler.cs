@@ -134,26 +134,25 @@ public class GameHandler : MonoBehaviour
             Debug.Log("Choose an upgrade: [5] Health, [6] Attack, [7] Speed");
         }
 
-        if (isChoosingUpgrade) {
-            if (Input.GetKeyDown(KeyCode.Alpha5)) {
-                healthMultiplier += 0.2f;
-                int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
-                maxPlayerHealth += healthGain;
-                playerHealth += healthGain;
-                finishUpgrade();
-            } 
-            //attack upgrade
-            else if (Input.GetKeyDown(KeyCode.Alpha6)) {
-                attackMultiplier += 0.2f;
-                finishUpgrade();
-            } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
-                speedMultiplier += 0.2f;
-                // movement.UpdateMoveSpeed();
-                playerMoveScript.UpdateMoveSpeed();            
-
-                finishUpgrade();
-            }
-        }
+        // if (isChoosingUpgrade) {
+        //     if (Input.GetKeyDown(KeyCode.Alpha5)) {
+        //         healthMultiplier += 0.2f;
+        //         int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
+        //         maxPlayerHealth += healthGain;
+        //         playerHealth += healthGain;
+        //         finishUpgrade();
+        //     } 
+        //     //attack upgrade
+        //     else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+        //         attackMultiplier += 0.2f;
+        //         finishUpgrade();
+        //     } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+        //         speedMultiplier += 0.2f;
+        //         // movement.UpdateMoveSpeed();
+        //         playerMoveScript.UpdateMoveSpeed();            
+        //         finishUpgrade();
+        //     }
+        // }
         
         if (healthBar != null) {
             healthBar.fillAmount = playerHealth / (float)maxPlayerHealth;
@@ -598,6 +597,29 @@ public class GameHandler : MonoBehaviour
             Lvl1_HUD.SetActive(false);
         }
     }
+
+
+
+
+
+    public void healthUpgrade() {
+        healthMultiplier += 0.2f;
+        int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
+        maxPlayerHealth += healthGain;
+        playerHealth += healthGain;
+        finishUpgrade();
+    }
+    public void attackUpgrade() {
+        attackMultiplier += 0.2f;
+        finishUpgrade();
+    }
+    public void speedUpgrade() {
+        speedMultiplier += 0.2f;
+        // movement.UpdateMoveSpeed();
+        playerMoveScript.UpdateMoveSpeed();            
+        finishUpgrade();
+    }
+
 
 }
 
