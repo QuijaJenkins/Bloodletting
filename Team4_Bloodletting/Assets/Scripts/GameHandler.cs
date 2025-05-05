@@ -113,13 +113,18 @@ public class GameHandler : MonoBehaviour
 
         // NPC HANDLING
         // shows "skip dialogue" text
-        if(!dialogue_complete){
-            skiptut_text.SetActive(true);
-        }
+        if (skiptut_text != null){ 
+            if(!dialogue_complete){
+                skiptut_text.SetActive(true);
+            }
+        } 
 
         // checks for tutorial over to start waves
-        if (Input.GetKeyDown(KeyCode.T) && !dialogue_complete) {
-            skiptut_text.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.T) && !dialogue_complete && skiptut_text != null) {
+            if (skiptut_text != null){ 
+                skiptut_text.SetActive(false);
+            }
+
             dialogue_complete = true;
             NPC.SetActive(false);
             Debug.Log("TUTORIAL COMPLETE");
