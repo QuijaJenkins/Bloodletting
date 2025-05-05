@@ -8,7 +8,7 @@ public class LevelTitleUI : MonoBehaviour
     public CanvasGroup canvasGroup;
     public Text levelTitleText;
     public float fadeDuration = 1.5f;
-    public float displayDuration = 2.5f;
+    public float displayDuration = 2f;
 
     void Start()
     {

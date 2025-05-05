@@ -75,9 +75,10 @@ public class GameHandler : MonoBehaviour
     public string sceneName;
 
     // var to start waves after tutorial
-    public bool tut_complete = false;
+    public bool dialogue_complete = false;
     public GameObject Lvl1_HUD;
     public GameObject NPC; 
+    public GameObject skiptut_text;
     
     // Start is called before the first frame update
     void Start(){
@@ -111,21 +112,29 @@ public class GameHandler : MonoBehaviour
         }
 
         // NPC HANDLING
+        // shows "skip dialogue" text
+        if(!dialogue_complete){
+            skiptut_text.SetActive(true);
+        }
+
         // checks for tutorial over to start waves
-        if (Input.GetKeyDown(KeyCode.T) && !tut_complete) {
-            tut_complete = true;
+        if (Input.GetKeyDown(KeyCode.T) && !dialogue_complete) {
+            skiptut_text.SetActive(false);
+            dialogue_complete = true;
             NPC.SetActive(false);
             Debug.Log("TUTORIAL COMPLETE");
 
             // reset their health for whatever they lost in tutorial
             playerHealth = maxPlayerHealth;
 
+            // show lvl 1 HUD for 30s
             if (sceneName == "Level1") {
                 Lvl1_HUD.SetActive(true);
                 StartCoroutine(HideHUDDelayed(30f));
             }
         }
 
+        
 
         //trigger player upgrade if their xp hits 100
         if (!isChoosingUpgrade && xp >= 100) {

@@ -29,7 +29,6 @@ public class WaveManager : MonoBehaviour
     private GameHandler gameHandler;
     public GameObject door;
 
-    // private bool tut_complete = false;
 
     void Start()
     {
@@ -58,7 +57,7 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        if(gameHandler.tut_complete) {
+        if(gameHandler.dialogue_complete) {
             if (!waveInProgress && enemiesRemaining == 0)
             {
                 // If more waves remain, starat next one
@@ -175,8 +174,8 @@ public class WaveManager : MonoBehaviour
     IEnumerator WaitForTutorialThenStart()
     {
         Debug.Log("Waiting for tutorial to complete...");
-        // Wait until the GameHandler sets tut_complete to true
-        while (gameHandler != null && !gameHandler.tut_complete)
+        // Wait until the GameHandler sets dialogue_complete to true
+        while (gameHandler != null && !gameHandler.dialogue_complete)
         {
             yield return null; // Wait one frame and check again
         }

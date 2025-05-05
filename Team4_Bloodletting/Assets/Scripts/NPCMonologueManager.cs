@@ -54,9 +54,9 @@ public class NPCMonologueManager : MonoBehaviour {
                      counter +=1;
               }
               else { //when lines are complete:
-                     monologueBox.SetActive(false); //turn off the dialogue display
-                     monologueText.text = "..."; //reset text
-                     counter = 0; //reset counter
+                    monologueBox.SetActive(false); //turn off the dialogue display
+                    monologueText.text = "..."; //reset text
+                    counter = 0; //reset counter
               }
        }
 

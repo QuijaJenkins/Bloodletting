@@ -44143,7 +44143,6 @@ MonoBehaviour:
   - {fileID: 34206164}
   - {fileID: 1882066335}
   - {fileID: 127999397}
-  transition: {fileID: 0}
   door: {fileID: 1057864063}
 --- !u!4 &854716303
 Transform:
@@ -44215,6 +44214,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.0189133, y: 1.9767303}
   m_EdgeRadius: 0
+--- !u!1 &938000946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7771512262814218578, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+  m_PrefabInstance: {fileID: 3530201749828628773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &945893799
 GameObject:
   m_ObjectHideFlags: 0
@@ -55573,7 +55577,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -56040,6 +56044,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: skiptut_text
+      value: 
+      objectReference: {fileID: 938000946}
     - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
       propertyPath: stanceNumber
       value: 0
@@ -67948,7 +67956,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -83371,7 +83379,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
     m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
@@ -84274,6 +84282,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1320779937494685408, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
+    - target: {fileID: 2188039444811680988, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
     - target: {fileID: 6884421024384127016, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -84358,6 +84374,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8717753166831422695, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
