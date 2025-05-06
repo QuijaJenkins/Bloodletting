@@ -107,9 +107,11 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X)) { 
-            xp += 50;    
-        }
+        
+        // FOR TESTING upgradeMenu
+        // if (Input.GetKeyDown(KeyCode.X)) { 
+        //     xp += 50;    
+        // }
 
         // NPC HANDLING
         // shows "skip dialogue" text
