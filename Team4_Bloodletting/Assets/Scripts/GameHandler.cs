@@ -480,15 +480,18 @@ public class GameHandler : MonoBehaviour
             }
             else {
                 playerHealth += healthChange;
+                if (!playerAttack) {
+                    playerhurt_sfx.Play();
+                }
             }
         }
     }
 
-    public void playerHurtAudio() {
-        // TESTING
-        //playerhurt_sfx.Play();
-        Debug.Log("Player hurt sound played.");
-    }
+    // public void playerHurtAudio() {
+    //     // TESTING
+    //     //playerhurt_sfx.Play();
+    //     Debug.Log("Player hurt sound played.");
+    // }
 
 
     // RESETS ALL STATIC VARIABLES FOR NEW GAMES
