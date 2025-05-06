@@ -28,6 +28,7 @@ public class WaveManager : MonoBehaviour
 
     private GameHandler gameHandler;
     public GameObject door;
+    public GameObject clearHUD;
 
 
     void Start()
@@ -53,6 +54,10 @@ public class WaveManager : MonoBehaviour
 
         gameHandler = FindObjectOfType<GameHandler>();
         StartCoroutine(WaitForTutorialThenStart()); // Wait for tutorial/NPC chat to finish
+        if (clearHUD != null)
+        {
+            clearHUD.SetActive(false);
+        }
     }
 
     void Update()
@@ -81,11 +86,13 @@ public class WaveManager : MonoBehaviour
                             if (currentSceneIndex == 4)
                             {
                                 GetComponent<HoldenOtherTemp>().enabled = true;
+                                clearHUD.SetActive(true);
                             }
                             else
                             {
                                 door.GetComponent<Animator>().enabled = true;
                                 GetComponent<BoxCollider2D>().enabled = true;
+                                clearHUD.SetActive(true);
                             }
                         }
 
