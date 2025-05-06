@@ -87,6 +87,7 @@ public class Enemy_health_will : MonoBehaviour
     private bool guard;
     public GameObject waveManager;
     public GameObject door;
+    public GameObject clearHUD;
 
 
 
@@ -158,6 +159,7 @@ public class Enemy_health_will : MonoBehaviour
                 Debug.Log("yay");
                 waveManager.GetComponent<BoxCollider2D>().enabled = true;
                 door.GetComponent<Animator>().enabled = true;
+                clearHUD.SetActive(true);
             }
             
         }

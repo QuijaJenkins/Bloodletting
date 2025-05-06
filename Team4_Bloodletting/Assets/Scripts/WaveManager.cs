@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
     private int currentWaveIndex = -1;
     private int enemiesRemaining = 0;
     private bool waveInProgress = false;
+    private bool levelEnd = false;
 
     private GameHandler gameHandler;
     public GameObject door;
@@ -89,13 +90,14 @@ public class WaveManager : MonoBehaviour
                         if (currentSceneIndex == 4)
                         {
                             GetComponent<HoldenOtherTemp>().enabled = true;
-                            clearHUD.SetActive(true);
+                            levelEnd = true;
                         }
                         else
                         {
                             door.GetComponent<Animator>().enabled = true;
                             GetComponent<BoxCollider2D>().enabled = true;
                             clearHUD.SetActive(true);
+                            levelEnd = true;
                         }
                     }
                 }
@@ -239,15 +241,23 @@ public class WaveManager : MonoBehaviour
 
     void UpdateEnemyCounterUI()
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (enemyCounterText != null)
         {
-            if (currentWaveIndex + 1 > waves.Count)
+            if (!levelEnd)
             {
                 enemyCounterText.text = $"Enemies Left: {enemiesKilled} / {killsNeededForWaveClear}";
             }
-            else
+            else if (levelEnd)
             {
-                enemyCounterText.text = $"Level Cleared";
+                if (currentSceneIndex == 4)
+                {
+                    enemyCounterText.text = $"Level Cleared?";
+                } 
+                else
+                {
+                    enemyCounterText.text = $"Level Cleared";
+                }
             }
         }
     }

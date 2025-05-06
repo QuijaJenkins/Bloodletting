@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a03480ac0f254d7da26ea86358c718c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 7
+  damageAmount: 5
   cooldownTime: 1.2
   playerAnim: {fileID: 0}
   knockbackForce: 10
@@ -264,6 +264,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   shield: 0
+  waveManager: {fileID: 0}
+  door: {fileID: 0}
 --- !u!114 &-4766282796398643513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,3 +296,8 @@ MonoBehaviour:
     waveDelay: 12
   enemyPrefab: {fileID: 7268578490426690952}
   spawnPoints: []
+  door: {fileID: 0}
+  clearHUD: {fileID: 0}
+  enemydeath_sfx: {fileID: 0}
+  enemy_ambient_sfx: {fileID: 0}
+  enemyCounterText: {fileID: 0}

@@ -250,8 +250,8 @@ public class PlayerAttackMelee : MonoBehaviour
         }
         else if (gameHandler.stanceNumber == 3)
         {
-            attackRange = 2f;
-            damageTakenFromAttack = 10;
+            attackRange = 2.2f;
+            damageTakenFromAttack = 7;
             attackDamage = 100;
             attackRate = .9f;
         }
