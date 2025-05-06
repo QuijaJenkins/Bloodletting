@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement; //check if need
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class WaveManager : MonoBehaviour
 {
@@ -19,25 +18,24 @@ public class WaveManager : MonoBehaviour
     public List<Wave> waves;
     public GameObject enemyPrefab;
     public List<Transform> spawnPoints;
+    public GameObject door;
 
     private int currentWaveIndex = -1;
     private int enemiesRemaining = 0;
-    //private int kills = 0;
-    //private double killsNeeded = 0;
+    private int enemiesKilled = 0;
+    private int killsNeededForClear = 0;
     private bool waveInProgress = false;
+    private bool doorOpened = false;
 
     private GameHandler gameHandler;
-    public GameObject door;
-
 
     void Start()
     {
-
         gameHandler = FindObjectOfType<GameHandler>();
         if (gameHandler == null)
-        Debug.LogError("GameHandler not found by WaveManager!");
+            Debug.LogError("GameHandler not found by WaveManager!");
         else
-        Debug.Log("WaveManager found GameHandler successfully.");
+            Debug.Log("WaveManager found GameHandler successfully.");
 
         if (enemyPrefab == null)
         {
@@ -51,70 +49,39 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        gameHandler = FindObjectOfType<GameHandler>();
-        StartCoroutine(WaitForTutorialThenStart()); // Wait for tutorial/NPC chat to finish
+        StartCoroutine(WaitForTutorialThenStart());
     }
 
     void Update()
     {
-        if(gameHandler.dialogue_complete) {
+        // Regular wave logic if not yet triggered 80% kill rule
+        if (gameHandler.dialogue_complete && !doorOpened)
+        {
             if (!waveInProgress && enemiesRemaining == 0)
             {
-                // If more waves remain, starat next one
                 if (currentWaveIndex + 1 < waves.Count)
                 {
                     float delay = waves[currentWaveIndex + 1].waveDelay;
                     Debug.Log($"Wave {currentWaveIndex + 1} complete. Next wave in {delay} seconds.");
                     StartCoroutine(BeginNextWaveAfterDelay(delay));
                 }
-            
                 else
                 {
-                    //Debug.Log("All waves completed. Advancing to next level.");
-                    if (gameHandler != null)
-                    { // generalized for all levels
-                        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                        int nextSceneIndex = currentSceneIndex + 1;
-
-                        if (gameHandler != null)
-                        {
-                            if (currentSceneIndex == 4)
-                            {
-                                GetComponent<HoldenOtherTemp>().enabled = true;
-                            }
-                            else
-                            {
-                                door.GetComponent<Animator>().enabled = true;
-                                GetComponent<BoxCollider2D>().enabled = true;
-                            }
-                        }
-
-                        // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-                        // {
-                        //     SceneManager.LoadScene(nextSceneIndex);
-                        // }
-                        else
-                        {
-                            Debug.Log("No more levels to load. Game complete!");
-                        }
-                        // gameHandler.GoToNextLevel("Level2"); // "Level2" is added to Build Settings
-                    }
+                    // All waves done, fallback trigger
+                    OpenDoor();
                 }
             }
         }
-        // // end of waves for level transition
-        // if (waves.Count == 0) {
-        //     wavesComplete = true;
-        // }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && doorOpened)
         {
             gameHandler.GoToNextLevel();
-        }   
+        }
     }
+
     IEnumerator BeginNextWaveAfterDelay(float delay)
     {
         waveInProgress = true;
@@ -128,6 +95,8 @@ public class WaveManager : MonoBehaviour
             yield break;
         }
 
+        enemiesKilled = 0;
+        killsNeededForClear = Mathf.CeilToInt(waves[currentWaveIndex].enemyCount * 0.8f);
         yield return StartCoroutine(SpawnWave(waves[currentWaveIndex]));
         waveInProgress = false;
     }
@@ -135,8 +104,7 @@ public class WaveManager : MonoBehaviour
     IEnumerator SpawnWave(Wave wave)
     {
         enemiesRemaining = wave.enemyCount;
-        //killsNeeded += wave.enemyCount * 0.8;
-        
+
         Debug.Log($"Spawning Wave {currentWaveIndex + 1} with {wave.enemyCount} enemies.");
 
         for (int i = 0; i < wave.enemyCount; i++)
@@ -144,7 +112,6 @@ public class WaveManager : MonoBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
 
-            // Randomize speed
             EnemyChasePlayer chase = enemy.GetComponent<EnemyChasePlayer>();
             if (chase != null)
             {
@@ -152,7 +119,6 @@ public class WaveManager : MonoBehaviour
                 chase.SetSpeedMultiplier(speed);
             }
 
-            // Death tracking
             EnemyDeathNotifier notifier = enemy.GetComponent<EnemyDeathNotifier>();
             if (notifier == null)
                 notifier = enemy.AddComponent<EnemyDeathNotifier>();
@@ -164,25 +130,44 @@ public class WaveManager : MonoBehaviour
 
     public void OnEnemyDied()
     {
-        // play enemy sound!!
         enemiesRemaining--;
-        //kills++;
-        Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
+        enemiesKilled++;
+        Debug.Log($"Enemy died. Killed: {enemiesKilled}, Remaining: {enemiesRemaining}");
+
+        if (!doorOpened && enemiesKilled >= killsNeededForClear)
+        {
+            Debug.Log("80% of enemies killed. Door opening...");
+            OpenDoor();
+        }
     }
 
+    private void OpenDoor()
+    {
+        doorOpened = true;
+
+        if (door != null)
+        {
+            Animator doorAnim = door.GetComponent<Animator>();
+            if (doorAnim != null)
+                doorAnim.enabled = true;
+
+            BoxCollider2D doorCollider = GetComponent<BoxCollider2D>();
+            if (doorCollider != null)
+                doorCollider.enabled = true;
+
+            Debug.Log("Door animation and collider activated.");
+        }
+    }
 
     IEnumerator WaitForTutorialThenStart()
     {
         Debug.Log("Waiting for tutorial to complete...");
-        // Wait until the GameHandler sets dialogue_complete to true
         while (gameHandler != null && !gameHandler.dialogue_complete)
         {
-            yield return null; // Wait one frame and check again
+            yield return null;
         }
 
         Debug.Log("Tutorial complete! Starting waves...");
         StartCoroutine(BeginNextWaveAfterDelay(2f));
     }
-
 }
-
