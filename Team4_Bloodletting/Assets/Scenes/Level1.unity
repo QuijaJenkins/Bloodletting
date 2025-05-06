@@ -56216,6 +56216,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeUI: {fileID: 1031286182}
+--- !u!114 &1036317528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6713255878267768430, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+  m_PrefabInstance: {fileID: 1071466488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036317518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a02dc3e684c485b8e3382490844c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1057864063
 GameObject:
   m_ObjectHideFlags: 0
@@ -84447,6 +84458,10 @@ PrefabInstance:
       value: Player_hurt
       objectReference: {fileID: 0}
     - target: {fileID: 1964041054272869062, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 49d6f02c2d41a43aeab458674fdafe3f, type: 3}
+    - target: {fileID: 1964041054272869062, guid: e2a07d1617b868a419858b7f4ef72e09, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -84689,6 +84704,14 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 328945a34dc8045c1ae387eb4ca1c887, type: 3}
+    - target: {fileID: 6061499729666314261, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1036317528}
+    - target: {fileID: 6061499729666314261, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
     - target: {fileID: 6884421024384127016, guid: 1c897baac47ea474cab54b2e72c39057, type: 3}
       propertyPath: m_Pivot.x
       value: 0
