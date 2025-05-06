@@ -22,6 +22,9 @@ public class PlayerMoveAimShoot : MonoBehaviour{
       private float nextAttackTime = 0f;
       //public GameObject muzzleFlash;
 
+      // audio
+      public AudioSource bowshoot_sfx;
+
 
       void Start(){
            //animator = gameObject.GetComponentInChildren<Animator>();
@@ -57,7 +60,11 @@ public class PlayerMoveAimShoot : MonoBehaviour{
       }
 
       void playerFire(){
+            // bow sfx
+            bowshoot_sfx.Play();
+
             Debug.Log("we shot with arrow");
+
             //lose 10 health upon arrow fire
             gameHandler.changeHealth(-5, true);
             //animator.SetTrigger ("Fire");
