@@ -263,6 +263,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  shield: 0
+  waveManager: {fileID: 0}
+  door: {fileID: 0}
+  enemydeath_sfx: {fileID: 0}
 --- !u!114 &-4766282796398643513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,3 +297,6 @@ MonoBehaviour:
     waveDelay: 12
   enemyPrefab: {fileID: 7268578490426690952}
   spawnPoints: []
+  door: {fileID: 0}
+  clearHUD: {fileID: 0}
+  enemydeath_sfx: {fileID: 0}

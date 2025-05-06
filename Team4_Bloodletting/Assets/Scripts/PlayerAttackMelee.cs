@@ -173,6 +173,10 @@ public class PlayerAttackMelee : MonoBehaviour
 
     public float knockbackForce = 8f; // New: knockback force when attacking enemy
 
+
+    // SFX
+    public AudioSource knife_slash; 
+
     void Start()
     {
         damageTakenFromAttack = 5;
@@ -396,7 +400,9 @@ IEnumerator AttackDelay()
 void Attack()
 {
     Debug.Log("We hit spacebar to attack");
-
+    
+    // SFX
+    knife_slash.Play();
 
     if (gameHandler.stanceNumber == 3) {
         StartCoroutine(AttackDelay());

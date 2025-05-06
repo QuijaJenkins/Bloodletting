@@ -30,6 +30,9 @@ public class WaveManager : MonoBehaviour
     public GameObject door;
     public GameObject clearHUD;
 
+    // ENEMY SFX
+    public AudioSource enemydeath_sfx;
+
 
     void Start()
     {
@@ -172,6 +175,7 @@ public class WaveManager : MonoBehaviour
     public void OnEnemyDied()
     {
         // play enemy sound!!
+        enemydeath_sfx.Play();
         enemiesRemaining--;
         //kills++;
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");

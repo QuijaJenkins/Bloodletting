@@ -88,6 +88,8 @@ public class Enemy_health_will : MonoBehaviour
     public GameObject waveManager;
     public GameObject door;
 
+
+
     void Start()
     {
         if (gameObject.GetComponent<Renderer>().sortingOrder == 2)
