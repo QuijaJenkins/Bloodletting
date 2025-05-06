@@ -161,7 +161,7 @@ public class PlayerAttackMelee : MonoBehaviour
     public Transform attackPtS;
 
     public float attackRange = 0.5f;
-    public float attackRate = 2f;
+    public float attackRate = .3f;
     private float nextAttackTime = 0f;
     public int attackDamage = 40;
     public LayerMask enemyLayers;
@@ -169,6 +169,7 @@ public class PlayerAttackMelee : MonoBehaviour
     private GameObject bloodVFX;
     public GameObject bloodVFX1;
     public GameObject bloodVFX2;
+    private bool canAttack = true;
 
     public float knockbackForce = 8f; // New: knockback force when attacking enemy
 
@@ -205,21 +206,32 @@ public class PlayerAttackMelee : MonoBehaviour
 
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (moveInput.y > 0){ 
-            attackPt = attackPtW; 
-            if (attackPt == attackPtW) {
-            //Debug.Log("W");
+        if (canAttack)
+        {
+            if (moveInput.y > 0)
+            {
+                attackPt = attackPtW;
+                if (attackPt == attackPtW)
+                {
+                    //Debug.Log("W");
 
+                }
             }
-        } else if (moveInput.y < 0) {
-            //Debug.Log("S");
-            attackPt = attackPtS;
-        } else if (moveInput.x > 0) {
-            //Debug.Log("D");
-            attackPt = attackPtD;
-        } else if (moveInput.x < 0) {
-            //Debug.Log("A");
-            attackPt = attackPtA;
+            else if (moveInput.y < 0)
+            {
+                //Debug.Log("S");
+                attackPt = attackPtS;
+            }
+            else if (moveInput.x > 0)
+            {
+                //Debug.Log("D");
+                attackPt = attackPtD;
+            }
+            else if (moveInput.x < 0)
+            {
+                //Debug.Log("A");
+                attackPt = attackPtA;
+            }
         }
 
         // Stance modifications
@@ -228,12 +240,14 @@ public class PlayerAttackMelee : MonoBehaviour
             attackRange = 2f;
             damageTakenFromAttack = 5;
             attackDamage = 50;
+            attackRate = .3f;
         }
         else if (gameHandler.stanceNumber == 3)
         {
             attackRange = 2f;
             damageTakenFromAttack = 10;
             attackDamage = 100;
+            attackRate = .9f;
         }
 
         if (Time.time >= nextAttackTime)
@@ -241,7 +255,7 @@ public class PlayerAttackMelee : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
+                nextAttackTime = Time.time + 1f * attackRate;
             }
         }
     }
@@ -329,8 +343,10 @@ public class PlayerAttackMelee : MonoBehaviour
 
 IEnumerator AttackDelay()
     {
+        canAttack = false;
         yield return new WaitForSeconds(0.4f);
         Debug.Log("wait for seconds");
+        canAttack = true;
 
         if (gameHandler != null)
     {   
