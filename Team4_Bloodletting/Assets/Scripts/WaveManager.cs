@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 public class WaveManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class WaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     public List<Transform> spawnPoints;
     public GameObject door;
+    public GameObject clearHUD;
 
     private int currentWaveIndex = -1;
     private int enemiesRemaining = 0;
@@ -50,6 +52,11 @@ public class WaveManager : MonoBehaviour
         }
 
         StartCoroutine(WaitForTutorialThenStart());
+
+        if (clearHUD != null)
+        {
+            clearHUD.SetActive(false);
+        }
     }
 
     void Update()
@@ -156,6 +163,7 @@ public class WaveManager : MonoBehaviour
                 doorCollider.enabled = true;
 
             Debug.Log("Door animation and collider activated.");
+            clearHUD.SetActive(true);
         }
     }
 
