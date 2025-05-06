@@ -44182,6 +44182,7 @@ MonoBehaviour:
   door: {fileID: 1057864063}
   clearHUD: {fileID: 645648280}
   enemydeath_sfx: {fileID: 72357260}
+  enemy_ambient_sfx: {fileID: 2492704550247577241}
 --- !u!4 &854716303
 Transform:
   m_ObjectHideFlags: 0
@@ -84446,6 +84447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1766908577}
     m_Modifications:
+    - target: {fileID: 2594471754039285820, guid: 75083fbd82a4948509a76ab5bc9215d4, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c8923293079b9417e927f3b9ea209d1f, type: 3}
     - target: {fileID: 5050980483884416146, guid: 75083fbd82a4948509a76ab5bc9215d4, type: 3}
       propertyPath: m_Name
       value: EnemySFX
@@ -84499,6 +84504,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75083fbd82a4948509a76ab5bc9215d4, type: 3}
+--- !u!82 &2492704550247577241 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2594471754039285820, guid: 75083fbd82a4948509a76ab5bc9215d4, type: 3}
+  m_PrefabInstance: {fileID: 2492704550247577240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3530201749828628773
 PrefabInstance:
   m_ObjectHideFlags: 0

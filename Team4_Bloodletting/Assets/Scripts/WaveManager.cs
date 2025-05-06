@@ -230,7 +230,7 @@ public class WaveManager : MonoBehaviour
 
     //SFX
     public AudioSource enemydeath_sfx;
-    public AudioSource rats_ambient_sfx;
+    public AudioSource enemy_ambient_sfx;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
     private int enemiesKilled = 0;
@@ -330,10 +330,10 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
-        if (rats_ambient_sfx != null && !rats_ambient_sfx.isPlaying)
+        if (enemy_ambient_sfx != null && !enemy_ambient_sfx.isPlaying)
         {
-            rats_ambient_sfx.loop = true;
-            rats_ambient_sfx.Play();
+            enemy_ambient_sfx.loop = true;
+            enemy_ambient_sfx.Play();
         }
         enemiesRemaining = wave.enemyCount;
         Debug.Log($"Spawning Wave {currentWaveIndex + 1} with {wave.enemyCount} enemies.");
@@ -409,8 +409,8 @@ public class WaveManager : MonoBehaviour
             }
         }
         
-        if (rats_ambient_sfx != null && rats_ambient_sfx.isPlaying){
-            rats_ambient_sfx.Stop();
+        if (enemy_ambient_sfx != null && enemy_ambient_sfx.isPlaying){
+            enemy_ambient_sfx.Stop();
         }
 
         activeEnemies.Clear();
