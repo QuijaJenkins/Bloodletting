@@ -44284,12 +44284,9 @@ MonoBehaviour:
   - {fileID: 127999397}
   door: {fileID: 1057864063}
   clearHUD: {fileID: 645648280}
-<<<<<<< Updated upstream
   enemydeath_sfx: {fileID: 72357260}
   enemy_ambient_sfx: {fileID: 2492704550247577241}
-=======
   enemyCounterText: {fileID: 1688924525}
->>>>>>> Stashed changes
 --- !u!4 &854716303
 Transform:
   m_ObjectHideFlags: 0
