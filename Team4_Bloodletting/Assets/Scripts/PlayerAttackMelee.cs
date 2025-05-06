@@ -231,7 +231,7 @@ public class PlayerAttackMelee : MonoBehaviour
         }
         else if (gameHandler.stanceNumber == 3)
         {
-            attackRange = 5f;
+            attackRange = 2f;
             damageTakenFromAttack = 10;
             attackDamage = 100;
         }
@@ -327,13 +327,65 @@ public class PlayerAttackMelee : MonoBehaviour
 //     }
 // }
 
+IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(0.4f);
+        Debug.Log("wait for seconds");
+
+        if (gameHandler != null)
+    {   
+        gameHandler.changeHealth(-damageTakenFromAttack, true);
+    }
+
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPt.position, attackRange, enemyLayers);
+
+    if (hitEnemies.Length == 0)
+    {
+        Debug.Log("No enemies hit.");
+    }
+
+    // foreach (BoxCollider2D enemy in hitEnemies)
+    foreach (Collider2D enemy in hitEnemies)
+    {  
+        if (enemy is CapsuleCollider2D) continue;
+
+        Debug.Log("We hit " + enemy.name);
+
+        Enemy_health_will enemyScript = enemy.GetComponent<Enemy_health_will>();
+        Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+
+        if (enemyScript != null)
+        {
+            enemyScript.takeDamage((int)(attackDamage * gameHandler.attackMultiplier));
+
+            if (enemyScript.currentHealth > 0)
+            {
+                EnemyChasePlayer chaseScript = enemy.GetComponent<EnemyChasePlayer>();
+                if (chaseScript != null)
+                {
+                    Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+                    chaseScript.ApplyKnockback(knockbackDirection, 8f); 
+                }
+            }
+
+            // 3. Blood VFX
+            GameObject bloodFX = Instantiate(bloodVFX, enemy.transform.position, Quaternion.identity);
+            StartCoroutine(DestroyVFX(bloodFX));
+            BloodRoll();
+        }
+    }
+        
+    }
+
 void Attack()
 {
     Debug.Log("We hit spacebar to attack");
-    if (attackPt == attackPtW) {
-            Debug.Log("W attack");
 
-        }
+
+    if (gameHandler.stanceNumber == 3) {
+        StartCoroutine(AttackDelay());
+        return;
+    }
 
     if (gameHandler != null)
     {   
@@ -349,7 +401,7 @@ void Attack()
 
     // foreach (BoxCollider2D enemy in hitEnemies)
     foreach (Collider2D enemy in hitEnemies)
-    {
+    {  
         if (enemy is CapsuleCollider2D) continue;
 
         Debug.Log("We hit " + enemy.name);
