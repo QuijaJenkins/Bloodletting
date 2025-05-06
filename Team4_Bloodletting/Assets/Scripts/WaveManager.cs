@@ -227,7 +227,10 @@ public class WaveManager : MonoBehaviour
     private GameHandler gameHandler;
     public GameObject door;
     public GameObject clearHUD;
+
+    //SFX
     public AudioSource enemydeath_sfx;
+    public AudioSource rats_ambient_sfx;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
     private int enemiesKilled = 0;
@@ -327,6 +330,11 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
+        if (rats_ambient_sfx != null && !rats_ambient_sfx.isPlaying)
+        {
+            rats_ambient_sfx.loop = true;
+            rats_ambient_sfx.Play();
+        }
         enemiesRemaining = wave.enemyCount;
         Debug.Log($"Spawning Wave {currentWaveIndex + 1} with {wave.enemyCount} enemies.");
 
@@ -335,6 +343,7 @@ public class WaveManager : MonoBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
             activeEnemies.Add(enemy);
+
 
             EnemyChasePlayer chase = enemy.GetComponent<EnemyChasePlayer>();
             if (chase != null)
@@ -354,8 +363,11 @@ public class WaveManager : MonoBehaviour
 
     public void OnEnemyDied()
     {
-        enemydeath_sfx.PlayOneShot(enemydeath_sfx.clip);  // sfx
+        if (!waveClearedEarly) {
+            enemydeath_sfx.PlayOneShot(enemydeath_sfx.clip);  // sfx
+        }
         
+
         enemiesRemaining--;
         enemiesKilled++;
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
@@ -392,8 +404,13 @@ public class WaveManager : MonoBehaviour
                     }
                 }
 
+                // enemydeath_sfx.SetActive(false);
                 Destroy(enemy);
             }
+        }
+        
+        if (rats_ambient_sfx != null && rats_ambient_sfx.isPlaying){
+            rats_ambient_sfx.Stop();
         }
 
         activeEnemies.Clear();
