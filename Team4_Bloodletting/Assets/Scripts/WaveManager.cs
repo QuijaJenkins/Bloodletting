@@ -23,6 +23,7 @@ public class WaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     public List<Transform> spawnPoints;
 
+
     private int currentWaveIndex = -1;
     private int enemiesRemaining = 0;
     private bool waveInProgress = false;
@@ -72,7 +73,7 @@ public class WaveManager : MonoBehaviour
     {
         if (gameHandler.dialogue_complete)
         {
-            if (!waveInProgress && enemiesRemaining == 0)
+            if (!waveInProgress && waveClearedEarly)
             {
                 if (currentWaveIndex + 1 < waves.Count)
                 {
@@ -172,12 +173,11 @@ public class WaveManager : MonoBehaviour
     {
         if (!waveClearedEarly) {
             enemydeath_sfx.PlayOneShot(enemydeath_sfx.clip);  // sfx
+            enemiesRemaining--;
+            enemiesKilled++;
+            UpdateEnemyCounterUI();
         }
-        
 
-        enemiesRemaining--;
-        enemiesKilled++;
-        UpdateEnemyCounterUI();
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
 
         if (enemiesKilled >= killsNeededForWaveClear)
@@ -192,8 +192,10 @@ public class WaveManager : MonoBehaviour
     {
         foreach (GameObject enemy in activeEnemies)
         {
+
             if (enemy != null && enemy.activeSelf)
             {
+                enemy.GetComponent<Collider2D>().enabled = false;
                 EnemyChasePlayer chase = enemy.GetComponent<EnemyChasePlayer>();
                 if (chase != null) chase.enabled = false;
 
@@ -239,7 +241,14 @@ public class WaveManager : MonoBehaviour
     {
         if (enemyCounterText != null)
         {
-            enemyCounterText.text = $"Enemies Killed: {enemiesKilled} / {waves[currentWaveIndex].enemyCount}";
+            if (currentWaveIndex + 1 > waves.Count)
+            {
+                enemyCounterText.text = $"Enemies Left: {enemiesKilled} / {killsNeededForWaveClear}";
+            }
+            else
+            {
+                enemyCounterText.text = $"Level Cleared";
+            }
         }
     }
 
