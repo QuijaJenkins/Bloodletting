@@ -355,6 +355,7 @@ public class WaveManager : MonoBehaviour
     public void OnEnemyDied()
     {
         enemydeath_sfx.PlayOneShot(enemydeath_sfx.clip);  // sfx
+        
         enemiesRemaining--;
         enemiesKilled++;
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");

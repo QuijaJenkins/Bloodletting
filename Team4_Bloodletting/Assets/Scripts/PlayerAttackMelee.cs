@@ -177,6 +177,7 @@ public class PlayerAttackMelee : MonoBehaviour
     // SFX
     public AudioSource knife_slash; 
     public AudioSource enemyhurt_sfx;
+    public AudioSource axe_slash;
 
     void Start()
     {
@@ -403,9 +404,12 @@ void Attack()
     Debug.Log("We hit spacebar to attack");
 
     // SFX
-    knife_slash.Play();
-
+    if (gameHandler.stanceNumber == 1) {
+        knife_slash.PlayOneShot(knife_slash.clip);
+    }
+   
     if (gameHandler.stanceNumber == 3) {
+        axe_slash.PlayOneShot(axe_slash.clip);
         StartCoroutine(AttackDelay());
         return;
     }
@@ -439,7 +443,7 @@ void Attack()
             if (enemyScript.currentHealth > 0)
             {
                 enemyhurt_sfx.Play();
-                
+
                 EnemyChasePlayer chaseScript = enemy.GetComponent<EnemyChasePlayer>();
                 if (chaseScript != null)
                 {

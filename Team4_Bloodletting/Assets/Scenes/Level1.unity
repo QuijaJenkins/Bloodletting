@@ -84337,6 +84337,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[6]
+      value: 'But every strike comes at a cost! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[7]
+      value: 'When you ATTACK, you will hurt yourself in the process. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[8]
+      value: 'Regain your health by defeating enemies.  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[9]
+      value: 'Use LeftShift to DASH and evade your enemies. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[10]
+      value: Gain XP by killing enemies to improve your stats.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[11]
+      value: 'In order to escape, you''ll need to battle your way out. And kill Mr.Dr.    '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[12]
+      value: 'I''ll be keeping an eye on you, kid. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254976465919660946, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
+      propertyPath: monologue.Array.data[13]
+      value: Good luck!
+      objectReference: {fileID: 0}
     - target: {fileID: 6041617226896363367, guid: 7824fb8b742df491fa1bb98a9f2e95b5, type: 3}
       propertyPath: m_FlipX
       value: 1
