@@ -44455,6 +44455,7 @@ MonoBehaviour:
   - {fileID: 127999397}
   door: {fileID: 1057864063}
   clearHUD: {fileID: 645648280}
+  enemydeath_sfx: {fileID: 72357260}
 --- !u!4 &854716303
 Transform:
   m_ObjectHideFlags: 0

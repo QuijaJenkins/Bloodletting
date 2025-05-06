@@ -227,7 +227,7 @@ public class WaveManager : MonoBehaviour
     private GameHandler gameHandler;
     public GameObject door;
     public GameObject clearHUD;
-    // public AudioSource enemydeath_sfx;
+    public AudioSource enemydeath_sfx;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
     private int enemiesKilled = 0;
@@ -354,7 +354,7 @@ public class WaveManager : MonoBehaviour
 
     public void OnEnemyDied()
     {
-        // enemydeath_sfx.Play();  // sfx
+        enemydeath_sfx.PlayOneShot(enemydeath_sfx.clip);  // sfx
         enemiesRemaining--;
         enemiesKilled++;
         Debug.Log($"Enemy died. Remaining in wave: {enemiesRemaining}");
