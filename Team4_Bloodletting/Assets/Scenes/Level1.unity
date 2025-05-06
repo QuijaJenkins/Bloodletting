@@ -44426,17 +44426,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyCount: 4
+  - enemyCount: 5
     spawnRate: 1.2
     minSpeedMultiplier: 0.5
     maxSpeedMultiplier: 0.8
     waveDelay: 3.5
-  - enemyCount: 7
+  - enemyCount: 5
     spawnRate: 1
     minSpeedMultiplier: 0.8
     maxSpeedMultiplier: 1
     waveDelay: 3.5
-  - enemyCount: 12
+  - enemyCount: 5
     spawnRate: 0.8
     minSpeedMultiplier: 1
     maxSpeedMultiplier: 1.2
@@ -44455,7 +44455,6 @@ MonoBehaviour:
   - {fileID: 127999397}
   door: {fileID: 1057864063}
   clearHUD: {fileID: 645648280}
-  enemydeath_sfx: {fileID: 72357260}
 --- !u!4 &854716303
 Transform:
   m_ObjectHideFlags: 0
