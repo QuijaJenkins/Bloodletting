@@ -49,7 +49,7 @@ public class GameHandler : MonoBehaviour
     public float attackMultiplier = 1;
     public float speedMultiplier = 1;
     public float healthMultiplier = 1;
-    static public bool hard = true; // this might cause issues if another script doesn't set the var before WaveManager runs
+    static public bool hard = false; // this might cause issues if another script doesn't set the var before WaveManager runs
 
     // audio vars
     public AudioSource playerhurt_sfx;
@@ -640,6 +640,11 @@ public class GameHandler : MonoBehaviour
         finishUpgrade();
     }
 
+    public void hardModeActivate()
+    {
+        hard = !hard;
+        Debug.Log(hard);
+    }
 
 }
 
