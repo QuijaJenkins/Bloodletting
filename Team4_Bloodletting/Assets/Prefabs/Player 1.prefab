@@ -418,7 +418,7 @@ MonoBehaviour:
   bloodVFX2: {fileID: 0}
   knockbackForce: 8
   knife_slash: {fileID: 610077901453636291}
-  enemyhurt_sfx: {fileID: 0}
+  enemyhurt_sfx: {fileID: 1964041054272869062}
   axe_slash: {fileID: 7897908758812860891}
 --- !u!114 &4249355948557042897
 MonoBehaviour:

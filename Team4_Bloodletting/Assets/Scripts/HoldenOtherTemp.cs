@@ -23,12 +23,6 @@ public class HoldenOtherTemp : MonoBehaviour
     private double shatterTime = 77;
     private bool moved;
 
-    public Image image;
-    public CanvasGroup canvasGroup;
-    private bool fadeIn = false;
-    private bool fadeOut = false;
-    private float fadeRate = 2;
-
 
 
     // Start is called before the first frame update
@@ -42,29 +36,6 @@ public class HoldenOtherTemp : MonoBehaviour
 
     void Update()
     {
-        //screen transition code
-        if (fadeIn)
-        {
-            if (canvasGroup.alpha < 1)
-            {
-                canvasGroup.alpha += fadeRate * Time.deltaTime;
-                if (canvasGroup.alpha >= 1)
-                {
-                    fadeIn = false;
-                }
-            }
-        }
-        if (fadeOut)
-        {
-            if (canvasGroup.alpha > 0)
-            {
-                canvasGroup.alpha -= fadeRate * Time.deltaTime;
-                if (canvasGroup.alpha <= 0)
-                {
-                    fadeOut = false;
-                }
-            }
-        }
 
         if (trigger == true)
         {
@@ -83,11 +54,6 @@ public class HoldenOtherTemp : MonoBehaviour
                 
             }
 
-            if(timer >= freezeTime && timer < maxTime)
-            {
-                FadeIn();
-            }
-
             if (timer >= maxTime)
             {
                 if (!moved)
@@ -101,13 +67,9 @@ public class HoldenOtherTemp : MonoBehaviour
         }
     }
 
-    public void FadeIn()
-    {
-        fadeIn = true;
-    }
+
     public void FadeOut()
     {
-        fadeOut = true;
         Destroy(crystal);
         Destroy(desk);
         Destroy(art);

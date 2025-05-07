@@ -21,6 +21,9 @@ public class WaveManager : MonoBehaviour
 
     public List<Wave> waves;
     public GameObject enemyPrefab;
+    public GameObject secondaryPrefab;//To have this blank, put in the same prefab as the first enemy
+    public GameObject tertiaryPrefab; //To have this blank, put in the same prefab as the secondary enemy
+    //if you use three enemy types, have the prisoner last (he's a little faster than the doctors)
     public List<Transform> spawnPoints;
 
 
@@ -42,6 +45,9 @@ public class WaveManager : MonoBehaviour
     private int enemiesKilled = 0;
     private int killsNeededForWaveClear = 0;
     private bool waveClearedEarly = false;
+    public bool hardMode;
+    private float ratSpeed = 2.4f; // these are speed multipliers for the secondary enemy type
+    private float doctorSpeed = .6f;
 
     void Start()
     {
@@ -56,6 +62,16 @@ public class WaveManager : MonoBehaviour
             Debug.LogError("Enemy prefab not assigned!");
             return;
         }
+        if (secondaryPrefab == null)
+        {
+            Debug.LogError("Secondary prefab not assigned!");
+            return;
+        }
+        if (tertiaryPrefab == null)
+        {
+            Debug.LogError("tertiary prefab not assigned!");
+            return;
+        }
 
         if (spawnPoints == null || spawnPoints.Count == 0)
         {
@@ -67,6 +83,11 @@ public class WaveManager : MonoBehaviour
         if (clearHUD != null)
         {
             clearHUD.SetActive(false);
+        }
+        if (GameHandler.hard == true)
+        {
+            Debug.Log("hardmode");
+            HardMode();
         }
     }
 
@@ -90,6 +111,7 @@ public class WaveManager : MonoBehaviour
                         if (currentSceneIndex == 4)
                         {
                             GetComponent<HoldenOtherTemp>().enabled = true;
+                            GetComponent<LevelTitleUI>().enabled = true;
                             levelEnd = true;
                         }
                         else
@@ -148,16 +170,87 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < wave.enemyCount; i++)
         {
+            GameObject enemy;
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-            GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+
+            
+            //Randomizes and instantiates the spawns during hardMode and regular
+            if (hardMode)
+            {
+                if(tertiaryPrefab == secondaryPrefab && secondaryPrefab == enemyPrefab)
+                {
+                    enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+                }
+                else if(tertiaryPrefab == secondaryPrefab) {
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        enemy = Instantiate(secondaryPrefab, spawnPoint.position, Quaternion.identity);
+                    }
+                }
+                else
+                {
+                    int thirdRoll = Random.Range(0, 6);
+                    if (thirdRoll == 0)
+                    {
+                        enemy = Instantiate(tertiaryPrefab, spawnPoint.position, Quaternion.identity);
+                    }
+                    else if (thirdRoll == 1)
+                    {
+                        enemy = Instantiate(secondaryPrefab, spawnPoint.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+                    }
+                }
+            }else{
+                enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            }
             activeEnemies.Add(enemy);
 
 
             EnemyChasePlayer chase = enemy.GetComponent<EnemyChasePlayer>();
             if (chase != null)
             {
+                int enemyOrder = enemy.GetComponent<Renderer>().sortingOrder;
+                int secondOrder = secondaryPrefab.GetComponent<Renderer>().sortingOrder;
+                int thirdOrder = tertiaryPrefab.GetComponent<Renderer>().sortingOrder;
                 float speed = Random.Range(wave.minSpeedMultiplier, wave.maxSpeedMultiplier);
-                chase.SetSpeedMultiplier(speed);
+                if (hardMode) {
+                    //if the there are two distinct enemy types, modify their speed
+                    if (enemyPrefab != secondaryPrefab)
+                    {
+                        if (secondOrder == 1 && enemyOrder == 1)
+                        {
+                            chase.SetSpeedMultiplier(speed * ratSpeed);
+                        }
+                        else if (secondOrder == 2 && enemyOrder == 2)
+                        {
+                            chase.SetSpeedMultiplier(speed * doctorSpeed);
+                        }
+                        //if there are three distinct enemy types (the last being the prisoner), modify their speed
+                        else if (secondaryPrefab != tertiaryPrefab && thirdOrder == 0 && enemyOrder == 0)
+                        {
+                            chase.SetSpeedMultiplier(speed * 1.5f);
+                        }
+                        else
+                        {
+                            chase.SetSpeedMultiplier(speed);
+                        }
+                    }
+                    else
+                    {
+                        chase.SetSpeedMultiplier(speed);
+                    }
+                }
+                else
+                {
+                    chase.SetSpeedMultiplier(speed);
+                }
             }
 
             EnemyDeathNotifier notifier = enemy.GetComponent<EnemyDeathNotifier>();
@@ -262,6 +355,88 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public void HardMode()
+    {
+        hardMode = true;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //tutorial
+        if (currentSceneIndex == 1)
+        {
+            //wave 1
+            waves[0].enemyCount = 5;
+            waves[0].spawnRate = 1f;
+            waves[0].minSpeedMultiplier = 0.5f;
+            waves[0].maxSpeedMultiplier = 0.8f;
+            //wave 2
+            waves[1].enemyCount = 8;
+            waves[1].spawnRate = 1;
+            waves[1].minSpeedMultiplier = .8f;
+            waves[1].maxSpeedMultiplier = 1f;
+            //wave 3
+            waves[2].enemyCount = 12;
+            waves[2].spawnRate = .8f;
+            waves[2].minSpeedMultiplier = 1f;
+            waves[2].maxSpeedMultiplier = 1.2f;
+        }
+
+        //prison
+        if (currentSceneIndex == 2)
+        {
+            //wave 1
+            waves[0].enemyCount = 16;
+            waves[0].spawnRate = .8f;
+            waves[0].minSpeedMultiplier = 1f;
+            waves[0].maxSpeedMultiplier = 1.2f;
+            //wave 2
+            waves[1].enemyCount = 26;
+            waves[1].spawnRate = .8f;
+            waves[1].minSpeedMultiplier = 1.2f;
+            waves[1].maxSpeedMultiplier = 1.4f;
+            //wave 3
+            waves[2].enemyCount = 36;
+            waves[2].spawnRate = .6f;
+            waves[2].minSpeedMultiplier = 1.3f;
+            waves[2].maxSpeedMultiplier = 1.5f;
+        }
+        //swamp
+        if (currentSceneIndex == 3)
+        {
+            //wave 1
+            waves[0].enemyCount = 20;
+            waves[0].spawnRate = .6f;
+            waves[0].minSpeedMultiplier = 2f;
+            waves[0].maxSpeedMultiplier = 2.4f;
+            //wave 2
+            waves[1].enemyCount = 28;
+            waves[1].spawnRate = .8f;
+            waves[1].minSpeedMultiplier = 2.4f;
+            waves[1].maxSpeedMultiplier = 2.8f;
+            //wave 3
+            waves[2].enemyCount = 36;
+            waves[2].spawnRate = .6f;
+            waves[2].minSpeedMultiplier = 2.8f;
+            waves[2].maxSpeedMultiplier = 3f;
+        }
+        //lab
+        if (currentSceneIndex == 4 && tag != "enemyShooter")
+        {
+            //wave 1
+            waves[0].enemyCount = 22;
+            waves[0].spawnRate = .6f;
+            waves[0].minSpeedMultiplier = 1f;
+            waves[0].maxSpeedMultiplier = 1.4f;
+            //wave 2
+            waves[1].enemyCount = 28;
+            waves[1].spawnRate = .8f;
+            waves[1].minSpeedMultiplier = 1.2f;
+            waves[1].maxSpeedMultiplier = 1.6f;
+            //wave 3
+            waves[2].enemyCount = 30;
+            waves[2].spawnRate = .6f;
+            waves[2].minSpeedMultiplier = 1.6f;
+            waves[2].maxSpeedMultiplier = 1.8f;
+        }
+    }
     IEnumerator ClearWaveAfterFullKill()
     {
         yield return StartCoroutine(FadeOutRemainingEnemies());

@@ -49,6 +49,7 @@ public class GameHandler : MonoBehaviour
     public float attackMultiplier = 1;
     public float speedMultiplier = 1;
     public float healthMultiplier = 1;
+    static public bool hard = true; // this might cause issues if another script doesn't set the var before WaveManager runs
 
     // audio vars
     public AudioSource playerhurt_sfx;
@@ -86,7 +87,6 @@ public class GameHandler : MonoBehaviour
         stanceNumber = 1;
         updateAttackScriptByStance();
         upgradeMenuScript = GameObject.FindObjectOfType<GameHandler_UpgradeMenu>();
-
 
 
         player = GameObject.FindWithTag("Player");

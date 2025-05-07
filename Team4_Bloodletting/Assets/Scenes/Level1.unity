@@ -44271,6 +44271,8 @@ MonoBehaviour:
     maxSpeedMultiplier: 1.2
     waveDelay: 3.5
   enemyPrefab: {fileID: 7268578490426690952, guid: 2ab79818f5f454c1f93ab7843dcbbb98, type: 3}
+  secondaryPrefab: {fileID: 7268578490426690952, guid: 2ab79818f5f454c1f93ab7843dcbbb98, type: 3}
+  tertiaryPrefab: {fileID: 7268578490426690952, guid: 2ab79818f5f454c1f93ab7843dcbbb98, type: 3}
   spawnPoints:
   - {fileID: 122498315}
   - {fileID: 742432700}
@@ -44287,6 +44289,7 @@ MonoBehaviour:
   enemydeath_sfx: {fileID: 72357260}
   enemy_ambient_sfx: {fileID: 2492704550247577241}
   enemyCounterText: {fileID: 1688924525}
+  hardMode: 0
 --- !u!4 &854716303
 Transform:
   m_ObjectHideFlags: 0
