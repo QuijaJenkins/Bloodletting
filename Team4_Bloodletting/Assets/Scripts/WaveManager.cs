@@ -46,7 +46,7 @@ public class WaveManager : MonoBehaviour
     private int killsNeededForWaveClear = 0;
     private bool waveClearedEarly = false;
     public bool hardMode;
-    private float ratSpeed = 2.4f; // these are speed multipliers for the secondary enemy type
+    private float ratSpeed = 2.6f; // these are speed multipliers for the secondary enemy type
     private float doctorSpeed = .6f;
 
     void Start()
@@ -111,7 +111,7 @@ public class WaveManager : MonoBehaviour
                         if (currentSceneIndex == 4)
                         {
                             GetComponent<HoldenOtherTemp>().enabled = true;
-                            GetComponent<LevelTitleUI>().enabled = true;
+                            //GetComponent<LevelTitleUI>().enabled = true;
                             levelEnd = true;
                         }
                         else
@@ -440,6 +440,6 @@ public class WaveManager : MonoBehaviour
     IEnumerator ClearWaveAfterFullKill()
     {
         yield return StartCoroutine(FadeOutRemainingEnemies());
-        enemiesRemaining = 0;
+        //enemiesRemaining = 0;
     }
 }

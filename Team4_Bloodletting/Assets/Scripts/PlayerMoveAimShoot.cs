@@ -65,8 +65,16 @@ public class PlayerMoveAimShoot : MonoBehaviour{
 
             Debug.Log("we shot with arrow");
 
-            //lose 10 health upon arrow fire
+        //lose 10 health upon arrow fire
+        if (GameHandler.hard)
+        {
+            gameHandler.changeHealth(-7, true);
+        }
+        else
+        {
             gameHandler.changeHealth(-5, true);
+        }
+            
             //animator.SetTrigger ("Fire");
             Vector2 fwd = (firePoint.position - this.transform.position).normalized;
             // Vector2 fwd = (firePoint.position - fireBase.position).normalized;

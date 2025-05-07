@@ -206,6 +206,10 @@ public class EnemyDamagePlayer : MonoBehaviour
         }
         player = GameObject.FindWithTag("Player");
         playerAnim = player.GetComponentInChildren<Animator>();
+        if (GameHandler.hard)
+        {
+            damageAmount = 15;
+        }
     }
 
 void OnTriggerEnter2D(Collider2D other)

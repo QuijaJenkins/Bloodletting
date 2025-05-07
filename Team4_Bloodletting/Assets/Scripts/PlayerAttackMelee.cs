@@ -244,14 +244,29 @@ public class PlayerAttackMelee : MonoBehaviour
         if (gameHandler.stanceNumber == 1)
         {
             attackRange = 2f;
-            damageTakenFromAttack = 5;
+            if (GameHandler.hard)
+            {
+                damageTakenFromAttack = 6;
+            }
+            else
+            {
+                damageTakenFromAttack = 5;
+            }
             attackDamage = 50;
             attackRate = .3f;
+
         }
         else if (gameHandler.stanceNumber == 3)
         {
             attackRange = 2.2f;
-            damageTakenFromAttack = 7;
+            if (GameHandler.hard)
+            {
+                damageTakenFromAttack = 8;
+            }
+            else
+            {
+                damageTakenFromAttack = 7;
+            }
             attackDamage = 100;
             attackRate = .9f;
         }

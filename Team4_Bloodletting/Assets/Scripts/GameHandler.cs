@@ -102,6 +102,7 @@ public class GameHandler : MonoBehaviour
         if (Lvl1_HUD != null){
             Lvl1_HUD.SetActive(false);
         }
+
     }
 
     // Update is called once per frame
@@ -623,11 +624,22 @@ public class GameHandler : MonoBehaviour
 
 
     public void healthUpgrade() {
-        healthMultiplier += 0.2f;
-        int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
-        maxPlayerHealth += healthGain;
-        playerHealth += healthGain;
-        finishUpgrade();
+        if (GameHandler.hard)
+        {
+            healthMultiplier += 0.1f;
+            int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.1f);
+            maxPlayerHealth += healthGain;
+            playerHealth += healthGain;
+            finishUpgrade();
+        }
+        else
+        {
+            healthMultiplier += 0.2f;
+            int healthGain = Mathf.RoundToInt(maxPlayerHealth * 0.2f);
+            maxPlayerHealth += healthGain;
+            playerHealth += healthGain;
+            finishUpgrade();
+        }
     }
     public void attackUpgrade() {
         attackMultiplier += 0.2f;

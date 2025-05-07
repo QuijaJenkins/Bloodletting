@@ -34,7 +34,10 @@ public class LevelTitleUI : MonoBehaviour
         yield return StartCoroutine(FadeCanvas(0f, 1f, fadeDuration));
         yield return new WaitForSeconds(displayDuration);
         yield return StartCoroutine(FadeCanvas(1f, 0f, fadeDuration));
-        gameObject.SetActive(false);
+        if (GetComponent<WaveManager>() == null)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     IEnumerator FadeCanvas(float from, float to, float duration)

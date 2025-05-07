@@ -15057,6 +15057,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 319376e5e0be94171b295ff27191966f, type: 3}
+--- !u!114 &492990028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7231337010323787806, guid: 319376e5e0be94171b295ff27191966f, type: 3}
+  m_PrefabInstance: {fileID: 492990027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &506425381
 GameObject:
   m_ObjectHideFlags: 0
@@ -56219,6 +56230,10 @@ PrefabInstance:
       propertyPath: projectileScript
       value: 
       objectReference: {fileID: 663163955}
+    - target: {fileID: 4879151377135777201, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
+      propertyPath: healthUpgradeText
+      value: 
+      objectReference: {fileID: 492990028}
     - target: {fileID: 6713255878267768430, guid: 0f5b2f5b3a6d8427bbca6c5668df0fb4, type: 3}
       propertyPath: sfx_mixer
       value: 

@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 6699870421474105869}
   - component: {fileID: 6771861882647937149}
   - component: {fileID: 3252607068831910496}
+  - component: {fileID: 4072035402045278894}
   m_Layer: 5
   m_Name: upgradeMenu
   m_TagString: Untagged
@@ -404,6 +405,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4072035402045278894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811970926298004063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062f173bd3fb66d4ba761eeb9f172962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 7842589319328636271}
 --- !u!1 &963371831456313113
 GameObject:
   m_ObjectHideFlags: 0

@@ -168,7 +168,14 @@ public class Enemy_health_will : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-        gameHandler.changeHealth(20, false);
+        if (GameHandler.hard)
+        {
+            gameHandler.changeHealth(15, false);
+        }
+        else
+        {
+            gameHandler.changeHealth(20, false);
+        }
         gameHandler.xp += 10;
     }
 
